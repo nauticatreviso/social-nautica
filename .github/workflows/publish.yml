@@ -1,0 +1,34 @@
+name: Pubblica su Instagram
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # ogni 15 minuti (GitHub puo' ritardare di qualche minuto)
+  workflow_dispatch:          # permette anche l'avvio manuale dal tab Actions
+
+permissions:
+  contents: write             # serve per salvare published.json
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scarica il repository
+        uses: actions/checkout@v4
+
+      - name: Pubblica i post in scadenza
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          IG_USER_ID: "17841404468831152"
+        run: python3 publish_instagram.py
+
+      - name: Salva lo stato delle pubblicazioni
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add published.json || true
+          git diff --cached --quiet || (git commit -m "Aggiorna stato pubblicazioni" && git push)
