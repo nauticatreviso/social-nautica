@@ -1,0 +1,9 @@
+[
+  {
+    "id": "test-1",
+    "when": "2026-10-05T16:00",
+    "caption": "Test di pubblicazione automatica 🌊",
+    "media": "media/test.jpeg",
+    "type": "image"
+  }
+]
