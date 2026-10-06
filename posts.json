@@ -20,5 +20,12 @@
       "instagram",
       "facebook"
     ]
+  },
+  {
+    "id": "post-20261006-1758",
+    "when": "2026-10-06T17:58",
+    "caption": "test git-hub",
+    "media": "media/post-20261006-1758.jpeg",
+    "type": "image"
   }
 ]
