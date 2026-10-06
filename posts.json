@@ -2,16 +2,32 @@
   {
     "id": "test-1",
     "when": "2026-10-05T16:00",
-    "caption": "Test di pubblicazione automatica 🌊",
+    "caption": "Test di pubblicazione automatica ✌️",
     "media": "media/test.jpeg",
     "type": "image"
   },
   {
     "id": "test-fb-1",
     "when": "2026-10-06T15:00",
-    "caption": "Test di pubblicazione automatica su Facebook 🌊",
+    "caption": "Test di pubblicazione automatica su Facebook ✌️",
     "media": "media/test.jpeg",
     "type": "image",
     "platforms": ["facebook"]
+  },
+  {
+    "id": "baron-gautsch-gruppo-20261008",
+    "when": "2026-10-08T18:30",
+    "caption": "🤿 Domenica 4 ottobre siamo scesi sul Baron Gautsch!\n\nUn'uscita super organizzata da Nautica Treviso Diving: partenza da Rovigno e immersione su uno dei relitti più affascinanti dell'Adriatico.\n\nIl Baron Gautsch, il “Titanic dell'Adriatico”, riposa su un fondo sabbioso tra i 28 e i 40 metri di profondità. Varato nel 1908 e affondato il 13 agosto 1914 dopo aver urtato una mina, oggi è un'immersione che toglie il fiato.\n\nGrazie a tutti i partecipanti per un'altra giornata di mare, bolle e sorrisi! 💙\n\n#NauticaTreviso #BaronGautsch #Rovigno #Subacquea #ScubaDiving #Diving #WreckDiving #Adriatico #TitanicDellAdriatico #ImmersioneSuRelitto #DivingCenter #NauticaTrevisoDiving #MaréVita",
+    "media": "media/baron_gautsch_gruppo.jpeg",
+    "type": "image",
+    "platforms": ["instagram", "facebook"]
+  },
+  {
+    "id": "baron-gautsch-video-20261010",
+    "when": "2026-10-10T12:00",
+    "caption": "🚢 Il Baron Gautsch — il “Titanic dell'Adriatico”\n\nCostruito nel 1908 in Scozia, lungo 84 metri, collegava Trieste a Cattaro navigando lungo la Dalmazia. Il 13 agosto 1914, in piena Grande Guerra, urtò una mina della stessa marina austro-ungarica al largo delle isole Brioni.\n\nOggi il relitto giace in posizione verticale: la coperta a 28 metri, il fondo a 40. Un'immersione che ti riporta indietro di oltre un secolo.\n\nEcco cosa abbiamo visto domenica con Nautica Treviso Diving 🎬👇\n\n#BaronGautsch #WreckDiving #Relitto #NauticaTreviso #NauticaTrevisoDiving #Subacquea #ScubaDiving #Rovigno #Adriatico #Istria #DivingLife #UnderwaterVideo #StoriaSubacquea",
+    "media": "media/baron_gautsch_video.mp4",
+    "type": "video",
+    "platforms": ["instagram", "facebook"]
   }
 ]
