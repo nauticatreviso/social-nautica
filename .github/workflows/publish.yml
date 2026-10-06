@@ -19,16 +19,23 @@ jobs:
       - name: Scarica il repository
         uses: actions/checkout@v4
 
-      - name: Pubblica i post in scadenza
+      - name: Pubblica su Instagram i post in scadenza
         env:
           IG_TOKEN: ${{ secrets.IG_TOKEN }}
           IG_USER_ID: "17841404468831152"
         run: python3 publish_instagram.py
+
+      - name: Pubblica su Facebook i post in scadenza
+        if: ${{ !cancelled() }}   # parte anche se Instagram ha dato errore
+        env:
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          FB_PAGE_ID: "1479050282386421"
+        run: python3 publish_facebook.py
 
       - name: Salva lo stato delle pubblicazioni
         if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add published.json || true
+          git add published*.json || true
           git diff --cached --quiet || (git commit -m "Aggiorna stato pubblicazioni" && git push)
