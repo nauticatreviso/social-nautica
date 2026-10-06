@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Nautica Manager</title>
+<style>
+:root {
+  --blue-900: #0D2137;
+  --blue-700: #1B4965;
+  --blue-500: #2E6B8A;
+  --blue-300: #62B6CB;
+  --blue-100: #BEE9E8;
+  --blue-50: #E8F6F8;
+  --coral: #E07A5F;
+  --coral-dark: #C4593F;
+  --green: #2D9F6F;
+  --orange: #E6A23C;
+  --red: #E25555;
+  --gray-50: #F8F9FA;
+  --gray-100: #F1F3F5;
+  --gray-200: #DEE2E6;
+  --gray-400: #ADB5BD;
+  --gray-600: #6C757D;
+  --gray-800: #343A40;
+  --gray-900: #212529;
+  --radius: 10px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-lg: 0 4px 20px rgba(0,0,0,0.12);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--gray-50); color: var(--gray-900); min-height:100vh; }
+
+/* === HEADER === */
+header { background: linear-gradient(135deg, var(--blue-900), var(--blue-700)); color:#fff; padding:16px 20px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+header h1 { font-size:1.25rem; font-weight:700; display:flex; align-items:center; gap:8px; }
+header h1 span { font-size:1.5rem; }
+.btn-settings { background:rgba(255,255,255,0.15); border:none; color:#fff; width:40px; height:40px; border-radius:50%; cursor:pointer; font-size:1.2rem; display:flex; align-items:center; justify-content:center; transition:background .2s; }
+.btn-settings:hover { background:rgba(255,255,255,0.3); }
+
+/* === TABS === */
+.tabs { display:flex; background:#fff; border-bottom:2px solid var(--gray-200); padding:0 16px; overflow-x:auto; }
+.tab-btn { padding:14px 20px; border:none; background:none; color:var(--gray-600); font-size:.95rem; font-weight:600; cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; white-space:nowrap; transition: color .2s, border-color .2s; }
+.tab-btn.active { color:var(--blue-700); border-bottom-color:var(--blue-700); }
+.tab-btn:hover:not(.active) { color:var(--gray-800); }
+
+/* === CONTENT === */
+.tab-content { display:none; padding:20px; max-width:800px; margin:0 auto; }
+.tab-content.active { display:block; }
+
+/* === CARDS === */
+.card { background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:24px; margin-bottom:16px; }
+.card h2 { font-size:1.1rem; color:var(--blue-700); margin-bottom:16px; }
+
+/* === FORM === */
+label { display:block; font-weight:600; font-size:.9rem; color:var(--gray-800); margin-bottom:6px; }
+input[type="text"], input[type="date"], input[type="time"], textarea, select {
+  width:100%; padding:10px 12px; border:1.5px solid var(--gray-200); border-radius:8px;
+  font-size:.95rem; font-family:inherit; transition:border-color .2s; background:#fff;
+}
+input:focus, textarea:focus, select:focus { outline:none; border-color:var(--blue-500); }
+textarea { resize:vertical; min-height:120px; }
+.form-row { margin-bottom:18px; }
+.form-row-inline { display:flex; gap:12px; }
+.form-row-inline > div { flex:1; }
+.char-count { font-size:.8rem; color:var(--gray-400); text-align:right; margin-top:4px; }
+.char-count.warn { color:var(--orange); }
+.char-count.over { color:var(--red); }
+
+/* === UPLOAD AREA === */
+.upload-area {
+  border:2px dashed var(--gray-300, #CED4DA); border-radius:var(--radius); padding:40px 20px;
+  text-align:center; cursor:pointer; transition:border-color .2s, background .2s;
+  color:var(--gray-600); margin-bottom:18px;
+}
+.upload-area:hover, .upload-area.dragover { border-color:var(--blue-500); background:var(--blue-50); }
+.upload-area .icon { font-size:2.5rem; margin-bottom:8px; }
+.upload-area p { font-size:.95rem; }
+.upload-area .hint { font-size:.8rem; color:var(--gray-400); margin-top:6px; }
+.upload-preview { margin-bottom:18px; }
+.upload-preview img { max-width:100%; max-height:300px; border-radius:8px; }
+.upload-preview .file-info { display:flex; align-items:center; gap:10px; padding:12px; background:var(--gray-100); border-radius:8px; }
+.upload-preview .file-info .icon { font-size:1.5rem; }
+.upload-preview .file-info .name { font-weight:600; }
+.upload-preview .file-info .size { color:var(--gray-600); font-size:.85rem; }
+.upload-preview .file-info .remove { margin-left:auto; background:none; border:none; color:var(--red); cursor:pointer; font-size:1.2rem; }
+
+/* === CHECKBOXES === */
+.checkbox-group { display:flex; gap:16px; }
+.checkbox-label { display:flex; align-items:center; gap:8px; cursor:pointer; font-weight:400; font-size:.95rem; }
+.checkbox-label input { width:18px; height:18px; accent-color:var(--blue-700); }
+
+/* === BUTTONS === */
+.btn { padding:12px 28px; border:none; border-radius:8px; font-size:1rem; font-weight:600; cursor:pointer; transition: background .2s, transform .1s; display:inline-flex; align-items:center; gap:8px; }
+.btn:active { transform:scale(0.97); }
+.btn-primary { background:var(--coral); color:#fff; }
+.btn-primary:hover { background:var(--coral-dark); }
+.btn-primary:disabled { background:var(--gray-400); cursor:not-allowed; transform:none; }
+.btn-secondary { background:var(--gray-100); color:var(--gray-800); }
+.btn-secondary:hover { background:var(--gray-200); }
+.btn-danger { background:none; border:1.5px solid var(--red); color:var(--red); padding:6px 14px; font-size:.85rem; }
+.btn-danger:hover { background:var(--red); color:#fff; }
+.btn-sm { padding:6px 14px; font-size:.85rem; }
+
+/* === CALENDAR POST CARDS === */
+.post-card { display:flex; gap:16px; padding:16px; border:1.5px solid var(--gray-200); border-radius:var(--radius); margin-bottom:12px; transition:border-color .2s; }
+.post-card:hover { border-color:var(--blue-300); }
+.post-thumb { width:80px; height:80px; border-radius:8px; object-fit:cover; background:var(--gray-200); flex-shrink:0; }
+.post-thumb-placeholder { width:80px; height:80px; border-radius:8px; background:var(--gray-200); display:flex; align-items:center; justify-content:center; font-size:2rem; flex-shrink:0; }
+.post-info { flex:1; min-width:0; }
+.post-meta { display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap; }
+.post-date { font-weight:700; font-size:.9rem; }
+.post-time { color:var(--gray-600); font-size:.85rem; }
+.badge { padding:2px 8px; border-radius:4px; font-size:.75rem; font-weight:700; text-transform:uppercase; }
+.badge-ig { background:#E1306C; color:#fff; }
+.badge-fb { background:#1877F2; color:#fff; }
+.badge-scheduled { background:var(--blue-100); color:var(--blue-700); }
+.badge-published { background:#D4F5E2; color:var(--green); }
+.badge-expired { background:#FDE8E8; color:var(--red); }
+.post-caption { font-size:.9rem; color:var(--gray-800); line-height:1.4; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; word-break:break-word; }
+.post-actions { display:flex; align-items:flex-end; flex-shrink:0; }
+
+/* === MODAL === */
+.modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:200; align-items:center; justify-content:center; padding:20px; }
+.modal-overlay.show { display:flex; }
+.modal { background:#fff; border-radius:var(--radius); padding:28px; width:100%; max-width:480px; box-shadow:var(--shadow-lg); }
+.modal h2 { margin-bottom:20px; color:var(--blue-700); }
+.modal .form-row:last-of-type { margin-bottom:24px; }
+
+/* === TOAST === */
+.toast-container { position:fixed; top:80px; right:20px; z-index:300; display:flex; flex-direction:column; gap:8px; }
+.toast { padding:14px 20px; border-radius:8px; color:#fff; font-weight:500; font-size:.9rem; box-shadow:var(--shadow-lg); animation: slideIn .3s ease, fadeOut .3s ease 3.5s; max-width:350px; }
+.toast-success { background:var(--green); }
+.toast-error { background:var(--red); }
+.toast-info { background:var(--blue-700); }
+@keyframes slideIn { from { transform:translateX(100%); opacity:0; } to { transform:translateX(0); opacity:1; } }
+@keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
+
+/* === EMPTY STATE === */
+.empty-state { text-align:center; padding:60px 20px; color:var(--gray-600); }
+.empty-state .icon { font-size:3rem; margin-bottom:12px; }
+.empty-state p { font-size:1rem; }
+
+/* === LOADING === */
+.spinner { display:inline-block; width:20px; height:20px; border:3px solid rgba(255,255,255,0.3); border-top-color:#fff; border-radius:50%; animation:spin .6s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+.loading-overlay { display:flex; align-items:center; justify-content:center; gap:12px; padding:40px; color:var(--gray-600); }
+.loading-overlay .spinner { border-color:var(--gray-200); border-top-color:var(--blue-700); }
+
+/* === INSIGHTS === */
+.insight-card { text-align:center; padding:20px; }
+.insight-value { font-size:2rem; font-weight:800; color:var(--blue-700); }
+.insight-label { font-size:.85rem; color:var(--gray-600); margin-top:4px; }
+.insights-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(120px,1fr)); gap:12px; margin-bottom:20px; }
+
+/* === RESPONSIVE === */
+@media (max-width:600px) {
+  .form-row-inline { flex-direction:column; gap:12px; }
+  .post-card { flex-direction:column; }
+  .post-thumb, .post-thumb-placeholder { width:100%; height:160px; }
+  .post-actions { margin-top:8px; }
+  .tab-btn { padding:12px 14px; font-size:.85rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toasts"></div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="settingsModal">
+  <div class="modal">
+    <h2>⚙️ Impostazioni</h2>
+    <div class="form-row">
+      <label for="ghToken">GitHub Personal Access Token</label>
+      <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx">
+      <div class="hint" style="font-size:.8rem;color:var(--gray-600);margin-top:6px;">
+        Serve un token con permesso <strong>repo</strong>.<br>
+        Crealo su GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="ghRepo">Repository</label>
+      <input type="text" id="ghRepo" value="nauticatreviso/social-nautica">
+    </div>
+    <div style="display:flex;gap:10px;">
+      <button class="btn btn-primary" onclick="saveSettings()">Salva</button>
+      <button class="btn btn-secondary" onclick="testConnection()">🔗 Testa connessione</button>
+      <button class="btn btn-secondary" onclick="closeSettings()" style="margin-left:auto;">Chiudi</button>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <h1><span>🤿</span> Social Nautica Manager</h1>
+  <button class="btn-settings" onclick="openSettings()" title="Impostazioni">⚙️</button>
+</header>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('nuovo')">📝 Nuovo Post</button>
+  <button class="tab-btn" onclick="switchTab('calendario')">📅 Calendario</button>
+  <button class="tab-btn" onclick="switchTab('insights')">📊 Insights</button>
+</div>
+
+<!-- TAB: NUOVO POST -->
+<div class="tab-content active" id="tab-nuovo">
+  <div class="card">
+    <h2>Programma un nuovo post</h2>
+
+    <!-- Upload -->
+    <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+      <div class="icon">📷</div>
+      <p>Trascina qui una foto o un video</p>
+      <p class="hint">JPEG per Instagram · MP4 per video · Max 50 MB consigliato</p>
+    </div>
+    <input type="file" id="fileInput" accept="image/jpeg,image/png,video/mp4,video/quicktime" hidden>
+    <div class="upload-preview" id="uploadPreview" style="display:none;"></div>
+
+    <!-- Caption -->
+    <div class="form-row">
+      <label for="caption">Didascalia</label>
+      <textarea id="caption" placeholder="Scrivi la didascalia del post...&#10;&#10;Gli hashtag vanno in fondo"></textarea>
+      <div class="char-count" id="charCount">0 / 2200</div>
+    </div>
+
+    <!-- Date / Time -->
+    <div class="form-row form-row-inline">
+      <div>
+        <label for="postDate">Data</label>
+        <input type="date" id="postDate">
+      </div>
+      <div>
+        <label for="postTime">Ora</label>
+        <input type="time" id="postTime" value="18:30">
+      </div>
+    </div>
+
+    <!-- Platforms -->
+    <div class="form-row">
+      <label>Piattaforme</label>
+      <div class="checkbox-group">
+        <label class="checkbox-label"><input type="checkbox" id="platIG" checked> Instagram</label>
+        <label class="checkbox-label"><input type="checkbox" id="platFB" checked> Facebook</label>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <button class="btn btn-primary" id="btnSubmit" onclick="submitPost()" disabled>
+      🚀 Programma Post
+    </button>
+  </div>
+</div>
+
+<!-- TAB: CALENDARIO -->
+<div class="tab-content" id="tab-calendario">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+    <h2 style="color:var(--blue-700);">Post programmati e pubblicati</h2>
+    <button class="btn btn-secondary btn-sm" onclick="loadCalendar()">🔄 Aggiorna</button>
+  </div>
+  <div id="calendarList">
+    <div class="loading-overlay"><div class="spinner"></div> Caricamento...</div>
+  </div>
+</div>
+
+<!-- TAB: INSIGHTS -->
+<div class="tab-content" id="tab-insights">
+  <div class="card">
+    <h2>📊 Statistiche dei post</h2>
+    <div id="insightsContent">
+      <div class="loading-overlay"><div class="spinner"></div> Caricamento...</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================
+// CONFIGURAZIONE
+// ============================================
+const STORAGE_KEY = 'social-nautica-config';
+let CONFIG = loadConfig();
+let selectedFile = null;
+
+function loadConfig() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) return JSON.parse(saved);
+  } catch(e) {}
+  return { token: '', repo: 'nauticatreviso/social-nautica' };
+}
+
+function saveConfig() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(CONFIG)); } catch(e) {}
+}
+
+// ============================================
+// GITHUB API
+// ============================================
+
+// Codifica UTF-8 → Base64 (gestisce emoji e accenti)
+function utf8ToB64(str) {
+  return btoa(new TextEncoder().encode(str).reduce((s, b) => s + String.fromCharCode(b), ''));
+}
+
+// Decodifica Base64 → UTF-8
+function b64ToUtf8(b64) {
+  const binary = atob(b64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+
+// Legge un file dal repository
+async function ghGet(path) {
+  const res = await fetch(`https://api.github.com/repos/${CONFIG.repo}/contents/${path}`, {
+    headers: { 'Authorization': `Bearer ${CONFIG.token}`, 'Accept': 'application/vnd.github.v3+json' }
+  });
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
+  const data = await res.json();
+  return { content: b64ToUtf8(data.content.replace(/\n/g, '')), sha: data.sha };
+}
+
+// Crea o aggiorna un file nel repository
+async function ghPut(path, content, sha, message) {
+  const body = { message, content };
+  if (typeof content === 'string' && !content.match(/^[A-Za-z0-9+/=\n]+$/)) {
+    // È testo, codifica in base64
+    body.content = utf8ToB64(content);
+  }
+  if (sha) body.sha = sha;
+  const res = await fetch(`https://api.github.com/repos/${CONFIG.repo}/contents/${path}`, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `Bearer ${CONFIG.token}`,
+      'Content-Type': 'application/json',
+      'Accept': 'application/vnd.github.v3+json'
+    },
+    body: JSON.stringify(body)
+  });
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.message || `GitHub PUT error: ${res.status}`);
+  }
+  return res.json();
+}
+
+// Carica un file binario (immagine/video)
+async function ghUploadBinary(path, file, message) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = async () => {
+      try {
+        const base64 = reader.result.split(',')[1]; // Rimuove il prefisso data:...
+        const body = { message, content: base64 };
+        const res = await fetch(`https://api.github.com/repos/${CONFIG.repo}/contents/${path}`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${CONFIG.token}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.github.v3+json'
+          },
+          body: JSON.stringify(body)
+        });
+        if (!res.ok) {
+          const err = await res.json();
+          reject(new Error(err.message || `Upload error: ${res.status}`));
+        } else {
+          resolve(await res.json());
+        }
+      } catch(e) { reject(e); }
+    };
+    reader.onerror = () => reject(new Error('Errore lettura file'));
+    reader.readAsDataURL(file);
+  });
+}
+
+// ============================================
+// SETTINGS
+// ============================================
+function openSettings() {
+  document.getElementById('ghToken').value = CONFIG.token;
+  document.getElementById('ghRepo').value = CONFIG.repo;
+  document.getElementById('settingsModal').classList.add('show');
+}
+
+function closeSettings() {
+  document.getElementById('settingsModal').classList.remove('show');
+}
+
+function saveSettings() {
+  CONFIG.token = document.getElementById('ghToken').value.trim();
+  CONFIG.repo = document.getElementById('ghRepo').value.trim();
+  saveConfig();
+  closeSettings();
+  toast('Impostazioni salvate', 'success');
+  updateSubmitButton();
+}
+
+async function testConnection() {
+  const token = document.getElementById('ghToken').value.trim();
+  const repo = document.getElementById('ghRepo').value.trim();
+  if (!token || !repo) { toast('Inserisci token e repository', 'error'); return; }
+  try {
+    const res = await fetch(`https://api.github.com/repos/${repo}`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (res.ok) {
+      toast('✅ Connessione riuscita!', 'success');
+    } else if (res.status === 401) {
+      toast('❌ Token non valido', 'error');
+    } else if (res.status === 404) {
+      toast('❌ Repository non trovato', 'error');
+    } else {
+      toast(`❌ Errore: ${res.status}`, 'error');
+    }
+  } catch(e) {
+    toast('❌ Errore di rete', 'error');
+  }
+}
+
+// ============================================
+// TABS
+// ============================================
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.getElementById(`tab-${name}`).classList.add('active');
+  event.target.classList.add('active');
+
+  if (name === 'calendario') loadCalendar();
+  if (name === 'insights') loadInsights();
+}
+
+// ============================================
+// UPLOAD E PREVIEW
+// ============================================
+const uploadArea = document.getElementById('uploadArea');
+const fileInput = document.getElementById('fileInput');
+
+['dragover', 'dragenter'].forEach(ev => {
+  uploadArea.addEventListener(ev, e => { e.preventDefault(); uploadArea.classList.add('dragover'); });
+});
+['dragleave', 'drop'].forEach(ev => {
+  uploadArea.addEventListener(ev, e => { e.preventDefault(); uploadArea.classList.remove('dragover'); });
+});
+uploadArea.addEventListener('drop', e => {
+  const file = e.dataTransfer.files[0];
+  if (file) handleFile(file);
+});
+fileInput.addEventListener('change', e => {
+  if (e.target.files[0]) handleFile(e.target.files[0]);
+});
+
+function handleFile(file) {
+  const ext = file.name.split('.').pop().toLowerCase();
+  const validImg = ['jpeg', 'jpg'];
+  const validVid = ['mp4', 'mov'];
+
+  if (!validImg.includes(ext) && !validVid.includes(ext)) {
+    toast('Formato non supportato. Usa JPEG per foto o MP4 per video.', 'error');
+    return;
+  }
+
+  if (ext === 'png') {
+    toast('⚠️ Instagram richiede JPEG. Converti la foto prima di caricarla.', 'error');
+    return;
+  }
+
+  const sizeMB = file.size / (1024 * 1024);
+  if (sizeMB > 50) {
+    toast(`⚠️ File grande (${sizeMB.toFixed(0)} MB). Per file >50 MB caricalo direttamente su GitHub.`, 'error');
+    return;
+  }
+
+  selectedFile = file;
+  const preview = document.getElementById('uploadPreview');
+  const isImage = validImg.includes(ext);
+
+  if (isImage) {
+    const url = URL.createObjectURL(file);
+    preview.innerHTML = `<img src="${url}" alt="Anteprima">
+      <div class="file-info" style="margin-top:8px;">
+        <span class="name">${file.name}</span>
+        <span class="size">${sizeMB.toFixed(1)} MB · Foto</span>
+        <button class="remove" onclick="clearFile()">✕</button>
+      </div>`;
+  } else {
+    preview.innerHTML = `<div class="file-info">
+        <span class="icon">🎬</span>
+        <div><span class="name">${file.name}</span><br><span class="size">${sizeMB.toFixed(1)} MB · Video</span></div>
+        <button class="remove" onclick="clearFile()">✕</button>
+      </div>`;
+  }
+  preview.style.display = 'block';
+  uploadArea.style.display = 'none';
+  updateSubmitButton();
+}
+
+function clearFile() {
+  selectedFile = null;
+  fileInput.value = '';
+  document.getElementById('uploadPreview').style.display = 'none';
+  uploadArea.style.display = 'block';
+  updateSubmitButton();
+}
+
+// ============================================
+// CAPTION CHARACTER COUNT
+// ============================================
+document.getElementById('caption').addEventListener('input', function() {
+  const len = this.value.length;
+  const counter = document.getElementById('charCount');
+  counter.textContent = `${len} / 2200`;
+  counter.className = 'char-count' + (len > 2200 ? ' over' : len > 2000 ? ' warn' : '');
+  updateSubmitButton();
+});
+
+// ============================================
+// SUBMIT POST
+// ============================================
+function updateSubmitButton() {
+  const btn = document.getElementById('btnSubmit');
+  const hasFile = !!selectedFile;
+  const hasCaption = document.getElementById('caption').value.trim().length > 0;
+  const hasDate = document.getElementById('postDate').value;
+  const hasToken = CONFIG.token.length > 0;
+  btn.disabled = !(hasFile && hasCaption && hasDate && hasToken);
+}
+
+// Imposta data di domani come default
+function setDefaultDate() {
+  const d = new Date();
+  d.setDate(d.getDate() + 1);
+  document.getElementById('postDate').value = d.toISOString().split('T')[0];
+}
+
+async function submitPost() {
+  const btn = document.getElementById('btnSubmit');
+  const caption = document.getElementById('caption').value.trim();
+  const date = document.getElementById('postDate').value;
+  const time = document.getElementById('postTime').value || '18:30';
+  const platIG = document.getElementById('platIG').checked;
+  const platFB = document.getElementById('platFB').checked;
+
+  if (!platIG && !platFB) { toast('Seleziona almeno una piattaforma', 'error'); return; }
+  if (!selectedFile) return;
+
+  const ext = selectedFile.name.split('.').pop().toLowerCase();
+  const isVideo = ['mp4', 'mov'].includes(ext);
+  const type = isVideo ? 'video' : 'image';
+
+  // Genera ID e nome file
+  const dateClean = date.replace(/-/g, '');
+  const timeClean = time.replace(':', '');
+  const id = `post-${dateClean}-${timeClean}`;
+  const mediaName = `${id}.${ext === 'mov' ? 'mp4' : ext}`;
+
+  // Piattaforme
+  const platforms = [];
+  if (platIG) platforms.push('instagram');
+  if (platFB) platforms.push('facebook');
+
+  // Disabilita bottone
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Caricamento...';
+
+  try {
+    // 1. Carica il file media
+    toast('📤 Caricamento file in corso...', 'info');
+    await ghUploadBinary(`media/${mediaName}`, selectedFile, `Aggiunge ${mediaName}`);
+
+    // 2. Leggi posts.json attuale
+    toast('📝 Aggiornamento posts.json...', 'info');
+    const current = await ghGet('posts.json');
+    let posts = [];
+    if (current) {
+      posts = JSON.parse(current.content);
+    }
+
+    // 3. Aggiungi il nuovo post
+    const newPost = {
+      id,
+      when: `${date}T${time}`,
+      caption,
+      media: `media/${mediaName}`,
+      type
+    };
+    // Aggiungi platforms solo se non sono entrambe
+    if (!(platIG && platFB)) {
+      newPost.platforms = platforms;
+    }
+    posts.push(newPost);
+
+    // 4. Scrivi posts.json aggiornato
+    const newContent = JSON.stringify(posts, null, 2);
+    await ghPut('posts.json', newContent, current ? current.sha : null, `Programma post: ${id}`);
+
+    toast('✅ Post programmato con successo!', 'success');
+
+    // Reset form
+    clearFile();
+    document.getElementById('caption').value = '';
+    document.getElementById('charCount').textContent = '0 / 2200';
+    setDefaultDate();
+    updateSubmitButton();
+
+  } catch(e) {
+    toast(`❌ Errore: ${e.message}`, 'error');
+    console.error(e);
+  } finally {
+    btn.innerHTML = '🚀 Programma Post';
+    btn.disabled = false;
+    updateSubmitButton();
+  }
+}
+
+// ============================================
+// CALENDARIO
+// ============================================
+async function loadCalendar() {
+  const container = document.getElementById('calendarList');
+  container.innerHTML = '<div class="loading-overlay"><div class="spinner"></div> Caricamento...</div>';
+
+  if (!CONFIG.token) {
+    container.innerHTML = '<div class="empty-state"><div class="icon">🔑</div><p>Configura il token GitHub nelle impostazioni</p></div>';
+    return;
+  }
+
+  try {
+    const postsData = await ghGet('posts.json');
+    if (!postsData) {
+      container.innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>Nessun post trovato</p></div>';
+      return;
+    }
+    const posts = JSON.parse(postsData.content);
+
+    // Carica i file di pubblicazione per verificare lo stato
+    let publishedIG = [], publishedFB = [];
+    try {
+      const pIG = await ghGet('published.json');
+      if (pIG) publishedIG = JSON.parse(pIG.content);
+    } catch(e) {}
+    try {
+      const pFB = await ghGet('published_facebook.json');
+      if (pFB) publishedFB = JSON.parse(pFB.content);
+    } catch(e) {}
+
+    // Estrai gli ID pubblicati
+    const publishedIDs = new Set();
+    const extractIDs = (arr) => {
+      if (!Array.isArray(arr)) return;
+      arr.forEach(item => {
+        if (typeof item === 'string') publishedIDs.add(item);
+        else if (item && item.id) publishedIDs.add(item.id);
+      });
+    };
+    extractIDs(publishedIG);
+    extractIDs(publishedFB);
+
+    if (posts.length === 0) {
+      container.innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>Nessun post in programma</p></div>';
+      return;
+    }
+
+    // Ordina per data (prossimi prima)
+    posts.sort((a, b) => new Date(a.when) - new Date(b.when));
+
+    const now = new Date();
+    container.innerHTML = posts.map(post => {
+      const when = new Date(post.when);
+      const isPast = when < now;
+      const isPublished = publishedIDs.has(post.id);
+      const isExpired = isPast && !isPublished && (now - when > 12 * 60 * 60 * 1000);
+
+      // Status badge
+      let statusBadge = '<span class="badge badge-scheduled">⏰ Programmato</span>';
+      if (isPublished) statusBadge = '<span class="badge badge-published">✅ Pubblicato</span>';
+      else if (isExpired) statusBadge = '<span class="badge badge-expired">⏭ Scaduto</span>';
+
+      // Platform badges
+      const platforms = post.platforms || ['instagram', 'facebook'];
+      const platBadges = platforms.map(p =>
+        p === 'instagram' ? '<span class="badge badge-ig">IG</span>' :
+        '<span class="badge badge-fb">FB</span>'
+      ).join(' ');
+
+      // Date formatting
+      const dateStr = when.toLocaleDateString('it-IT', { weekday:'short', day:'numeric', month:'short' });
+      const timeStr = when.toLocaleTimeString('it-IT', { hour:'2-digit', minute:'2-digit' });
+
+      // Thumbnail
+      const isImage = post.type === 'image';
+      const thumbUrl = isImage
+        ? `https://raw.githubusercontent.com/${CONFIG.repo}/main/${post.media}`
+        : null;
+
+      const thumb = thumbUrl
+        ? `<img class="post-thumb" src="${thumbUrl}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'post-thumb-placeholder\\'>📷</div>'">`
+        : `<div class="post-thumb-placeholder">${post.type === 'video' ? '🎬' : '📷'}</div>`;
+
+      // Caption (prima riga pulita)
+      const captionPreview = (post.caption || '').replace(/\n/g, ' ').substring(0, 120);
+
+      const deleteBtn = !isPublished
+        ? `<button class="btn btn-danger btn-sm" onclick="deletePost('${post.id}')">🗑️ Elimina</button>`
+        : '';
+
+      return `<div class="post-card">
+        ${thumb}
+        <div class="post-info">
+          <div class="post-meta">
+            <span class="post-date">${dateStr}</span>
+            <span class="post-time">${timeStr}</span>
+            ${platBadges}
+            ${statusBadge}
+          </div>
+          <div class="post-caption">${escapeHtml(captionPreview)}${captionPreview.length >= 120 ? '...' : ''}</div>
+        </div>
+        <div class="post-actions">${deleteBtn}</div>
+      </div>`;
+    }).join('');
+
+  } catch(e) {
+    container.innerHTML = `<div class="empty-state"><div class="icon">❌</div><p>Errore: ${escapeHtml(e.message)}</p></div>`;
+  }
+}
+
+async function deletePost(postId) {
+  if (!confirm(`Eliminare il post "${postId}"?`)) return;
+  try {
+    const current = await ghGet('posts.json');
+    let posts = JSON.parse(current.content);
+    posts = posts.filter(p => p.id !== postId);
+    await ghPut('posts.json', JSON.stringify(posts, null, 2), current.sha, `Elimina post: ${postId}`);
+    toast('🗑️ Post eliminato', 'success');
+    loadCalendar();
+  } catch(e) {
+    toast(`❌ Errore: ${e.message}`, 'error');
+  }
+}
+
+// ============================================
+// INSIGHTS
+// ============================================
+async function loadInsights() {
+  const container = document.getElementById('insightsContent');
+
+  if (!CONFIG.token) {
+    container.innerHTML = '<div class="empty-state"><div class="icon">🔑</div><p>Configura il token GitHub nelle impostazioni</p></div>';
+    return;
+  }
+
+  try {
+    const data = await ghGet('insights.json');
+    if (!data) {
+      container.innerHTML = `<div class="empty-state" style="padding:40px 20px;">
+        <div class="icon">📊</div>
+        <p style="margin-bottom:12px;">Nessun dato disponibile</p>
+        <p style="font-size:.85rem;color:var(--gray-400);">
+          Le statistiche saranno disponibili dopo aver configurato la raccolta automatica dei dati da Meta.<br>
+          È il prossimo passo del progetto.
+        </p>
+      </div>`;
+      return;
+    }
+
+    const insights = JSON.parse(data.content);
+    if (!Array.isArray(insights) || insights.length === 0) {
+      container.innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>Nessun dato ancora</p></div>';
+      return;
+    }
+
+    // Calcola totali
+    let totalLikes = 0, totalComments = 0, totalReach = 0;
+    insights.forEach(i => {
+      totalLikes += i.likes || 0;
+      totalComments += i.comments || 0;
+      totalReach += i.reach || 0;
+    });
+
+    container.innerHTML = `
+      <div class="insights-grid">
+        <div class="insight-card card"><div class="insight-value">${insights.length}</div><div class="insight-label">Post</div></div>
+        <div class="insight-card card"><div class="insight-value">${totalLikes}</div><div class="insight-label">Like</div></div>
+        <div class="insight-card card"><div class="insight-value">${totalComments}</div><div class="insight-label">Commenti</div></div>
+        <div class="insight-card card"><div class="insight-value">${totalReach}</div><div class="insight-label">Reach</div></div>
+      </div>
+      <h3 style="margin-bottom:12px;color:var(--blue-700);">Dettaglio per post</h3>
+      ${insights.map(i => `<div class="post-card">
+        <div class="post-info">
+          <div class="post-meta">
+            <span class="post-date">${i.post_id || ''}</span>
+            <span class="badge badge-ig">${i.likes || 0} ❤️</span>
+            <span class="badge badge-fb">${i.comments || 0} 💬</span>
+          </div>
+          <div class="post-caption">Reach: ${i.reach || 'N/A'}</div>
+        </div>
+      </div>`).join('')}
+    `;
+
+  } catch(e) {
+    container.innerHTML = `<div class="empty-state"><div class="icon">❌</div><p>Errore: ${escapeHtml(e.message)}</p></div>`;
+  }
+}
+
+// ============================================
+// UTILITÀ
+// ============================================
+function toast(msg, type = 'info') {
+  const container = document.getElementById('toasts');
+  const el = document.createElement('div');
+  el.className = `toast toast-${type}`;
+  el.textContent = msg;
+  container.appendChild(el);
+  setTimeout(() => el.remove(), 4000);
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+// ============================================
+// INIT
+// ============================================
+function init() {
+  setDefaultDate();
+  updateSubmitButton();
+
+  // Se non c'è il token, apri le impostazioni
+  if (!CONFIG.token) {
+    setTimeout(() => {
+      toast('👋 Configura il token GitHub per iniziare', 'info');
+      openSettings();
+    }, 500);
+  }
+}
+
+init();
+</script>
+</body>
+</html>
