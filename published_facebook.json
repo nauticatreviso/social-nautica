@@ -1,0 +1,12 @@
+{
+  "test-1": {
+    "status": "saltato",
+    "motivo": "troppo in ritardo",
+    "controllato": "2026-10-06T15:10:59.163958+02:00"
+  },
+  "test-fb-1": {
+    "status": "pubblicato",
+    "post_id": "1479050282386421_1657064406351672",
+    "alle": "2026-10-06T15:10:59.163958+02:00"
+  }
+}
