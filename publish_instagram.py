@@ -108,6 +108,8 @@ def main():
         pid = post["id"]
         if pid in state:
             continue
+        if "instagram" not in post.get("platforms", ["instagram", "facebook"]):
+            continue
         when = datetime.fromisoformat(post["when"]).replace(tzinfo=TZ)
         if when > now:
             continue
