@@ -5,5 +5,13 @@
     "caption": "Test di pubblicazione automatica 🌊",
     "media": "media/test.jpeg",
     "type": "image"
+  },
+  {
+    "id": "test-fb-1",
+    "when": "2026-10-06T15:00",
+    "caption": "Test di pubblicazione automatica su Facebook 🌊",
+    "media": "media/test.jpeg",
+    "type": "image",
+    "platforms": ["facebook"]
   }
 ]
