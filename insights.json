@@ -1,0 +1,48 @@
+[
+  {
+    "post_id": "post-20261006-1758",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-10-06T17:58:14.621902+02:00"
+    },
+    "fb": {}
+  },
+  {
+    "post_id": "post-20261007-1400",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-10-07T14:15:23.983513+02:00"
+    },
+    "fb": {}
+  },
+  {
+    "post_id": "test-1",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-10-05T16:45:37.664290+02:00"
+    },
+    "fb": null
+  },
+  {
+    "post_id": "test-fb-1",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": null,
+    "fb": {}
+  }
+]
