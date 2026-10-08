@@ -774,29 +774,61 @@ async function loadInsights() {
     }
 
     // Calcola totali
-    let totalLikes = 0, totalComments = 0, totalReach = 0;
+    let totalLikes = 0, totalComments = 0, totalReach = 0, totalShares = 0;
     insights.forEach(i => {
       totalLikes += i.likes || 0;
       totalComments += i.comments || 0;
       totalReach += i.reach || 0;
+      totalShares += i.shares_fb || 0;
     });
+
+    // Funzione per formattare la data dal post_id o dal timestamp
+    function formatDate(item) {
+      // Prova dal timestamp IG
+      if (item.ig && item.ig.timestamp) {
+        try {
+          const d = new Date(item.ig.timestamp);
+          return d.toLocaleDateString('it-IT', {day:'2-digit', month:'short', year:'numeric'});
+        } catch(e) {}
+      }
+      // Prova a estrarre la data dal post_id (es: post-20261007-1400)
+      const m = (item.post_id || '').match(/(\d{4})(\d{2})(\d{2})/);
+      if (m) return `${m[3]}/${m[2]}/${m[1]}`;
+      return item.post_id || '—';
+    }
+
+    // Determina su quali piattaforme è stato pubblicato
+    function platforms(item) {
+      const p = [];
+      if (item.ig !== null && item.ig !== undefined) p.push('<span class="badge badge-ig">IG</span>');
+      if (item.fb !== null && item.fb !== undefined) p.push('<span class="badge badge-fb">FB</span>');
+      return p.join(' ') || '—';
+    }
 
     container.innerHTML = `
       <div class="insights-grid">
         <div class="insight-card card"><div class="insight-value">${insights.length}</div><div class="insight-label">Post</div></div>
         <div class="insight-card card"><div class="insight-value">${totalLikes}</div><div class="insight-label">Like</div></div>
         <div class="insight-card card"><div class="insight-value">${totalComments}</div><div class="insight-label">Commenti</div></div>
-        <div class="insight-card card"><div class="insight-value">${totalReach}</div><div class="insight-label">Reach</div></div>
+        <div class="insight-card card"><div class="insight-value">${totalShares}</div><div class="insight-label">Condivisioni</div></div>
       </div>
       <h3 style="margin-bottom:12px;color:var(--blue-700);">Dettaglio per post</h3>
       ${insights.map(i => `<div class="post-card">
         <div class="post-info">
           <div class="post-meta">
-            <span class="post-date">${i.post_id || ''}</span>
-            <span class="badge badge-ig">${i.likes || 0} ❤️</span>
-            <span class="badge badge-fb">${i.comments || 0} 💬</span>
+            <span class="post-date">📅 ${formatDate(i)}</span>
+            ${platforms(i)}
           </div>
-          <div class="post-caption">Reach: ${i.reach || 'N/A'}</div>
+          <div style="display:flex;gap:16px;margin-top:8px;flex-wrap:wrap;">
+            <span>❤️ ${i.likes || 0} like</span>
+            <span>💬 ${i.comments || 0} commenti</span>
+            <span>🔄 ${i.shares_fb || 0} condivisioni</span>
+          </div>
+          ${(i.fb && (i.fb.likes || i.fb.shares || i.fb.comments)) ?
+            '<div style="margin-top:6px;font-size:.8rem;color:var(--gray-600);">FB: ' +
+            (i.fb.likes ? i.fb.likes + ' like ' : '') +
+            (i.fb.comments ? i.fb.comments + ' commenti ' : '') +
+            (i.fb.shares ? i.fb.shares + ' condivisioni' : '') + '</div>' : ''}
         </div>
       </div>`).join('')}
     `;
