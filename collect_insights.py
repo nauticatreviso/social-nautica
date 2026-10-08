@@ -34,11 +34,27 @@ def api_get(url, params):
             return json.load(r)
     except HTTPError as e:
         body = e.read().decode(errors="replace")
-        print(f"  ⚠ HTTP {e.code} su {log_url}: {body[:300]}", file=sys.stderr)
+        print(f"  ⚠ HTTP {e.code} su {log_url}: {body[:300]}")
         return None
     except Exception as e:
-        print(f"  ⚠ Errore su {log_url}: {e}", file=sys.stderr)
+        print(f"  ⚠ Errore su {log_url}: {e}")
         return None
+
+
+def check_token_debug(token, label):
+    """Verifica veloce del token: controlla permessi e scadenza."""
+    data = api_get("https://graph.facebook.com/debug_token", {
+        "input_token": token,
+        "access_token": token,
+    })
+    if data and "data" in data:
+        d = data["data"]
+        scopes = d.get("scopes", [])
+        expires = d.get("expires_at", 0)
+        is_valid = d.get("is_valid", False)
+        print(f"  🔑 [{label}] valido={is_valid}, scade={expires}, permessi={scopes}")
+    else:
+        print(f"  🔑 [{label}] impossibile verificare il token")
 
 
 def load(path):
@@ -176,12 +192,14 @@ def main():
 
     if ig_token:
         print("📊 Raccolta metriche Instagram...")
+        check_token_debug(ig_token, "IG")
         ig_data = collect_ig(ig_token)
     else:
         print("⚠ IG_TOKEN non impostato, salto Instagram")
 
     if fb_token:
         print("📊 Raccolta metriche Facebook...")
+        check_token_debug(fb_token, "FB")
         fb_data = collect_fb(fb_token)
     else:
         print("⚠ FB_PAGE_TOKEN non impostato, salto Facebook")
