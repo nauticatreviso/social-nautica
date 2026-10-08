@@ -26,13 +26,18 @@ OUTPUT   = Path("insights.json")
 
 def api_get(url, params):
     """GET generico verso Graph API."""
+    # Maschera il token nel log
+    log_url = url.split("?")[0]
     full = url + "?" + urlencode(params)
     try:
         with urlopen(Request(full, method="GET"), timeout=30) as r:
             return json.load(r)
     except HTTPError as e:
         body = e.read().decode(errors="replace")
-        print(f"  ⚠ HTTP {e.code}: {body[:200]}", file=sys.stderr)
+        print(f"  ⚠ HTTP {e.code} su {log_url}: {body[:300]}", file=sys.stderr)
+        return None
+    except Exception as e:
+        print(f"  ⚠ Errore su {log_url}: {e}", file=sys.stderr)
         return None
 
 
@@ -54,23 +59,27 @@ def collect_ig(token):
         if not media_id:
             continue
 
+        entry = {
+            "likes": 0,
+            "comments": 0,
+            "reach": 0,
+            "impressions": 0,
+            "timestamp": info.get("alle", ""),
+            "media_type": "",
+        }
+
         # Campi base del media
         data = api_get(
             f"https://graph.instagram.com/{media_id}",
             {"fields": "like_count,comments_count,timestamp,media_type", "access_token": token},
         )
-        if not data:
-            print(f"  [IG] {pid}: impossibile leggere media {media_id}")
-            continue
-
-        entry = {
-            "likes": data.get("like_count", 0),
-            "comments": data.get("comments_count", 0),
-            "reach": 0,
-            "impressions": 0,
-            "timestamp": data.get("timestamp", ""),
-            "media_type": data.get("media_type", ""),
-        }
+        if data:
+            entry["likes"] = data.get("like_count", 0)
+            entry["comments"] = data.get("comments_count", 0)
+            entry["timestamp"] = data.get("timestamp", entry["timestamp"])
+            entry["media_type"] = data.get("media_type", "")
+        else:
+            print(f"  [IG] {pid}: impossibile leggere media {media_id} — uso valori base")
 
         # Insights (reach, impressions) — disponibili solo per media del Business account
         metric = "reach,impressions"
@@ -90,6 +99,7 @@ def collect_ig(token):
                 if name in ("reach", "impressions"):
                     entry[name] = val
 
+        # Aggiungi sempre il post ai risultati (anche con 0 come valori)
         results[pid] = entry
         print(f"  [IG] {pid}: ❤️ {entry['likes']}  💬 {entry['comments']}  👁 {entry['reach']}")
 
@@ -108,6 +118,11 @@ def collect_fb(token):
         if not post_id:
             continue
 
+        likes = 0
+        comments = 0
+        shares = 0
+        reach = 0
+
         data = api_get(
             f"https://graph.facebook.com/v21.0/{post_id}",
             {
@@ -115,16 +130,14 @@ def collect_fb(token):
                 "access_token": token,
             },
         )
-        if not data:
-            print(f"  [FB] {pid}: impossibile leggere post {post_id}")
-            continue
-
-        likes = data.get("likes", {}).get("summary", {}).get("total_count", 0)
-        comments = data.get("comments", {}).get("summary", {}).get("total_count", 0)
-        shares = data.get("shares", {}).get("count", 0)
+        if data:
+            likes = data.get("likes", {}).get("summary", {}).get("total_count", 0)
+            comments = data.get("comments", {}).get("summary", {}).get("total_count", 0)
+            shares = data.get("shares", {}).get("count", 0)
+        else:
+            print(f"  [FB] {pid}: impossibile leggere post {post_id} — uso valori base")
 
         # Insights del post (reach)
-        reach = 0
         insights = api_get(
             f"https://graph.facebook.com/v21.0/{post_id}/insights",
             {"metric": "post_impressions_unique", "access_token": token},
@@ -136,6 +149,7 @@ def collect_fb(token):
                     if vals:
                         reach = vals[0].get("value", 0)
 
+        # Aggiungi sempre il post ai risultati (anche con 0 come valori)
         results[pid] = {
             "likes": likes,
             "comments": comments,
@@ -175,7 +189,10 @@ def main():
     # Unisce i dati: per ogni post, somma IG + FB
     all_pids = set(list(ig_data.keys()) + list(fb_data.keys()))
     if not all_pids:
-        print("Nessun post pubblicato trovato.")
+        print("Nessun post pubblicato trovato nei file di stato.")
+        # Scrivi comunque un array vuoto così manager.html sa che il sistema funziona
+        OUTPUT.write_text("[]", encoding="utf-8")
+        print("📝 Creato insights.json vuoto")
         return
 
     # Formato finale: array di oggetti (compatibile con manager.html)
