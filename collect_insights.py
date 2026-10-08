@@ -84,25 +84,37 @@ def collect_ig(token):
             "media_type": "",
         }
 
-        # Campi base del media
+        # Campi base del media — prova graph.instagram.com, poi graph.facebook.com
         data = api_get(
             f"https://graph.instagram.com/{media_id}",
             {"fields": "like_count,comments_count,timestamp,media_type", "access_token": token},
         )
+        if not data:
+            print(f"  [IG] {pid}: fallback su graph.facebook.com per media {media_id}")
+            data = api_get(
+                f"https://graph.facebook.com/v21.0/{media_id}",
+                {"fields": "like_count,comments_count,timestamp,media_type", "access_token": token},
+            )
         if data:
             entry["likes"] = data.get("like_count", 0)
             entry["comments"] = data.get("comments_count", 0)
             entry["timestamp"] = data.get("timestamp", entry["timestamp"])
             entry["media_type"] = data.get("media_type", "")
+            print(f"  [IG] {pid}: letto media OK")
         else:
             print(f"  [IG] {pid}: impossibile leggere media {media_id} — uso valori base")
 
         # Insights (reach, impressions) — disponibili solo per media del Business account
         metric = "reach,impressions"
         insights = api_get(
-            f"https://graph.instagram.com/{media_id}/insights",
+            f"https://graph.facebook.com/v21.0/{media_id}/insights",
             {"metric": metric, "access_token": token},
         )
+        if not insights:
+            insights = api_get(
+                f"https://graph.instagram.com/{media_id}/insights",
+                {"metric": metric, "access_token": token},
+            )
         if insights and "data" in insights:
             for m in insights["data"]:
                 name = m.get("name")
