@@ -13,15 +13,18 @@
   },
   {
     "post_id": "post-20261007-1400",
-    "likes": 0,
+    "likes": 2,
     "comments": 0,
     "reach": 0,
-    "shares_fb": 0,
+    "shares_fb": 1,
     "impressions_ig": 0,
     "ig": {
       "timestamp": "2026-10-07T14:15:23.983513+02:00"
     },
-    "fb": {}
+    "fb": {
+      "likes": 2,
+      "shares": 1
+    }
   },
   {
     "post_id": "test-1",
