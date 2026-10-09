@@ -16,8 +16,8 @@
   },
   "baron-gautsch-gruppo-20261008": {
     "status": "errore",
-    "errore": "reset",
-    "tentativi": 0,
-    "ultimo_tentativo": "2026-10-09T12:28:00+02:00"
+    "errore": "Token non valido: HTTP 400 su /17841404468831152: {\"error\":{\"message\":\"Invalid OAuth access token - Cannot parse access token\",\"type\":\"OAuthException\",\"code\":190,\"fbtrace_id\":\"Ang2spdYFkHv-mPz4LVVZyP\"}}",
+    "tentativi": 1,
+    "ultimo_tentativo": "2026-10-09T12:28:50.529956+02:00"
   }
 }
