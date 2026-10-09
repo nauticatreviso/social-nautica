@@ -118,7 +118,13 @@ textarea { resize:vertical; min-height:120px; }
 .badge-published { background:#D4F5E2; color:var(--green); }
 .badge-expired { background:#FDE8E8; color:var(--red); }
 .post-caption { font-size:.9rem; color:var(--gray-800); line-height:1.4; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; word-break:break-word; }
-.post-actions { display:flex; align-items:flex-end; flex-shrink:0; }
+.post-actions { display:flex; align-items:flex-end; flex-shrink:0; gap:8px; flex-direction:column; }
+.post-card.past { opacity:0.55; background:var(--gray-50); border-color:var(--gray-200); }
+.post-card.past:hover { opacity:0.8; border-color:var(--gray-400); }
+.section-divider { display:flex; align-items:center; gap:12px; margin:24px 0 16px; color:var(--gray-400); font-size:.85rem; font-weight:600; text-transform:uppercase; letter-spacing:.5px; }
+.section-divider::before, .section-divider::after { content:''; flex:1; height:1px; background:var(--gray-200); }
+.btn-edit { background:none; border:1.5px solid var(--blue-500); color:var(--blue-500); padding:6px 14px; font-size:.85rem; border-radius:8px; cursor:pointer; font-weight:600; transition:background .2s, color .2s; display:inline-flex; align-items:center; gap:4px; }
+.btn-edit:hover { background:var(--blue-500); color:#fff; }
 
 /* === MODAL === */
 .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:200; align-items:center; justify-content:center; padding:20px; }
@@ -188,6 +194,33 @@ textarea { resize:vertical; min-height:120px; }
       <button class="btn btn-primary" onclick="saveSettings()">Salva</button>
       <button class="btn btn-secondary" onclick="testConnection()">🔗 Testa connessione</button>
       <button class="btn btn-secondary" onclick="closeSettings()" style="margin-left:auto;">Chiudi</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal" style="max-width:560px;">
+    <h2>✏️ Modifica post</h2>
+    <input type="hidden" id="editPostId">
+    <div class="form-row">
+      <label for="editCaption">Didascalia</label>
+      <textarea id="editCaption" style="min-height:200px;"></textarea>
+      <div class="char-count" id="editCharCount">0 / 2200</div>
+    </div>
+    <div class="form-row form-row-inline">
+      <div>
+        <label for="editDate">Data</label>
+        <input type="date" id="editDate">
+      </div>
+      <div>
+        <label for="editTime">Ora</label>
+        <input type="time" id="editTime">
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <button class="btn btn-primary" onclick="saveEdit()">💾 Salva</button>
+      <button class="btn btn-secondary" onclick="closeEdit()" style="margin-left:auto;">Annulla</button>
     </div>
   </div>
 </div>
@@ -714,6 +747,8 @@ async function submitPost() {
 async function loadCalendar() {
   const container = document.getElementById('calendarList');
   container.innerHTML = '<div class="loading-overlay"><div class="spinner"></div> Caricamento...</div>';
+  _cachedPosts = null;
+  _cachedPostsSha = null;
 
   if (!CONFIG.token) {
     container.innerHTML = '<div class="empty-state"><div class="icon">🔑</div><p>Configura il token GitHub nelle impostazioni</p></div>';
@@ -739,14 +774,19 @@ async function loadCalendar() {
       if (pFB) publishedFB = JSON.parse(pFB.content);
     } catch(e) {}
 
-    // Estrai gli ID pubblicati
+    // Estrai gli ID pubblicati (published.json è un oggetto {id: {status, ...}})
     const publishedIDs = new Set();
-    const extractIDs = (arr) => {
-      if (!Array.isArray(arr)) return;
-      arr.forEach(item => {
-        if (typeof item === 'string') publishedIDs.add(item);
-        else if (item && item.id) publishedIDs.add(item.id);
-      });
+    const extractIDs = (data) => {
+      if (!data) return;
+      if (typeof data === 'object' && !Array.isArray(data)) {
+        // Formato oggetto: { "post-id": { status: "pubblicato", ... } }
+        Object.keys(data).forEach(id => publishedIDs.add(id));
+      } else if (Array.isArray(data)) {
+        data.forEach(item => {
+          if (typeof item === 'string') publishedIDs.add(item);
+          else if (item && item.id) publishedIDs.add(item.id);
+        });
+      }
     };
     extractIDs(publishedIG);
     extractIDs(publishedFB);
@@ -760,7 +800,8 @@ async function loadCalendar() {
     posts.sort((a, b) => new Date(a.when) - new Date(b.when));
 
     const now = new Date();
-    container.innerHTML = posts.map(post => {
+
+    function renderPostCard(post) {
       const when = new Date(post.when);
       const isPast = when < now;
       const isPublished = publishedIDs.has(post.id);
@@ -795,11 +836,17 @@ async function loadCalendar() {
       // Caption (prima riga pulita)
       const captionPreview = (post.caption || '').replace(/\n/g, ' ').substring(0, 120);
 
+      // Bottoni azione
+      const editBtn = !isPublished
+        ? `<button class="btn-edit btn-sm" onclick="editPost('${post.id}')">✏️ Modifica</button>`
+        : '';
       const deleteBtn = !isPublished
         ? `<button class="btn btn-danger btn-sm" onclick="deletePost('${post.id}')">🗑️ Elimina</button>`
         : '';
 
-      return `<div class="post-card">
+      const pastClass = (isPublished || isExpired) ? ' past' : '';
+
+      return `<div class="post-card${pastClass}">
         ${thumb}
         <div class="post-info">
           <div class="post-meta">
@@ -810,9 +857,35 @@ async function loadCalendar() {
           </div>
           <div class="post-caption">${escapeHtml(captionPreview)}${captionPreview.length >= 120 ? '...' : ''}</div>
         </div>
-        <div class="post-actions">${deleteBtn}</div>
+        <div class="post-actions">${editBtn}${deleteBtn}</div>
       </div>`;
-    }).join('');
+    }
+
+    // Separa post futuri e passati
+    const futurePosts = posts.filter(p => {
+      const when = new Date(p.when);
+      return when >= now && !publishedIDs.has(p.id);
+    });
+    const pastPosts = posts.filter(p => {
+      const when = new Date(p.when);
+      return when < now || publishedIDs.has(p.id);
+    });
+
+    // Ordina: futuri dal più vicino, passati dal più recente
+    futurePosts.sort((a, b) => new Date(a.when) - new Date(b.when));
+    pastPosts.sort((a, b) => new Date(b.when) - new Date(a.when));
+
+    let html = '';
+    if (futurePosts.length > 0) {
+      html += futurePosts.map(renderPostCard).join('');
+    }
+    if (pastPosts.length > 0) {
+      if (futurePosts.length > 0) {
+        html += '<div class="section-divider">Pubblicati / Passati</div>';
+      }
+      html += pastPosts.map(renderPostCard).join('');
+    }
+    container.innerHTML = html;
 
   } catch(e) {
     container.innerHTML = `<div class="empty-state"><div class="icon">❌</div><p>Errore: ${escapeHtml(e.message)}</p></div>`;
@@ -827,6 +900,86 @@ async function deletePost(postId) {
     posts = posts.filter(p => p.id !== postId);
     await ghPut('posts.json', JSON.stringify(posts, null, 2), current.sha, `Elimina post: ${postId}`);
     toast('🗑️ Post eliminato', 'success');
+    loadCalendar();
+  } catch(e) {
+    toast(`❌ Errore: ${e.message}`, 'error');
+  }
+}
+
+// ============================================
+// EDIT POST
+// ============================================
+// Mantiene una copia dei post caricati per l'editing
+let _cachedPosts = null;
+let _cachedPostsSha = null;
+
+async function editPost(postId) {
+  try {
+    // Carica posts.json se non in cache
+    if (!_cachedPosts) {
+      const data = await ghGet('posts.json');
+      _cachedPosts = JSON.parse(data.content);
+      _cachedPostsSha = data.sha;
+    }
+    const post = _cachedPosts.find(p => p.id === postId);
+    if (!post) { toast('Post non trovato', 'error'); return; }
+
+    document.getElementById('editPostId').value = postId;
+    document.getElementById('editCaption').value = post.caption || '';
+    const [date, time] = (post.when || '').split('T');
+    document.getElementById('editDate').value = date || '';
+    document.getElementById('editTime').value = time || '18:30';
+
+    // Aggiorna contatore
+    const len = (post.caption || '').length;
+    const counter = document.getElementById('editCharCount');
+    counter.textContent = `${len} / 2200`;
+    counter.className = 'char-count' + (len > 2200 ? ' over' : len > 2000 ? ' warn' : '');
+
+    document.getElementById('editModal').classList.add('show');
+  } catch(e) {
+    toast(`❌ Errore: ${e.message}`, 'error');
+  }
+}
+
+document.getElementById('editCaption').addEventListener('input', function() {
+  const len = this.value.length;
+  const counter = document.getElementById('editCharCount');
+  counter.textContent = `${len} / 2200`;
+  counter.className = 'char-count' + (len > 2200 ? ' over' : len > 2000 ? ' warn' : '');
+});
+
+function closeEdit() {
+  document.getElementById('editModal').classList.remove('show');
+}
+
+async function saveEdit() {
+  const postId = document.getElementById('editPostId').value;
+  const newCaption = document.getElementById('editCaption').value.trim();
+  const newDate = document.getElementById('editDate').value;
+  const newTime = document.getElementById('editTime').value || '18:30';
+
+  if (!newCaption) { toast('La didascalia non può essere vuota', 'error'); return; }
+  if (!newDate) { toast('Inserisci una data', 'error'); return; }
+
+  try {
+    // Ricarica posts.json per avere lo sha aggiornato
+    const current = await ghGet('posts.json');
+    let posts = JSON.parse(current.content);
+
+    const idx = posts.findIndex(p => p.id === postId);
+    if (idx === -1) { toast('Post non trovato nel file', 'error'); return; }
+
+    posts[idx].caption = newCaption;
+    posts[idx].when = `${newDate}T${newTime}`;
+
+    await ghPut('posts.json', JSON.stringify(posts, null, 2), current.sha, `Modifica post: ${postId}`);
+
+    // Aggiorna cache
+    _cachedPosts = posts;
+
+    closeEdit();
+    toast('✅ Post modificato', 'success');
     loadCalendar();
   } catch(e) {
     toast(`❌ Errore: ${e.message}`, 'error');
