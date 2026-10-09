@@ -219,10 +219,38 @@ textarea { resize:vertical; min-height:120px; }
     <input type="file" id="fileInput" accept="image/jpeg,image/png,video/mp4,video/quicktime" hidden>
     <div class="upload-preview" id="uploadPreview" style="display:none;"></div>
 
+    <!-- AI Caption Generator -->
+    <div class="card" style="background:var(--blue-50);border:1.5px solid var(--blue-300);padding:18px;margin-bottom:18px;">
+      <h2 style="font-size:1rem;margin-bottom:12px;">✨ Genera caption con AI</h2>
+      <div class="form-row" style="margin-bottom:12px;">
+        <label for="pillar">Pilastro editoriale</label>
+        <select id="pillar">
+          <option value="">— Seleziona —</option>
+          <option value="emozione">🌊 Emozione / Esperienza</option>
+          <option value="immersione">🤿 Immersione (report, relitto, destinazione)</option>
+          <option value="community">👥 Community (persone, backstage, momenti)</option>
+          <option value="formazione">📚 Formazione (corsi, crescita tecnica)</option>
+          <option value="viaggi">✈️ Viaggi (destinazione, fauna, gruppo)</option>
+          <option value="educazione">🔬 Educazione (sicurezza, attrezzatura, tecnica)</option>
+          <option value="promozione">📢 Promozione (corsi, eventi, posti disponibili)</option>
+        </select>
+      </div>
+      <div class="form-row" style="margin-bottom:12px;">
+        <label for="aiContext">Contesto / note</label>
+        <textarea id="aiContext" rows="3" placeholder="Descrivi cosa c'è nella foto o nel video...&#10;Es: Foto di gruppo dopo immersione al Baron Gautsch, Rovigno, 4 ottobre 2026"></textarea>
+      </div>
+      <button class="btn btn-secondary" onclick="generateAIPrompt()" id="btnAI" style="background:var(--blue-700);color:#fff;">
+        📋 Copia prompt per Claude
+      </button>
+      <div style="font-size:.8rem;color:var(--gray-600);margin-top:8px;">
+        Crea un prompt ottimizzato → incollalo in Claude → ricevi la caption pronta
+      </div>
+    </div>
+
     <!-- Caption -->
     <div class="form-row">
       <label for="caption">Didascalia</label>
-      <textarea id="caption" placeholder="Scrivi la didascalia del post...&#10;&#10;Gli hashtag vanno in fondo"></textarea>
+      <textarea id="caption" placeholder="Scrivi la didascalia del post o incolla quella generata da Claude...&#10;&#10;Gli hashtag vanno in fondo"></textarea>
       <div class="char-count" id="charCount">0 / 2200</div>
     </div>
 
@@ -517,6 +545,69 @@ document.getElementById('caption').addEventListener('input', function() {
   counter.className = 'char-count' + (len > 2200 ? ' over' : len > 2000 ? ' warn' : '');
   updateSubmitButton();
 });
+
+// ============================================
+// AI CAPTION GENERATOR
+// ============================================
+function generateAIPrompt() {
+  const pillar = document.getElementById('pillar').value;
+  const context = document.getElementById('aiContext').value.trim();
+
+  if (!pillar) {
+    toast('Seleziona un pilastro editoriale', 'error');
+    return;
+  }
+  if (!context) {
+    toast('Descrivi cosa c\'è nella foto/video', 'error');
+    return;
+  }
+
+  const pillarNames = {
+    emozione: 'Emozione / Esperienza — il mare, la profondità, l\'incontro con la fauna',
+    immersione: 'Immersione — report, foto, video, destinazioni, relitti',
+    community: 'Community — persone, backstage, momenti spontanei, vita del club',
+    formazione: 'Formazione — corsi (OWD, Advanced, Rescue, BLSD), crescita tecnica',
+    viaggi: 'Viaggi — destinazioni, esperienze, fauna, cultura, vita del gruppo',
+    educazione: 'Educazione — sicurezza, attrezzatura, tecnica, buone pratiche',
+    promozione: 'Promozione — corsi, eventi, posti disponibili, scadenze'
+  };
+
+  const platforms = [];
+  if (document.getElementById('platIG').checked) platforms.push('Instagram');
+  if (document.getElementById('platFB').checked) platforms.push('Facebook');
+
+  const prompt = `Scrivi la caption per un post ${platforms.join(' e ')} di Nautica Treviso Diving (@nauticatrevisodiving).
+
+PILASTRO EDITORIALE: ${pillarNames[pillar]}
+
+CONTESTO: ${context}
+
+REGOLE:
+- Tono: italiano naturale, umano, competente, diretto. Come lo scriverebbe una persona reale che vive la subacquea.
+- NO frasi da agenzia ("scopri un mondo meraviglioso", "imperdibile", "non perdere questa fantastica opportunità")
+- NO tono da volantino o enfasi esagerata
+- Emoji con moderazione, per dare ritmo
+- Hashtag: pochi e pertinenti, in fondo
+- Includi sempre #NauticaTreviso e #NauticaTrevisoDiving tra gli hashtag
+- CTA naturale (es: "Chi viene con noi?", "Scrivici in DM", "Salva questo post")
+- Se ci sono date, orari o prezzi, inseriscili solo se li ho indicati nel contesto — altrimenti metti [DA VERIFICARE]
+- Lunghezza: 3-6 righe di testo + hashtag
+
+Scrivi SOLO la caption, pronta per essere copiata e incollata.`;
+
+  navigator.clipboard.writeText(prompt).then(() => {
+    toast('✅ Prompt copiato! Incollalo in Claude per generare la caption', 'success');
+  }).catch(() => {
+    // Fallback: mostra il prompt in un textarea temporaneo
+    const ta = document.createElement('textarea');
+    ta.value = prompt;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    toast('✅ Prompt copiato!', 'success');
+  });
+}
 
 // ============================================
 // SUBMIT POST
