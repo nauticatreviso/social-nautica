@@ -15,9 +15,8 @@
     "alle": "2026-10-07T14:15:23.983513+02:00"
   },
   "baron-gautsch-gruppo-20261008": {
-    "status": "errore",
-    "errore": "reset endpoint",
-    "tentativi": 0,
-    "ultimo_tentativo": "2026-10-09T12:36:00+02:00"
+    "status": "pubblicato",
+    "media_id": "17904381360573615",
+    "alle": "2026-10-09T12:47:54.786465+02:00"
   }
 }
