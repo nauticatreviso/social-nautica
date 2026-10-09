@@ -17,7 +17,7 @@
   "baron-gautsch-gruppo-20261008": {
     "status": "errore",
     "errore": "Token Instagram non valido o scaduto",
-    "tentativi": 2,
-    "ultimo_tentativo": "2026-10-09T10:56:24.015907+02:00"
+    "tentativi": 3,
+    "ultimo_tentativo": "2026-10-09T11:11:04.597853+02:00"
   }
 }
