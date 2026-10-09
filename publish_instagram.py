@@ -30,7 +30,7 @@ from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
 
 TZ = ZoneInfo("Europe/Rome")
-BASE = "https://graph.instagram.com"
+BASE = "https://graph.facebook.com/v26.0"
 POSTS_FILE = Path(os.environ.get("POSTS_FILE", "posts.json"))
 STATE_FILE = Path(os.environ.get("STATE_FILE", "published.json"))
 MAX_LATE = timedelta(hours=float(os.environ.get("MAX_LATE_HOURS", "12")))
