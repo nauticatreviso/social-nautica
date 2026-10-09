@@ -2,7 +2,7 @@
   {
     "id": "baron-gautsch-gruppo-20261008",
     "when": "2026-10-09T10:35",
-    "caption": "🤿 Domenica 4 ottobre siamo scesi sul Baron Gautsch!\n\nUn'uscita super organizzata da Nautica Treviso Diving: partenza da Rovigno e immersione su uno dei relitti più affascinanti dell'Adriatico.\n\nIl Baron Gautsch, il “Titanic dell'Adriatico”, riposa su un fondo sabbioso tra i 28 e i 40 metri di profondità. Varato nel 1908 e affondato il 13 agosto 1914 dopo aver urtato una mina, oggi è un'immersione che toglie il fiato.\n\nGrazie a tutti i partecipanti per un'altra giornata di mare, bolle e sorrisi! 💙\n\n#NauticaTreviso #BaronGautsch #Rovigno #Subacquea #ScubaDiving #Diving #WreckDiving #Adriatico #TitanicDellAdriatico #ImmersioneSuRelitto #DivingCenter #NauticaTrevisoDiving #MaréVita",
+    "caption": "🤿 Domenica 4 ottobre siamo scesi sul Baron Gautsch!\n\nUn'uscita super organizzata da Nautica Treviso Diving: partenza da Rovigno e immersione su uno dei relitti più affascinanti dell'Adriatico.\n\nIl Baron Gautsch, il \"Titanic dell'Adriatico\", riposa su un fondo sabbioso tra i 28 e i 40 metri di profondità. Varato nel 1908 e affondato il 13 agosto 1914 dopo aver urtato una mina, oggi è un'immersione che toglie il fiato.\n\nGrazie a tutti i partecipanti per un'altra giornata di mare, bolle e sorrisi! 💙\n\n#NauticaTreviso #BaronGautsch #Rovigno #Subacquea #ScubaDiving #Diving #WreckDiving #Adriatico #TitanicDellAdriatico #ImmersioneSuRelitto #DivingCenter #NauticaTrevisoDiving #MaréVita",
     "media": "media/baron_gautsch_gruppo.jpeg",
     "type": "image",
     "platforms": [
@@ -12,7 +12,7 @@
   {
     "id": "baron-gautsch-video-20261010",
     "when": "2026-10-10T12:00",
-    "caption": "🚢 Il Baron Gautsch — il “Titanic dell'Adriatico”\n\nCostruito nel 1908 in Scozia, lungo 84 metri, collegava Trieste a Cattaro navigando lungo la Dalmazia. Il 13 agosto 1914, in piena Grande Guerra, urtò una mina della stessa marina austro-ungarica al largo delle isole Brioni.\n\nOggi il relitto giace in posizione verticale: la coperta a 28 metri, il fondo a 40. Un'immersione che ti riporta indietro di oltre un secolo.\n\nEcco cosa abbiamo visto domenica con Nautica Treviso Diving 🎬👇\n\n#BaronGautsch #WreckDiving #Relitto #NauticaTreviso #NauticaTrevisoDiving #Subacquea #ScubaDiving #Rovigno #Adriatico #Istria #DivingLife #UnderwaterVideo #StoriaSubacquea",
+    "caption": "🚢 Il Baron Gautsch — il \"Titanic dell'Adriatico\"\n\nCostruito nel 1908 in Scozia, lungo 84 metri, collegava Trieste a Cattaro navigando lungo la Dalmazia. Il 13 agosto 1914, in piena Grande Guerra, urtò una mina della stessa marina austro-ungarica al largo delle isole Brioni.\n\nOggi il relitto giace in posizione verticale: la coperta a 28 metri, il fondo a 40. Un'immersione che ti riporta indietro di oltre un secolo.\n\nEcco cosa abbiamo visto domenica con Nautica Treviso Diving 🎬👇\n\n#BaronGautsch #WreckDiving #Relitto #NauticaTreviso #NauticaTrevisoDiving #Subacquea #ScubaDiving #Rovigno #Adriatico #Istria #DivingLife #UnderwaterVideo #StoriaSubacquea",
     "media": "media/baron_gautsch_video.mp4",
     "type": "video",
     "platforms": [
@@ -33,5 +33,26 @@
     "caption": "🆘 Nuova release dell'app MyNautica — ora con il tool \"Emergenza Subacquea\".\n\nLa webapp gratuita riservata agli allievi di Nautica Treviso ha un nuovo pulsante SOS nella home della scheda personale.\n\nCosa fa:\n→ Numeri di emergenza rapidi (118, Guardia Costiera, 112, DAN Europa)\n→ Vi geolocalizza e indica le camere iperbariche più vicine\n→ Istruzioni base per il primo soccorso\n\nNella speranza di non doverlo mai utilizzare ovviamente!!\n#subacquea #diving #sicurezza #emergenzasubacquea #nauticatreviso #scubadiving #DAN #treviso #rofos #cressi #cressiwoman #rofos @follower",
     "media": "media/post-20261007-1400.jpeg",
     "type": "image"
+  },
+  {
+    "id": "owd-gruppo-20261017",
+    "when": "2026-10-17T18:30",
+    "caption": "🤿 Nuovo corso Open Water Diver — si parte!\n\nPrimo sabato in piscina al Natatorium per i nostri nuovi allievi. Teoria, attrezzatura, prime bolle. Da qui al brevetto il passo è più corto di quanto pensiate.\n\nBenvenuti nel gruppo 👊\n\n#NauticaTreviso #NauticaTrevisoDiving #OpenWaterDiver #CorsoSub #ScubaDiving #Subacquea #Treviso #NatatoriumTreviso #ImparareAdImmergersi #DivingCourse",
+    "media": "media/owd-gruppo-20261017.jpg",
+    "type": "image",
+    "platforms": [
+      "instagram",
+      "facebook"
+    ]
+  },
+  {
+    "id": "owd-allieva-20261022",
+    "when": "2026-10-22T12:30",
+    "caption": "🤿 Quella faccia lì dice tutto.\n\nPrimo contatto con l'attrezzatura, prima volta in muta — e già si sente a casa. È così che inizia il corso Open Water con Nautica Treviso.\n\n#NauticaTreviso #NauticaTrevisoDiving #OpenWaterDiver #ScubaDiving #Subacquea #Treviso #NuoviSub #DivingLife #CorsoSub",
+    "media": "media/owd-allieva-20261022.jpg",
+    "type": "image",
+    "platforms": [
+      "instagram"
+    ]
   }
 ]
