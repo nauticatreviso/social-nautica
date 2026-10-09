@@ -56,14 +56,16 @@ def api(method, path, params):
 
 
 def check_token(token, uid):
-    """Verifica che il token sia valido prima di tentare qualsiasi pubblicazione."""
+    """Verifica che il token sia valido prima di tentare qualsiasi pubblicazione.
+    Restituisce (True, "") se OK, (False, messaggio_errore) se fallisce."""
     try:
         result = api("GET", uid, {"fields": "id,username", "access_token": token})
         print(f"[TOKEN OK] Account: {result.get('username', result.get('id'))}")
-        return True
+        return True, ""
     except RuntimeError as e:
-        print(f"[TOKEN ERRORE] {e}", file=sys.stderr)
-        return False
+        msg = str(e)
+        print(f"[TOKEN ERRORE] {msg}", file=sys.stderr)
+        return False, msg
 
 
 def media_url(media):
@@ -133,9 +135,11 @@ def main():
             break
 
     if has_pending and not args.dry_run:
-        if not check_token(token, uid):
+        token_ok, token_err = check_token(token, uid)
+        if not token_ok:
             # Token non valido: salva l'errore e esci subito
             # (evita di riprovare ogni 15 min con un token scaduto)
+            error_detail = f"Token non valido: {token_err[:300]}" if token_err else "Token Instagram non valido o scaduto"
             for post in posts:
                 pid = post["id"]
                 if pid in state and state[pid].get("status") != "errore":
@@ -147,7 +151,7 @@ def main():
                     retry_count = state.get(pid, {}).get("tentativi", 0) + 1
                     state[pid] = {
                         "status": "errore",
-                        "errore": "Token Instagram non valido o scaduto",
+                        "errore": error_detail,
                         "tentativi": retry_count,
                         "ultimo_tentativo": now.isoformat(),
                     }
