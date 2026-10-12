@@ -150,6 +150,11 @@ video.post-thumb { pointer-events:none; }
 .edit-media-current .file-details .hint { font-size:.75rem; color:var(--gray-600); }
 .btn-change-file { background:none; border:1.5px solid var(--orange); color:var(--orange); padding:5px 12px; font-size:.8rem; border-radius:6px; cursor:pointer; font-weight:600; white-space:nowrap; transition:background .2s, color .2s; }
 .btn-change-file:hover { background:var(--orange); color:#fff; }
+.btn-drive { background:none; border:1.5px solid #4285F4; color:#4285F4; padding:5px 12px; font-size:.8rem; border-radius:6px; cursor:pointer; font-weight:600; white-space:nowrap; transition:background .2s, color .2s; }
+.btn-drive:hover { background:#4285F4; color:#fff; }
+.edit-media-buttons { display:flex; gap:6px; flex-shrink:0; flex-wrap:wrap; }
+.drive-loading { display:inline-flex; align-items:center; gap:6px; padding:8px 12px; background:var(--blue-50); border-radius:8px; font-size:.85rem; color:var(--blue-700); margin-top:8px; }
+.drive-loading .spinner { border-color:var(--blue-100); border-top-color:var(--blue-700); width:16px; height:16px; }
 .edit-new-file { display:flex; align-items:center; gap:10px; padding:10px 12px; background:#E8F6E8; border:1.5px solid var(--green); border-radius:8px; margin-top:8px; }
 .edit-new-file .file-icon { font-size:1.3rem; flex-shrink:0; }
 .edit-new-file .file-details { flex:1; min-width:0; }
@@ -214,9 +219,29 @@ video.post-thumb { pointer-events:none; }
       <label for="ghRepo">Repository</label>
       <input type="text" id="ghRepo" value="nauticatreviso/social-nautica">
     </div>
-    <div style="display:flex;gap:10px;">
+    <div style="border-top:1px solid var(--gray-200);margin:20px 0 16px;"></div>
+    <h3 style="font-size:1rem;color:#4285F4;margin-bottom:12px;">📁 Google Drive (opzionale)</h3>
+    <div class="form-row">
+      <label for="googleClientId">Google Client ID</label>
+      <input type="text" id="googleClientId" placeholder="123456789.apps.googleusercontent.com">
+    </div>
+    <div class="form-row">
+      <label for="googleApiKey">Google API Key</label>
+      <input type="text" id="googleApiKey" placeholder="AIzaSy...">
+    </div>
+    <div class="hint" style="font-size:.78rem;color:var(--gray-600);margin-bottom:16px;line-height:1.5;">
+      Per sfogliare Google Drive dal Manager:<br>
+      1. Vai su <a href="https://console.cloud.google.com" target="_blank" style="color:var(--blue-500);">Google Cloud Console</a><br>
+      2. Crea un progetto (o usane uno esistente)<br>
+      3. Abilita <strong>Google Drive API</strong> e <strong>Google Picker API</strong><br>
+      4. Crea credenziali: <strong>OAuth 2.0 Client ID</strong> (tipo "Web") → aggiungi l'URL di questa pagina come "Origini JavaScript autorizzate"<br>
+      5. Crea una <strong>API Key</strong> (limitala a Picker API)<br>
+      6. Incolla qui sopra Client ID e API Key
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
       <button class="btn btn-primary" onclick="saveSettings()">Salva</button>
-      <button class="btn btn-secondary" onclick="testConnection()">🔗 Testa connessione</button>
+      <button class="btn btn-secondary" onclick="testConnection()">🔗 Testa GitHub</button>
+      <button class="btn btn-secondary" id="btnTestDrive" onclick="testDriveConnection()" style="display:none;">📁 Testa Drive</button>
       <button class="btn btn-secondary" onclick="closeSettings()" style="margin-left:auto;">Chiudi</button>
     </div>
   </div>
@@ -383,9 +408,15 @@ let selectedFile = null;
 function loadConfig() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) return JSON.parse(saved);
+    if (saved) {
+      const c = JSON.parse(saved);
+      // Assicura che i campi Google esistano
+      c.googleClientId = c.googleClientId || '';
+      c.googleApiKey = c.googleApiKey || '';
+      return c;
+    }
   } catch(e) {}
-  return { token: '', repo: 'nauticatreviso/social-nautica' };
+  return { token: '', repo: 'nauticatreviso/social-nautica', googleClientId: '', googleApiKey: '' };
 }
 
 function saveConfig() {
@@ -480,6 +511,11 @@ async function ghUploadBinary(path, file, message) {
 function openSettings() {
   document.getElementById('ghToken').value = CONFIG.token;
   document.getElementById('ghRepo').value = CONFIG.repo;
+  document.getElementById('googleClientId').value = CONFIG.googleClientId || '';
+  document.getElementById('googleApiKey').value = CONFIG.googleApiKey || '';
+  // Mostra/nascondi bottone test Drive
+  const btnTestDrive = document.getElementById('btnTestDrive');
+  if (btnTestDrive) btnTestDrive.style.display = (CONFIG.googleClientId && CONFIG.googleApiKey) ? '' : 'none';
   document.getElementById('settingsModal').classList.add('show');
 }
 
@@ -490,7 +526,13 @@ function closeSettings() {
 function saveSettings() {
   CONFIG.token = document.getElementById('ghToken').value.trim();
   CONFIG.repo = document.getElementById('ghRepo').value.trim();
+  CONFIG.googleClientId = document.getElementById('googleClientId').value.trim();
+  CONFIG.googleApiKey = document.getElementById('googleApiKey').value.trim();
   saveConfig();
+  // Se credenziali Drive presenti, carica gli script Google
+  if (CONFIG.googleClientId && CONFIG.googleApiKey) {
+    loadGoogleScripts();
+  }
   closeSettings();
   toast('Impostazioni salvate', 'success');
   updateSubmitButton();
@@ -1034,6 +1076,9 @@ async function editPost(postId) {
     const currentFile = post.media ? post.media.replace('media/', '') : '';
     const displayFile = post.originalFile || currentFile;
     const isVid = post.type === 'video' || post.type === 'reel';
+    const driveBtn = (CONFIG.googleClientId && CONFIG.googleApiKey)
+      ? `<button class="btn-drive" onclick="openGooglePicker()">📁 Da Drive</button>`
+      : '';
     if (currentFile) {
       mediaSection.innerHTML = `<div class="edit-media-current">
         <span class="file-icon">${isVid ? '🎬' : '📷'}</span>
@@ -1041,7 +1086,10 @@ async function editPost(postId) {
           <div class="name">${escapeHtml(displayFile)}</div>
           <div class="hint">${isVid ? 'Video' : 'Foto'} attuale${post.originalFile && post.originalFile !== currentFile ? ' · repo: ' + escapeHtml(currentFile) : ''}</div>
         </div>
-        <button class="btn-change-file" onclick="document.getElementById('editFileInput').click()">📎 Cambia file</button>
+        <div class="edit-media-buttons">
+          <button class="btn-change-file" onclick="document.getElementById('editFileInput').click()">📎 Da PC</button>
+          ${driveBtn}
+        </div>
       </div>`;
     } else {
       mediaSection.innerHTML = `<div class="edit-media-current" style="background:#FFF3CD;border:1px dashed #C69500;">
@@ -1050,7 +1098,10 @@ async function editPost(postId) {
           <div class="name" style="color:#856404;">Nessun file associato</div>
           <div class="hint">Carica un file per questo post</div>
         </div>
-        <button class="btn-change-file" onclick="document.getElementById('editFileInput').click()">📎 Carica file</button>
+        <div class="edit-media-buttons">
+          <button class="btn-change-file" onclick="document.getElementById('editFileInput').click()">📎 Da PC</button>
+          ${driveBtn}
+        </div>
       </div>`;
     }
 
@@ -1292,6 +1343,192 @@ function escapeHtml(str) {
 }
 
 // ============================================
+// GOOGLE DRIVE INTEGRATION
+// ============================================
+let gapiLoaded = false;
+let gisLoaded = false;
+let driveAccessToken = null;
+
+// Carica gli script Google API (gapi + GIS)
+function loadGoogleScripts() {
+  if (!CONFIG.googleClientId || !CONFIG.googleApiKey) return;
+
+  // Google API (per il Picker)
+  if (!document.getElementById('gapi-script')) {
+    const s1 = document.createElement('script');
+    s1.id = 'gapi-script';
+    s1.src = 'https://apis.google.com/js/api.js';
+    s1.onload = () => {
+      gapi.load('picker', () => { gapiLoaded = true; });
+    };
+    document.head.appendChild(s1);
+  }
+
+  // Google Identity Services (per OAuth2)
+  if (!document.getElementById('gis-script')) {
+    const s2 = document.createElement('script');
+    s2.id = 'gis-script';
+    s2.src = 'https://accounts.google.com/gsi/client';
+    s2.onload = () => { gisLoaded = true; };
+    document.head.appendChild(s2);
+  }
+}
+
+// Ottieni access token via Google OAuth2
+function getGoogleAccessToken() {
+  return new Promise((resolve, reject) => {
+    if (driveAccessToken) { resolve(driveAccessToken); return; }
+    if (!gisLoaded) { reject(new Error('Google Identity Services non caricato. Ricarica la pagina.')); return; }
+
+    const tokenClient = google.accounts.oauth2.initTokenClient({
+      client_id: CONFIG.googleClientId,
+      scope: 'https://www.googleapis.com/auth/drive.readonly',
+      callback: (response) => {
+        if (response.error) {
+          reject(new Error(response.error_description || response.error));
+          return;
+        }
+        driveAccessToken = response.access_token;
+        // Token scade dopo ~1h, resettalo
+        setTimeout(() => { driveAccessToken = null; }, 3500 * 1000);
+        resolve(driveAccessToken);
+      },
+    });
+    tokenClient.requestAccessToken({ prompt: '' });
+  });
+}
+
+// Apri il Google Picker per selezionare un file
+async function openGooglePicker() {
+  if (!CONFIG.googleClientId || !CONFIG.googleApiKey) {
+    toast('Configura le credenziali Google nelle impostazioni', 'error');
+    return;
+  }
+  if (!gapiLoaded || !gisLoaded) {
+    toast('⏳ Caricamento Google API in corso... Riprova tra qualche secondo.', 'info');
+    loadGoogleScripts();
+    return;
+  }
+
+  try {
+    const token = await getGoogleAccessToken();
+
+    // Crea il Picker
+    const view = new google.picker.DocsView()
+      .setIncludeFolders(true)
+      .setSelectFolderEnabled(false)
+      .setMimeTypes('image/jpeg,image/png,video/mp4,video/quicktime');
+
+    const picker = new google.picker.PickerBuilder()
+      .setTitle('Seleziona un file da Google Drive')
+      .addView(view)
+      .addView(new google.picker.DocsView()
+        .setIncludeFolders(true)
+        .setSelectFolderEnabled(false)
+        .setMimeTypes('image/jpeg,image/png,video/mp4,video/quicktime')
+        .setEnableTeamDrives(true))
+      .setOAuthToken(token)
+      .setDeveloperKey(CONFIG.googleApiKey)
+      .setCallback(pickerCallback)
+      .setMaxItems(1)
+      .build();
+    picker.setVisible(true);
+  } catch(e) {
+    toast(`❌ Errore Google: ${e.message}`, 'error');
+  }
+}
+
+// Callback quando l'utente seleziona un file nel Picker
+async function pickerCallback(data) {
+  if (data.action !== google.picker.Action.PICKED) return;
+
+  const doc = data.docs[0];
+  const fileId = doc.id;
+  const fileName = doc.name;
+  const mimeType = doc.mimeType;
+  const sizeBytes = doc.sizeBytes || 0;
+  const sizeMB = sizeBytes / (1024 * 1024);
+
+  // Validazione
+  const validMimes = ['image/jpeg', 'image/png', 'video/mp4', 'video/quicktime'];
+  if (!validMimes.includes(mimeType)) {
+    toast(`Formato non supportato: ${mimeType}. Usa JPEG o MP4.`, 'error');
+    return;
+  }
+  if (sizeMB > 50) {
+    toast(`File troppo grande (${sizeMB.toFixed(0)} MB). Max 50 MB.`, 'error');
+    return;
+  }
+
+  // Mostra stato di download
+  const mediaSection = document.getElementById('editMediaSection');
+  const currentBlock = mediaSection.querySelector('.edit-media-current');
+  const currentHtml = currentBlock ? currentBlock.outerHTML : '';
+  // Rimuovi precedente new-file se c'era
+  const oldNew = mediaSection.querySelector('.edit-new-file');
+  if (oldNew) oldNew.remove();
+  const oldLoading = mediaSection.querySelector('.drive-loading');
+  if (oldLoading) oldLoading.remove();
+
+  mediaSection.innerHTML = currentHtml + `
+    <div class="drive-loading">
+      <div class="spinner"></div>
+      Scaricamento da Drive: ${escapeHtml(fileName)}...
+    </div>`;
+
+  try {
+    const token = driveAccessToken;
+    const res = await fetch(`https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!res.ok) throw new Error(`Download fallito: ${res.status}`);
+
+    const blob = await res.blob();
+    const file = new File([blob], fileName, { type: mimeType });
+
+    // Usa la stessa funzione dell'upload locale
+    editHandleFile(file);
+    toast(`✅ ${fileName} scaricato da Drive`, 'success');
+  } catch(e) {
+    toast(`❌ Errore download: ${e.message}`, 'error');
+    // Rimuovi loading
+    const loadEl = mediaSection.querySelector('.drive-loading');
+    if (loadEl) loadEl.remove();
+  }
+}
+
+// Testa la connessione Google Drive
+async function testDriveConnection() {
+  const clientId = document.getElementById('googleClientId').value.trim();
+  const apiKey = document.getElementById('googleApiKey').value.trim();
+  if (!clientId || !apiKey) {
+    toast('Inserisci Client ID e API Key', 'error');
+    return;
+  }
+  // Salva temporaneamente per il test
+  CONFIG.googleClientId = clientId;
+  CONFIG.googleApiKey = apiKey;
+  loadGoogleScripts();
+
+  // Aspetta che gli script siano caricati
+  let waited = 0;
+  while ((!gapiLoaded || !gisLoaded) && waited < 5000) {
+    await new Promise(r => setTimeout(r, 200));
+    waited += 200;
+  }
+  if (!gapiLoaded || !gisLoaded) {
+    toast('❌ Impossibile caricare Google API. Controlla la connessione.', 'error');
+    return;
+  }
+  try {
+    await getGoogleAccessToken();
+    toast('✅ Connessione Google Drive riuscita!', 'success');
+  } catch(e) {
+    toast(`❌ Errore: ${e.message}`, 'error');
+  }
+}
+
+// ============================================
 // INIT
 // ============================================
 function init() {
@@ -1304,6 +1541,11 @@ function init() {
       toast('👋 Configura il token GitHub per iniziare', 'info');
       openSettings();
     }, 500);
+  }
+
+  // Carica script Google Drive se le credenziali sono configurate
+  if (CONFIG.googleClientId && CONFIG.googleApiKey) {
+    loadGoogleScripts();
   }
 }
 
