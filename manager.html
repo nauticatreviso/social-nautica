@@ -121,6 +121,7 @@ video.post-thumb { pointer-events:none; }
 .badge-published { background:#D4F5E2; color:var(--green); }
 .badge-expired { background:#FDE8E8; color:var(--red); }
 .post-caption { font-size:.9rem; color:var(--gray-800); line-height:1.4; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; word-break:break-word; }
+.post-file-name { font-size:.75rem; color:var(--gray-400); margin-top:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .post-actions { display:flex; align-items:flex-end; flex-shrink:0; gap:8px; flex-direction:column; }
 .post-card.past { opacity:0.55; background:var(--gray-50); border-color:var(--gray-200); }
 .post-card.past:hover { opacity:0.8; border-color:var(--gray-400); }
@@ -142,6 +143,19 @@ video.post-thumb { pointer-events:none; }
 .modal { background:#fff; border-radius:var(--radius); padding:28px; width:100%; max-width:480px; box-shadow:var(--shadow-lg); }
 .modal h2 { margin-bottom:20px; color:var(--blue-700); }
 .modal .form-row:last-of-type { margin-bottom:24px; }
+.edit-media-current { display:flex; align-items:center; gap:10px; padding:10px 12px; background:var(--gray-100); border-radius:8px; }
+.edit-media-current .file-icon { font-size:1.3rem; flex-shrink:0; }
+.edit-media-current .file-details { flex:1; min-width:0; }
+.edit-media-current .file-details .name { font-weight:600; font-size:.9rem; word-break:break-all; }
+.edit-media-current .file-details .hint { font-size:.75rem; color:var(--gray-600); }
+.btn-change-file { background:none; border:1.5px solid var(--orange); color:var(--orange); padding:5px 12px; font-size:.8rem; border-radius:6px; cursor:pointer; font-weight:600; white-space:nowrap; transition:background .2s, color .2s; }
+.btn-change-file:hover { background:var(--orange); color:#fff; }
+.edit-new-file { display:flex; align-items:center; gap:10px; padding:10px 12px; background:#E8F6E8; border:1.5px solid var(--green); border-radius:8px; margin-top:8px; }
+.edit-new-file .file-icon { font-size:1.3rem; flex-shrink:0; }
+.edit-new-file .file-details { flex:1; min-width:0; }
+.edit-new-file .file-details .name { font-weight:600; font-size:.9rem; color:var(--green); word-break:break-all; }
+.edit-new-file .file-details .hint { font-size:.75rem; color:var(--gray-600); }
+.edit-new-file .remove { background:none; border:none; color:var(--red); cursor:pointer; font-size:1.1rem; flex-shrink:0; }
 
 /* === TOAST === */
 .toast-container { position:fixed; top:80px; right:20px; z-index:300; display:flex; flex-direction:column; gap:8px; }
@@ -235,8 +249,13 @@ video.post-thumb { pointer-events:none; }
         <label class="checkbox-label"><input type="checkbox" id="editPlatFB"> Facebook</label>
       </div>
     </div>
+    <div class="form-row">
+      <label>File media</label>
+      <div id="editMediaSection"></div>
+      <input type="file" id="editFileInput" accept="image/jpeg,image/png,video/mp4,video/quicktime" hidden>
+    </div>
     <div style="display:flex;gap:10px;">
-      <button class="btn btn-primary" onclick="saveEdit()">💾 Salva</button>
+      <button class="btn btn-primary" onclick="saveEdit()" id="btnSaveEdit">💾 Salva</button>
       <button class="btn btn-secondary" onclick="closeEdit()" style="margin-left:auto;">Annulla</button>
     </div>
   </div>
@@ -872,6 +891,10 @@ async function loadCalendar() {
       // Caption (prima riga pulita)
       const captionPreview = (post.caption || '').replace(/\n/g, ' ').substring(0, 120);
 
+      // Nome file media
+      const mediaFileName = post.media ? post.media.replace('media/', '') : '';
+      const fileIcon = isVideo ? '🎬' : '📷';
+
       // Bottoni azione
       const editBtn = !isPublished
         ? `<button class="btn-edit btn-sm" onclick="editPost('${post.id}')">✏️ Modifica</button>`
@@ -902,6 +925,7 @@ async function loadCalendar() {
             ${approvalBadge}
           </div>
           <div class="post-caption">${escapeHtml(captionPreview)}${captionPreview.length >= 120 ? '...' : ''}</div>
+          ${mediaFileName ? `<div class="post-file-name">${fileIcon} ${escapeHtml(mediaFileName)}</div>` : ''}
         </div>
         <div class="post-actions">${approveBtn}${editBtn}${deleteBtn}</div>
       </div>`;
@@ -1002,6 +1026,32 @@ async function editPost(postId) {
     counter.textContent = `${len} / 2200`;
     counter.className = 'char-count' + (len > 2200 ? ' over' : len > 2000 ? ' warn' : '');
 
+    // Sezione media
+    editSelectedFile = null;
+    document.getElementById('editFileInput').value = '';
+    const mediaSection = document.getElementById('editMediaSection');
+    const currentFile = post.media ? post.media.replace('media/', '') : '';
+    const isVid = post.type === 'video' || post.type === 'reel';
+    if (currentFile) {
+      mediaSection.innerHTML = `<div class="edit-media-current">
+        <span class="file-icon">${isVid ? '🎬' : '📷'}</span>
+        <div class="file-details">
+          <div class="name">${escapeHtml(currentFile)}</div>
+          <div class="hint">${isVid ? 'Video' : 'Foto'} attuale</div>
+        </div>
+        <button class="btn-change-file" onclick="document.getElementById('editFileInput').click()">📎 Cambia file</button>
+      </div>`;
+    } else {
+      mediaSection.innerHTML = `<div class="edit-media-current" style="background:#FFF3CD;border:1px dashed #C69500;">
+        <span class="file-icon">⚠️</span>
+        <div class="file-details">
+          <div class="name" style="color:#856404;">Nessun file associato</div>
+          <div class="hint">Carica un file per questo post</div>
+        </div>
+        <button class="btn-change-file" onclick="document.getElementById('editFileInput').click()">📎 Carica file</button>
+      </div>`;
+    }
+
     document.getElementById('editModal').classList.add('show');
   } catch(e) {
     toast(`❌ Errore: ${e.message}`, 'error');
@@ -1015,8 +1065,54 @@ document.getElementById('editCaption').addEventListener('input', function() {
   counter.className = 'char-count' + (len > 2200 ? ' over' : len > 2000 ? ' warn' : '');
 });
 
+let editSelectedFile = null;
+
 function closeEdit() {
+  editSelectedFile = null;
   document.getElementById('editModal').classList.remove('show');
+}
+
+// Gestione cambio file nella modale modifica
+document.getElementById('editFileInput').addEventListener('change', function(e) {
+  if (e.target.files[0]) editHandleFile(e.target.files[0]);
+});
+
+function editHandleFile(file) {
+  const ext = file.name.split('.').pop().toLowerCase();
+  const validImg = ['jpeg', 'jpg'];
+  const validVid = ['mp4', 'mov'];
+  if (!validImg.includes(ext) && !validVid.includes(ext)) {
+    toast('Formato non supportato. Usa JPEG per foto o MP4 per video.', 'error');
+    return;
+  }
+  const sizeMB = file.size / (1024 * 1024);
+  if (sizeMB > 50) {
+    toast(`File troppo grande (${sizeMB.toFixed(0)} MB). Max 50 MB.`, 'error');
+    return;
+  }
+  editSelectedFile = file;
+  const isVid = validVid.includes(ext);
+  const section = document.getElementById('editMediaSection');
+  // Mantieni il blocco file corrente e aggiungi il nuovo sotto
+  const currentBlock = section.querySelector('.edit-media-current');
+  const currentHtml = currentBlock ? currentBlock.outerHTML : '';
+  section.innerHTML = currentHtml + `
+    <div class="edit-new-file">
+      <span class="file-icon">${isVid ? '🎬' : '📷'}</span>
+      <div class="file-details">
+        <div class="name">NUOVO: ${escapeHtml(file.name)}</div>
+        <div class="hint">${sizeMB.toFixed(1)} MB · ${isVid ? 'Video' : 'Foto'} — sostituirà il file attuale</div>
+      </div>
+      <button class="remove" onclick="editClearFile()" title="Annulla cambio">✕</button>
+    </div>`;
+}
+
+function editClearFile() {
+  editSelectedFile = null;
+  document.getElementById('editFileInput').value = '';
+  const section = document.getElementById('editMediaSection');
+  const newFileEl = section.querySelector('.edit-new-file');
+  if (newFileEl) newFileEl.remove();
 }
 
 async function saveEdit() {
@@ -1045,6 +1141,25 @@ async function saveEdit() {
     if (document.getElementById('editPlatFB').checked) editPlatforms.push('facebook');
     if (editPlatforms.length === 0) { toast('Seleziona almeno una piattaforma', 'error'); return; }
     posts[idx].platforms = editPlatforms;
+
+    // Se c'è un nuovo file, caricalo
+    if (editSelectedFile) {
+      const btn = document.getElementById('btnSaveEdit');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span> Upload...';
+
+      const ext = editSelectedFile.name.split('.').pop().toLowerCase();
+      const isVideo = ['mp4', 'mov'].includes(ext);
+      const newMediaName = `${postId}.${ext === 'mov' ? 'mp4' : ext}`;
+
+      toast('📤 Caricamento nuovo file...', 'info');
+      await ghUploadBinary(`media/${newMediaName}`, editSelectedFile, `Aggiorna media: ${postId}`);
+      posts[idx].media = `media/${newMediaName}`;
+      posts[idx].type = isVideo ? 'video' : 'image';
+
+      btn.disabled = false;
+      btn.innerHTML = '💾 Salva';
+    }
 
     await ghPut('posts.json', JSON.stringify(posts, null, 2), current.sha, `Modifica post: ${postId}`);
 
