@@ -121,6 +121,13 @@ textarea { resize:vertical; min-height:120px; }
 .post-actions { display:flex; align-items:flex-end; flex-shrink:0; gap:8px; flex-direction:column; }
 .post-card.past { opacity:0.55; background:var(--gray-50); border-color:var(--gray-200); }
 .post-card.past:hover { opacity:0.8; border-color:var(--gray-400); }
+.post-card.not-approved { border-left:4px solid var(--orange); }
+.post-card.is-approved { border-left:4px solid var(--green); }
+.badge-approved { background:#D4F5E2; color:var(--green); }
+.badge-pending-approval { background:#FFF3CD; color:#856404; }
+.btn-approve { background:none; border:1.5px solid var(--green); color:var(--green); padding:6px 14px; font-size:.85rem; border-radius:8px; cursor:pointer; font-weight:600; transition:background .2s, color .2s; display:inline-flex; align-items:center; gap:4px; }
+.btn-approve:hover { background:var(--green); color:#fff; }
+.btn-approved-done { background:var(--green); border:1.5px solid var(--green); color:#fff; padding:6px 14px; font-size:.85rem; border-radius:8px; cursor:default; font-weight:600; display:inline-flex; align-items:center; gap:4px; opacity:0.7; }
 .section-divider { display:flex; align-items:center; gap:12px; margin:24px 0 16px; color:var(--gray-400); font-size:.85rem; font-weight:600; text-transform:uppercase; letter-spacing:.5px; }
 .section-divider::before, .section-divider::after { content:''; flex:1; height:1px; background:var(--gray-200); }
 .btn-edit { background:none; border:1.5px solid var(--blue-500); color:var(--blue-500); padding:6px 14px; font-size:.85rem; border-radius:8px; cursor:pointer; font-weight:600; transition:background .2s, color .2s; display:inline-flex; align-items:center; gap:4px; }
@@ -216,6 +223,13 @@ textarea { resize:vertical; min-height:120px; }
       <div>
         <label for="editTime">Ora</label>
         <input type="time" id="editTime">
+      </div>
+    </div>
+    <div class="form-row">
+      <label>Piattaforme</label>
+      <div class="checkbox-group">
+        <label class="checkbox-label"><input type="checkbox" id="editPlatIG"> Instagram</label>
+        <label class="checkbox-label"><input type="checkbox" id="editPlatFB"> Facebook</label>
       </div>
     </div>
     <div style="display:flex;gap:10px;">
@@ -710,12 +724,10 @@ async function submitPost() {
       when: `${date}T${time}`,
       caption,
       media: `media/${mediaName}`,
-      type
+      type,
+      platforms,
+      approved: false
     };
-    // Aggiungi platforms solo se non sono entrambe
-    if (!(platIG && platFB)) {
-      newPost.platforms = platforms;
-    }
     posts.push(newPost);
 
     // 4. Scrivi posts.json aggiornato
@@ -806,11 +818,20 @@ async function loadCalendar() {
       const isPast = when < now;
       const isPublished = publishedIDs.has(post.id);
       const isExpired = isPast && !isPublished && (now - when > 12 * 60 * 60 * 1000);
+      const isApproved = post.approved === true;
 
       // Status badge
       let statusBadge = '<span class="badge badge-scheduled">⏰ Programmato</span>';
       if (isPublished) statusBadge = '<span class="badge badge-published">✅ Pubblicato</span>';
       else if (isExpired) statusBadge = '<span class="badge badge-expired">⏭ Scaduto</span>';
+
+      // Approval badge
+      let approvalBadge = '';
+      if (!isPublished && !isExpired) {
+        approvalBadge = isApproved
+          ? '<span class="badge badge-approved">✅ Approvato</span>'
+          : '<span class="badge badge-pending-approval">⏳ Da approvare</span>';
+      }
 
       // Platform badges
       const platforms = post.platforms || ['instagram', 'facebook'];
@@ -841,12 +862,21 @@ async function loadCalendar() {
         ? `<button class="btn-edit btn-sm" onclick="editPost('${post.id}')">✏️ Modifica</button>`
         : '';
       const deleteBtn = !isPublished
-        ? `<button class="btn btn-danger btn-sm" onclick="deletePost('${post.id}')">🗑️ Elimina</button>`
+        ? `<button class="btn btn-danger btn-sm" onclick="deletePost('${post.id}')">�\uddd1️ Elimina</button>`
         : '';
 
-      const pastClass = (isPublished || isExpired) ? ' past' : '';
+      // Approval button
+      let approveBtn = '';
+      if (!isPublished && !isExpired) {
+        approveBtn = isApproved
+          ? `<span class="btn-approved-done">✅ Approvato</span>`
+          : `<button class="btn-approve" onclick="approvePost('${post.id}')">👍 Approva</button>`;
+      }
 
-      return `<div class="post-card${pastClass}">
+      const pastClass = (isPublished || isExpired) ? ' past' : '';
+      const approvalClass = (!isPublished && !isExpired) ? (isApproved ? ' is-approved' : ' not-approved') : '';
+
+      return `<div class="post-card${pastClass}${approvalClass}">
         ${thumb}
         <div class="post-info">
           <div class="post-meta">
@@ -854,10 +884,11 @@ async function loadCalendar() {
             <span class="post-time">${timeStr}</span>
             ${platBadges}
             ${statusBadge}
+            ${approvalBadge}
           </div>
           <div class="post-caption">${escapeHtml(captionPreview)}${captionPreview.length >= 120 ? '...' : ''}</div>
         </div>
-        <div class="post-actions">${editBtn}${deleteBtn}</div>
+        <div class="post-actions">${approveBtn}${editBtn}${deleteBtn}</div>
       </div>`;
     }
 
@@ -889,6 +920,21 @@ async function loadCalendar() {
 
   } catch(e) {
     container.innerHTML = `<div class="empty-state"><div class="icon">❌</div><p>Errore: ${escapeHtml(e.message)}</p></div>`;
+  }
+}
+
+async function approvePost(postId) {
+  try {
+    const current = await ghGet('posts.json');
+    let posts = JSON.parse(current.content);
+    const idx = posts.findIndex(p => p.id === postId);
+    if (idx === -1) { toast('Post non trovato', 'error'); return; }
+    posts[idx].approved = true;
+    await ghPut('posts.json', JSON.stringify(posts, null, 2), current.sha, `Approva post: ${postId}`);
+    toast('✅ Post approvato!', 'success');
+    loadCalendar();
+  } catch(e) {
+    toast(`❌ Errore: ${e.message}`, 'error');
   }
 }
 
@@ -929,6 +975,11 @@ async function editPost(postId) {
     const [date, time] = (post.when || '').split('T');
     document.getElementById('editDate').value = date || '';
     document.getElementById('editTime').value = time || '18:30';
+
+    // Piattaforme
+    const platforms = post.platforms || ['instagram', 'facebook'];
+    document.getElementById('editPlatIG').checked = platforms.includes('instagram');
+    document.getElementById('editPlatFB').checked = platforms.includes('facebook');
 
     // Aggiorna contatore
     const len = (post.caption || '').length;
@@ -972,6 +1023,13 @@ async function saveEdit() {
 
     posts[idx].caption = newCaption;
     posts[idx].when = `${newDate}T${newTime}`;
+
+    // Aggiorna piattaforme
+    const editPlatforms = [];
+    if (document.getElementById('editPlatIG').checked) editPlatforms.push('instagram');
+    if (document.getElementById('editPlatFB').checked) editPlatforms.push('facebook');
+    if (editPlatforms.length === 0) { toast('Seleziona almeno una piattaforma', 'error'); return; }
+    posts[idx].platforms = editPlatforms;
 
     await ghPut('posts.json', JSON.stringify(posts, null, 2), current.sha, `Modifica post: ${postId}`);
 
