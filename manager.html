@@ -475,14 +475,28 @@ async function ghPut(path, content, sha, message) {
   return res.json();
 }
 
-// Carica un file binario (immagine/video)
+// Carica un file binario (immagine/video) — gestisce sia file nuovi che sovrascritture
 async function ghUploadBinary(path, file, message) {
+  // 1. Controlla se il file esiste già (serve lo sha per sovrascrivere)
+  let existingSha = null;
+  try {
+    const check = await fetch(`https://api.github.com/repos/${CONFIG.repo}/contents/${path}`, {
+      headers: { 'Authorization': `Bearer ${CONFIG.token}`, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if (check.ok) {
+      const meta = await check.json();
+      existingSha = meta.sha;
+    }
+  } catch(e) { /* file non esiste, ok */ }
+
+  // 2. Leggi file come base64 e carica
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = async () => {
       try {
         const base64 = reader.result.split(',')[1]; // Rimuove il prefisso data:...
         const body = { message, content: base64 };
+        if (existingSha) body.sha = existingSha;
         const res = await fetch(`https://api.github.com/repos/${CONFIG.repo}/contents/${path}`, {
           method: 'PUT',
           headers: {
@@ -1225,6 +1239,9 @@ async function saveEdit() {
     loadCalendar();
   } catch(e) {
     toast(`❌ Errore: ${e.message}`, 'error');
+    // Ripristina il bottone in caso di errore
+    const btn = document.getElementById('btnSaveEdit');
+    if (btn) { btn.disabled = false; btn.innerHTML = '💾 Salva'; }
   }
 }
 
