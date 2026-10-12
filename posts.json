@@ -71,7 +71,8 @@
       "instagram",
       "facebook"
     ],
-    "approved": false
+    "approved": false,
+    "originalFile": "IMG_5986.HEIC"
   },
   {
     "id": "owd-gruppo-foto-20261015",
@@ -83,7 +84,8 @@
       "instagram",
       "facebook"
     ],
-    "approved": false
+    "approved": false,
+    "originalFile": "IMG_5987.HEIC"
   },
   {
     "id": "owd-attrezzatura-20261017",
@@ -95,7 +97,8 @@
       "instagram",
       "facebook"
     ],
-    "approved": false
+    "approved": false,
+    "originalFile": "IMG_5989.HEIC"
   },
   {
     "id": "raja-nudibranco-20261014",
@@ -106,7 +109,8 @@
     "platforms": [
       "instagram"
     ],
-    "approved": false
+    "approved": false,
+    "originalFile": "RAJA_01"
   },
   {
     "id": "raja-pontile-20261015",
@@ -117,7 +121,8 @@
     "platforms": [
       "instagram"
     ],
-    "approved": false
+    "approved": false,
+    "originalFile": "RAJA_02"
   },
   {
     "id": "raja-wobbegong-20261016",
@@ -128,7 +133,8 @@
     "platforms": [
       "instagram"
     ],
-    "approved": false
+    "approved": false,
+    "originalFile": "RAJA_03"
   },
   {
     "id": "raja-pagliaccio-20261017",
@@ -139,7 +145,8 @@
     "platforms": [
       "instagram"
     ],
-    "approved": false
+    "approved": false,
+    "originalFile": "RAJA_04"
   },
   {
     "id": "raja-gamberetti-20261018",
@@ -150,7 +157,8 @@
     "platforms": [
       "instagram"
     ],
-    "approved": false
+    "approved": false,
+    "originalFile": "RAJA_05"
   },
   {
     "id": "raja-coccodrillo-20261020",
@@ -161,7 +169,8 @@
     "platforms": [
       "instagram"
     ],
-    "approved": false
+    "approved": false,
+    "originalFile": "RAJA_06"
   },
   {
     "id": "raja-pescepietra-20261021",
@@ -172,7 +181,8 @@
     "platforms": [
       "instagram"
     ],
-    "approved": false
+    "approved": false,
+    "originalFile": "RAJA_07"
   },
   {
     "id": "raja-scorfano-20261022",
@@ -183,7 +193,8 @@
     "platforms": [
       "instagram"
     ],
-    "approved": false
+    "approved": false,
+    "originalFile": "RAJA_08"
   },
   {
     "id": "raja-snorkeler-20261023",
@@ -194,7 +205,8 @@
     "platforms": [
       "instagram"
     ],
-    "approved": false
+    "approved": false,
+    "originalFile": "RAJA_09.mp4"
   },
   {
     "id": "raja-corallo-20261024",
@@ -205,7 +217,8 @@
     "platforms": [
       "instagram"
     ],
-    "approved": false
+    "approved": false,
+    "originalFile": "RAJA_10"
   },
   {
     "id": "raja-wobbegong2-20261027",
@@ -216,7 +229,8 @@
     "platforms": [
       "instagram"
     ],
-    "approved": false
+    "approved": false,
+    "originalFile": "raja_11.mp4"
   },
   {
     "id": "raja-aragosta-20261028",
@@ -227,7 +241,8 @@
     "platforms": [
       "instagram"
     ],
-    "approved": false
+    "approved": false,
+    "originalFile": "raja_12.mp4"
   },
   {
     "id": "raja-reef-20261029",
@@ -238,7 +253,8 @@
     "platforms": [
       "instagram"
     ],
-    "approved": false
+    "approved": false,
+    "originalFile": "raja_13.mp4"
   },
   {
     "id": "raja-damigella-20261030",
@@ -249,7 +265,8 @@
     "platforms": [
       "instagram"
     ],
-    "approved": false
+    "approved": false,
+    "originalFile": "raja_14.mp4"
   },
   {
     "id": "raja-finale-20261031",
@@ -260,6 +277,7 @@
     "platforms": [
       "instagram"
     ],
-    "approved": false
+    "approved": false,
+    "originalFile": "raja_15.mp4"
   }
 ]

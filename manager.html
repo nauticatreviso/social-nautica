@@ -755,7 +755,8 @@ async function submitPost() {
       media: `media/${mediaName}`,
       type,
       platforms,
-      approved: false
+      approved: false,
+      originalFile: selectedFile.name
     };
     posts.push(newPost);
 
@@ -891,8 +892,8 @@ async function loadCalendar() {
       // Caption (prima riga pulita)
       const captionPreview = (post.caption || '').replace(/\n/g, ' ').substring(0, 120);
 
-      // Nome file media
-      const mediaFileName = post.media ? post.media.replace('media/', '') : '';
+      // Nome file media — mostra il nome originale Drive se disponibile
+      const mediaFileName = post.originalFile || (post.media ? post.media.replace('media/', '') : '');
       const fileIcon = isVideo ? '🎬' : '📷';
 
       // Bottoni azione
@@ -1031,13 +1032,14 @@ async function editPost(postId) {
     document.getElementById('editFileInput').value = '';
     const mediaSection = document.getElementById('editMediaSection');
     const currentFile = post.media ? post.media.replace('media/', '') : '';
+    const displayFile = post.originalFile || currentFile;
     const isVid = post.type === 'video' || post.type === 'reel';
     if (currentFile) {
       mediaSection.innerHTML = `<div class="edit-media-current">
         <span class="file-icon">${isVid ? '🎬' : '📷'}</span>
         <div class="file-details">
-          <div class="name">${escapeHtml(currentFile)}</div>
-          <div class="hint">${isVid ? 'Video' : 'Foto'} attuale</div>
+          <div class="name">${escapeHtml(displayFile)}</div>
+          <div class="hint">${isVid ? 'Video' : 'Foto'} attuale${post.originalFile && post.originalFile !== currentFile ? ' · repo: ' + escapeHtml(currentFile) : ''}</div>
         </div>
         <button class="btn-change-file" onclick="document.getElementById('editFileInput').click()">📎 Cambia file</button>
       </div>`;
@@ -1156,6 +1158,7 @@ async function saveEdit() {
       await ghUploadBinary(`media/${newMediaName}`, editSelectedFile, `Aggiorna media: ${postId}`);
       posts[idx].media = `media/${newMediaName}`;
       posts[idx].type = isVideo ? 'video' : 'image';
+      posts[idx].originalFile = editSelectedFile.name;
 
       btn.disabled = false;
       btn.innerHTML = '💾 Salva';
