@@ -137,7 +137,8 @@ video.post-thumb { pointer-events:none; }
 .filter-count { font-weight:400; opacity:.8; margin-left:4px; }
 .btn-approve { background:none; border:1.5px solid var(--green); color:var(--green); padding:6px 14px; font-size:.85rem; border-radius:8px; cursor:pointer; font-weight:600; transition:background .2s, color .2s; display:inline-flex; align-items:center; gap:4px; }
 .btn-approve:hover { background:var(--green); color:#fff; }
-.btn-approved-done { background:var(--green); border:1.5px solid var(--green); color:#fff; padding:6px 14px; font-size:.85rem; border-radius:8px; cursor:default; font-weight:600; display:inline-flex; align-items:center; gap:4px; opacity:0.7; }
+.btn-approved-done { background:var(--green); border:1.5px solid var(--green); color:#fff; padding:6px 14px; font-size:.85rem; border-radius:8px; cursor:pointer; font-weight:600; display:inline-flex; align-items:center; gap:4px; transition:background .2s, opacity .2s; }
+.btn-approved-done:hover { opacity:0.75; }
 .section-divider { display:flex; align-items:center; gap:12px; margin:24px 0 16px; color:var(--gray-400); font-size:.85rem; font-weight:600; text-transform:uppercase; letter-spacing:.5px; }
 .section-divider::before, .section-divider::after { content:''; flex:1; height:1px; background:var(--gray-200); }
 .btn-edit { background:none; border:1.5px solid var(--blue-500); color:var(--blue-500); padding:6px 14px; font-size:.85rem; border-radius:8px; cursor:pointer; font-weight:600; transition:background .2s, color .2s; display:inline-flex; align-items:center; gap:4px; }
@@ -977,7 +978,7 @@ async function loadCalendar() {
       let approveBtn = '';
       if (!isPublished && !isExpired) {
         approveBtn = isApproved
-          ? `<span class="btn-approved-done">✅ Approvato</span>`
+          ? `<button class="btn-approved-done" onclick="unapprovePost('${post.id}')" title="Clicca per rimettere in revisione">✅ Approvato</button>`
           : `<button class="btn-approve" onclick="approvePost('${post.id}')">👍 Approva</button>`;
       }
 
@@ -1123,6 +1124,21 @@ async function approvePost(postId) {
     posts[idx].approved = true;
     await ghPut('posts.json', JSON.stringify(posts, null, 2), current.sha, `Approva post: ${postId}`);
     toast('✅ Post approvato!', 'success');
+    loadCalendar();
+  } catch(e) {
+    toast(`❌ Errore: ${e.message}`, 'error');
+  }
+}
+
+async function unapprovePost(postId) {
+  try {
+    const current = await ghGet('posts.json');
+    let posts = JSON.parse(current.content);
+    const idx = posts.findIndex(p => p.id === postId);
+    if (idx === -1) { toast('Post non trovato', 'error'); return; }
+    posts[idx].approved = false;
+    await ghPut('posts.json', JSON.stringify(posts, null, 2), current.sha, `Rimuove approvazione: ${postId}`);
+    toast('⏳ Post rimesso in revisione', 'info');
     loadCalendar();
   } catch(e) {
     toast(`❌ Errore: ${e.message}`, 'error');
