@@ -67,7 +67,11 @@
     "media": "media/post-20261015-1830.jpeg",
     "type": "image",
     "approved": true,
-    "num": 6
+    "num": 6,
+    "platforms": [
+      "instagram",
+      "facebook"
+    ]
   },
   {
     "id": "raja-pontile-20261015",
