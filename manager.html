@@ -129,6 +129,12 @@ video.post-thumb { pointer-events:none; }
 .post-card.is-approved { border-left:4px solid var(--green); }
 .badge-approved { background:#D4F5E2; color:var(--green); }
 .badge-pending-approval { background:#FFF3CD; color:#856404; }
+.post-num { font-weight:800; font-size:.85rem; color:var(--blue-700); background:var(--blue-50); border-radius:6px; padding:2px 7px; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.filter-bar { display:flex; gap:6px; margin-bottom:14px; flex-wrap:wrap; }
+.filter-btn { background:var(--gray-50); border:1.5px solid var(--gray-200); color:var(--gray-500); padding:6px 14px; font-size:.82rem; border-radius:20px; cursor:pointer; font-weight:600; transition:all .2s; }
+.filter-btn:hover { border-color:var(--blue-300); color:var(--blue-700); }
+.filter-btn.active { background:var(--blue-700); border-color:var(--blue-700); color:#fff; }
+.filter-count { font-weight:400; opacity:.8; margin-left:4px; }
 .btn-approve { background:none; border:1.5px solid var(--green); color:var(--green); padding:6px 14px; font-size:.85rem; border-radius:8px; cursor:pointer; font-weight:600; transition:background .2s, color .2s; display:inline-flex; align-items:center; gap:4px; }
 .btn-approve:hover { background:var(--green); color:#fff; }
 .btn-approved-done { background:var(--green); border:1.5px solid var(--green); color:#fff; padding:6px 14px; font-size:.85rem; border-radius:8px; cursor:default; font-weight:600; display:inline-flex; align-items:center; gap:4px; opacity:0.7; }
@@ -250,7 +256,7 @@ video.post-thumb { pointer-events:none; }
 <!-- EDIT MODAL -->
 <div class="modal-overlay" id="editModal">
   <div class="modal" style="max-width:560px;">
-    <h2>✏️ Modifica post</h2>
+    <h2 id="editModalTitle">✏️ Modifica post</h2>
     <input type="hidden" id="editPostId">
     <div class="form-row">
       <label for="editCaption">Didascalia</label>
@@ -378,9 +384,14 @@ video.post-thumb { pointer-events:none; }
 
 <!-- TAB: CALENDARIO -->
 <div class="tab-content" id="tab-calendario">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
     <h2 style="color:var(--blue-700);">Post programmati e pubblicati</h2>
     <button class="btn btn-secondary btn-sm" onclick="loadCalendar()">🔄 Aggiorna</button>
+  </div>
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">Tutti</button>
+    <button class="filter-btn" data-filter="pending" onclick="setFilter('pending')">⏳ Da approvare</button>
+    <button class="filter-btn" data-filter="approved" onclick="setFilter('approved')">✅ Approvati</button>
   </div>
   <div id="calendarList">
     <div class="loading-overlay"><div class="spinner"></div> Caricamento...</div>
@@ -803,9 +814,11 @@ async function submitPost() {
       posts = JSON.parse(current.content);
     }
 
-    // 3. Aggiungi il nuovo post
+    // 3. Aggiungi il nuovo post con numero progressivo
+    const maxNum = posts.reduce((max, p) => Math.max(max, p.num || 0), 0);
     const newPost = {
       id,
+      num: maxNum + 1,
       when: `${date}T${time}`,
       caption,
       media: `media/${mediaName}`,
@@ -971,10 +984,13 @@ async function loadCalendar() {
       const pastClass = (isPublished || isExpired) ? ' past' : '';
       const approvalClass = (!isPublished && !isExpired) ? (isApproved ? ' is-approved' : ' not-approved') : '';
 
-      return `<div class="post-card${pastClass}${approvalClass}">
+      const postNum = post.num ? `<span class="post-num">#${String(post.num).padStart(2,'0')}</span>` : '';
+
+      return `<div class="post-card${pastClass}${approvalClass}" data-approved="${isApproved}" data-published="${isPublished}" data-expired="${isExpired}">
         ${thumb}
         <div class="post-info">
           <div class="post-meta">
+            ${postNum}
             <span class="post-date">${dateStr}</span>
             <span class="post-time">${timeStr}</span>
             ${platBadges}
@@ -1014,9 +1030,88 @@ async function loadCalendar() {
     }
     container.innerHTML = html;
 
+    // Aggiorna contatori filtro
+    updateFilterCounts(posts, publishedIDs);
+    // Applica filtro corrente
+    applyFilter();
+
   } catch(e) {
     container.innerHTML = `<div class="empty-state"><div class="icon">❌</div><p>Errore: ${escapeHtml(e.message)}</p></div>`;
   }
+}
+
+let _currentFilter = 'all';
+
+function setFilter(filter) {
+  _currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.filter === filter);
+  });
+  applyFilter();
+}
+
+function applyFilter() {
+  const cards = document.querySelectorAll('#calendarList .post-card');
+  const dividers = document.querySelectorAll('#calendarList .section-divider');
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    const isPublished = card.dataset.published === 'true';
+    const isExpired = card.dataset.expired === 'true';
+    const isApproved = card.dataset.approved === 'true';
+    const isDone = isPublished || isExpired; // post già passati
+
+    let show = true;
+    if (_currentFilter === 'pending') {
+      show = !isDone && !isApproved;
+    } else if (_currentFilter === 'approved') {
+      show = !isDone && isApproved;
+    }
+    card.style.display = show ? '' : 'none';
+    if (show) visibleCount++;
+  });
+
+  // Nascondi il divider "Pubblicati/Passati" se filtrando solo da approvare/approvati
+  dividers.forEach(d => {
+    d.style.display = (_currentFilter === 'all') ? '' : 'none';
+  });
+
+  // Mostra messaggio vuoto se nessun risultato
+  const emptyMsg = document.getElementById('filterEmptyMsg');
+  if (emptyMsg) emptyMsg.remove();
+  if (visibleCount === 0 && _currentFilter !== 'all') {
+    const msg = document.createElement('div');
+    msg.id = 'filterEmptyMsg';
+    msg.className = 'empty-state';
+    msg.innerHTML = _currentFilter === 'pending'
+      ? '<div class="icon">✅</div><p>Tutti i post sono stati approvati!</p>'
+      : '<div class="icon">⏳</div><p>Nessun post approvato al momento</p>';
+    document.getElementById('calendarList').appendChild(msg);
+  }
+}
+
+function updateFilterCounts(posts, publishedIDs) {
+  const now = new Date();
+  let pending = 0, approved = 0;
+  posts.forEach(p => {
+    const when = new Date(p.when);
+    const isPublished = publishedIDs.has(p.id);
+    const isExpired = when < now && !isPublished && (now - when > 12 * 60 * 60 * 1000);
+    if (isPublished || isExpired) return;
+    if (p.approved) approved++;
+    else pending++;
+  });
+  const btns = document.querySelectorAll('.filter-btn');
+  btns.forEach(b => {
+    const old = b.querySelector('.filter-count');
+    if (old) old.remove();
+    if (b.dataset.filter === 'pending' && pending > 0)
+      b.insertAdjacentHTML('beforeend', `<span class="filter-count">(${pending})</span>`);
+    else if (b.dataset.filter === 'approved' && approved > 0)
+      b.insertAdjacentHTML('beforeend', `<span class="filter-count">(${approved})</span>`);
+    else if (b.dataset.filter === 'all')
+      b.insertAdjacentHTML('beforeend', `<span class="filter-count">(${pending + approved})</span>`);
+  });
 }
 
 async function approvePost(postId) {
@@ -1118,6 +1213,10 @@ async function editPost(postId) {
         </div>
       </div>`;
     }
+
+    // Aggiorna titolo con numero post
+    const numLabel = post.num ? ` #${String(post.num).padStart(2, '0')}` : '';
+    document.getElementById('editModalTitle').textContent = `✏️ Modifica post${numLabel}`;
 
     document.getElementById('editModal').classList.add('show');
   } catch(e) {
