@@ -106,7 +106,10 @@ textarea { resize:vertical; min-height:120px; }
 .post-card { display:flex; gap:16px; padding:16px; border:1.5px solid var(--gray-200); border-radius:var(--radius); margin-bottom:12px; transition:border-color .2s; }
 .post-card:hover { border-color:var(--blue-300); }
 .post-thumb { width:80px; height:80px; border-radius:8px; object-fit:cover; background:var(--gray-200); flex-shrink:0; }
+video.post-thumb { pointer-events:none; }
 .post-thumb-placeholder { width:80px; height:80px; border-radius:8px; background:var(--gray-200); display:flex; align-items:center; justify-content:center; font-size:2rem; flex-shrink:0; }
+.post-thumb-placeholder.media-missing { background:#FFF3CD; border:1.5px dashed #C69500; font-size:1.2rem; flex-direction:column; gap:2px; }
+.post-thumb-placeholder.media-missing small { font-size:.55rem; color:#856404; text-align:center; line-height:1.2; font-weight:600; }
 .post-info { flex:1; min-width:0; }
 .post-meta { display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap; }
 .post-date { font-weight:700; font-size:.9rem; }
@@ -497,6 +500,13 @@ async function testConnection() {
 }
 
 // ============================================
+// THUMBNAIL ERROR HANDLER
+// ============================================
+function thumbError(el, icon, label) {
+  el.outerHTML = `<div class="post-thumb-placeholder media-missing"><span>${icon}</span><small>${label}</small></div>`;
+}
+
+// ============================================
 // TABS
 // ============================================
 function switchTab(name) {
@@ -846,13 +856,18 @@ async function loadCalendar() {
 
       // Thumbnail
       const isImage = post.type === 'image';
-      const thumbUrl = isImage
-        ? `https://raw.githubusercontent.com/${CONFIG.repo}/main/${post.media}`
-        : null;
-
-      const thumb = thumbUrl
-        ? `<img class="post-thumb" src="${thumbUrl}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'post-thumb-placeholder\\'>📷</div>'">`
-        : `<div class="post-thumb-placeholder">${post.type === 'video' ? '🎬' : '📷'}</div>`;
+      const isVideo = post.type === 'video' || post.type === 'reel';
+      let thumb;
+      if (isImage) {
+        const imgUrl = `https://raw.githubusercontent.com/${CONFIG.repo}/main/${post.media}`;
+        thumb = `<img class="post-thumb" src="${imgUrl}" alt="" loading="lazy" onerror="thumbError(this,'📷','foto non caricata')">`;
+      } else if (isVideo) {
+        const [_o, _r] = CONFIG.repo.split('/');
+        const vidUrl = `https://${_o}.github.io/${_r}/${post.media}#t=0.5`;
+        thumb = `<video class="post-thumb" src="${vidUrl}" preload="metadata" muted playsinline onerror="thumbError(this,'🎬','video non caricato')"></video>`;
+      } else {
+        thumb = `<div class="post-thumb-placeholder">📷</div>`;
+      }
 
       // Caption (prima riga pulita)
       const captionPreview = (post.caption || '').replace(/\n/g, ' ').substring(0, 120);
