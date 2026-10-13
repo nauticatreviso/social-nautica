@@ -856,6 +856,22 @@ async function submitPost() {
 // ============================================
 // CALENDARIO
 // ============================================
+let _thumbsCache = null;
+
+async function loadThumbs() {
+  if (_thumbsCache) return _thumbsCache;
+  try {
+    const thumbsData = await ghGet('thumbs.json');
+    if (thumbsData) {
+      _thumbsCache = JSON.parse(thumbsData.content);
+    }
+  } catch(e) {
+    console.warn('thumbs.json non trovato, uso fallback video', e);
+  }
+  if (!_thumbsCache) _thumbsCache = {};
+  return _thumbsCache;
+}
+
 async function loadCalendar() {
   const container = document.getElementById('calendarList');
   container.innerHTML = '<div class="loading-overlay"><div class="spinner"></div> Caricamento...</div>';
@@ -868,7 +884,7 @@ async function loadCalendar() {
   }
 
   try {
-    const postsData = await ghGet('posts.json');
+    const [postsData] = await Promise.all([ghGet('posts.json'), loadThumbs()]);
     if (!postsData) {
       container.innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>Nessun post trovato</p></div>';
       return;
@@ -911,6 +927,18 @@ async function loadCalendar() {
     // Ordina per data (prossimi prima)
     posts.sort((a, b) => new Date(a.when) - new Date(b.when));
 
+    // Rileva duplicati: post che usano lo stesso file media o driveId
+    const _mediaCount = {};
+    const _driveIdCount = {};
+    posts.forEach(p => {
+      if (p.media) {
+        _mediaCount[p.media] = (_mediaCount[p.media] || 0) + 1;
+      }
+      if (p.driveId) {
+        _driveIdCount[p.driveId] = (_driveIdCount[p.driveId] || 0) + 1;
+      }
+    });
+
     const now = new Date();
 
     function renderPostCard(post) {
@@ -940,6 +968,13 @@ async function loadCalendar() {
         '<span class="badge badge-fb">FB</span>'
       ).join(' ');
 
+      // Duplicate badge
+      const isDuplicate = (post.media && _mediaCount[post.media] > 1) ||
+                          (post.driveId && _driveIdCount[post.driveId] > 1);
+      const dupBadge = isDuplicate
+        ? '<span class="badge" style="background:#FFF3CD;color:#856404;border:1px solid #FFEEBA" title="Questo file media è usato in più post">⚠️ Duplicato</span>'
+        : '';
+
       // Date formatting
       const dateStr = when.toLocaleDateString('it-IT', { weekday:'short', day:'numeric', month:'short' });
       const timeStr = when.toLocaleTimeString('it-IT', { hour:'2-digit', minute:'2-digit' });
@@ -952,9 +987,14 @@ async function loadCalendar() {
         const imgUrl = `https://raw.githubusercontent.com/${CONFIG.repo}/main/${post.media}`;
         thumb = `<img class="post-thumb" src="${imgUrl}" alt="" loading="lazy" onerror="thumbError(this,'📷','foto non caricata')">`;
       } else if (isVideo) {
-        const [_o, _r] = CONFIG.repo.split('/');
-        const vidUrl = `https://${_o}.github.io/${_r}/${post.media}#t=0.5`;
-        thumb = `<video class="post-thumb" src="${vidUrl}" preload="metadata" muted playsinline onerror="thumbError(this,'🎬','video non caricato')"></video>`;
+        const thumbDataUri = _thumbsCache && _thumbsCache[post.media];
+        if (thumbDataUri) {
+          thumb = `<img class="post-thumb" src="${thumbDataUri}" alt="" loading="lazy" onerror="thumbError(this,'🎬','anteprima non disponibile')">`;
+        } else {
+          const [_o, _r] = CONFIG.repo.split('/');
+          const vidUrl = `https://${_o}.github.io/${_r}/${post.media}#t=0.5`;
+          thumb = `<video class="post-thumb" src="${vidUrl}" preload="metadata" muted playsinline onerror="thumbError(this,'🎬','video non caricato')"></video>`;
+        }
       } else {
         thumb = `<div class="post-thumb-placeholder">📷</div>`;
       }
@@ -997,6 +1037,7 @@ async function loadCalendar() {
             ${platBadges}
             ${statusBadge}
             ${approvalBadge}
+            ${dupBadge}
           </div>
           <div class="post-caption">${escapeHtml(captionPreview)}${captionPreview.length >= 120 ? '...' : ''}</div>
           ${mediaFileName ? `<div class="post-file-name">${fileIcon} ${escapeHtml(mediaFileName)}</div>` : ''}
