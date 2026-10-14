@@ -26,8 +26,8 @@
   },
   "raja-anemone-20261014": {
     "status": "errore",
-    "errore": "Elaborazione fallita: {'id': '18428806144148962', 'status_code': 'ERROR'}",
-    "tentativi": 2,
-    "ultimo_tentativo": "2026-10-14T12:42:29.641583+02:00"
+    "errore": "Elaborazione fallita: {'id': '18428809891148962', 'status_code': 'ERROR'}",
+    "tentativi": 3,
+    "ultimo_tentativo": "2026-10-14T13:11:20.304824+02:00"
   }
 }
