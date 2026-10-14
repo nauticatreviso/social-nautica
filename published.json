@@ -25,9 +25,10 @@
     "alle": "2026-10-10T12:05:31.915804+02:00"
   },
   "raja-anemone-20261014": {
-    "status": "errore",
-    "errore": "Elaborazione fallita: {'id': '18428812813148962', 'status_code': 'ERROR'}",
-    "tentativi": 4,
-    "ultimo_tentativo": "2026-10-14T13:42:42.595282+02:00"
+    "status": "errore_bloccato",
+    "errore": "Elaborazione fallita: {'id': '18428816173148962', 'status_code': 'ERROR'}",
+    "tentativi": 5,
+    "ultimo_tentativo": "2026-10-14T14:10:55.815217+02:00",
+    "motivo": "Bloccato dopo 5 tentativi: Elaborazione fallita: {'id': '18428816173148962', 'status_code': 'ERROR'}"
   }
 }
