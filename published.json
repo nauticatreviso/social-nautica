@@ -30,5 +30,10 @@
     "tentativi": 5,
     "ultimo_tentativo": "2026-10-14T14:10:55.815217+02:00",
     "motivo": "Bloccato dopo 5 tentativi: Elaborazione fallita: {'id': '18428816173148962', 'status_code': 'ERROR'}"
+  },
+  "raja-nudibranco-20261014": {
+    "status": "pubblicato",
+    "media_id": "17886199485653005",
+    "alle": "2026-10-14T19:00:35.613896+02:00"
   }
 }
