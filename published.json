@@ -23,5 +23,11 @@
     "status": "pubblicato",
     "media_id": "17906965836594079",
     "alle": "2026-10-10T12:05:31.915804+02:00"
+  },
+  "raja-anemone-20261014": {
+    "status": "errore",
+    "errore": "Elaborazione fallita: {'id': '18428802352148962', 'status_code': 'ERROR'}",
+    "tentativi": 1,
+    "ultimo_tentativo": "2026-10-14T12:11:11.464501+02:00"
   }
 }
