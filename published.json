@@ -37,10 +37,11 @@
     "alle": "2026-10-14T19:00:35.613896+02:00"
   },
   "raja-tartaruga-closeup-20261015": {
-    "status": "errore",
-    "errore": "Elaborazione fallita: {'id': '18428981413148962', 'status_code': 'ERROR'}",
-    "tentativi": 4,
-    "ultimo_tentativo": "2026-10-15T13:42:19.133368+02:00"
+    "status": "errore_bloccato",
+    "errore": "Elaborazione fallita: {'id': '18428984506148962', 'status_code': 'ERROR'}",
+    "tentativi": 5,
+    "ultimo_tentativo": "2026-10-15T14:10:07.285402+02:00",
+    "motivo": "Bloccato dopo 5 tentativi: Elaborazione fallita: {'id': '18428984506148962', 'status_code': 'ERROR'}"
   },
   "owd-gruppo-foto-20261015": {
     "status": "pubblicato",
