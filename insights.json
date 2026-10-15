@@ -30,6 +30,19 @@
     "fb": {}
   },
   {
+    "post_id": "owd-gruppo-foto-20261015",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-10-15T10:44:04+0000",
+      "media_type": "IMAGE"
+    },
+    "fb": {}
+  },
+  {
     "post_id": "post-20261006-1758",
     "likes": 0,
     "comments": 0,
@@ -58,13 +71,13 @@
   },
   {
     "post_id": "raja-nudibranco-20261014",
-    "likes": 29,
+    "likes": 30,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 29,
+      "likes": 30,
       "timestamp": "2026-10-14T17:01:11+0000",
       "media_type": "VIDEO"
     },

@@ -38,8 +38,13 @@
   },
   "raja-tartaruga-closeup-20261015": {
     "status": "errore",
-    "errore": "Elaborazione fallita: {'id': '18428970826148962', 'status_code': 'ERROR'}",
-    "tentativi": 1,
-    "ultimo_tentativo": "2026-10-15T12:12:01.466355+02:00"
+    "errore": "Elaborazione fallita: {'id': '18428974663148962', 'status_code': 'ERROR'}",
+    "tentativi": 2,
+    "ultimo_tentativo": "2026-10-15T12:43:34.327966+02:00"
+  },
+  "owd-gruppo-foto-20261015": {
+    "status": "pubblicato",
+    "media_id": "18071129861499823",
+    "alle": "2026-10-15T12:43:34.327966+02:00"
   }
 }
