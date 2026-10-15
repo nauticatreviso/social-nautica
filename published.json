@@ -38,9 +38,9 @@
   },
   "raja-tartaruga-closeup-20261015": {
     "status": "errore",
-    "errore": "Elaborazione fallita: {'id': '18428977870148962', 'status_code': 'ERROR'}",
-    "tentativi": 3,
-    "ultimo_tentativo": "2026-10-15T13:11:32.242528+02:00"
+    "errore": "Elaborazione fallita: {'id': '18428981413148962', 'status_code': 'ERROR'}",
+    "tentativi": 4,
+    "ultimo_tentativo": "2026-10-15T13:42:19.133368+02:00"
   },
   "owd-gruppo-foto-20261015": {
     "status": "pubblicato",
