@@ -62,5 +62,11 @@
     "status": "pubblicato",
     "media_id": "17912424468497937",
     "alle": "2026-10-16T12:44:34.687390+02:00"
+  },
+  "raja-sergenti-20261016": {
+    "status": "errore",
+    "errore": "Elaborazione fallita: {'id': '18429217780148962', 'status_code': 'ERROR'}",
+    "tentativi": 1,
+    "ultimo_tentativo": "2026-10-16T19:21:26.791696+02:00"
   }
 }
