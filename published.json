@@ -65,8 +65,8 @@
   },
   "raja-sergenti-20261016": {
     "status": "errore",
-    "errore": "Elaborazione fallita: {'id': '18429217780148962', 'status_code': 'ERROR'}",
-    "tentativi": 1,
-    "ultimo_tentativo": "2026-10-16T19:21:26.791696+02:00"
+    "errore": "Elaborazione fallita: {'id': '18429221857148962', 'status_code': 'ERROR'}",
+    "tentativi": 2,
+    "ultimo_tentativo": "2026-10-16T19:54:00.257780+02:00"
   }
 }
