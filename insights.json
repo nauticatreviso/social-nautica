@@ -72,13 +72,13 @@
   },
   {
     "post_id": "post-20261015-1830",
-    "likes": 19,
+    "likes": 20,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 19,
+      "likes": 20,
       "timestamp": "2026-10-15T16:41:43+0000",
       "media_type": "IMAGE"
     },
@@ -114,12 +114,13 @@
   },
   {
     "post_id": "raja-wobbegong-20261016",
-    "likes": 0,
+    "likes": 4,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
+      "likes": 4,
       "timestamp": "2026-10-16T10:45:32+0000",
       "media_type": "VIDEO"
     },
