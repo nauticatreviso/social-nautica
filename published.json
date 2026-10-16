@@ -64,9 +64,10 @@
     "alle": "2026-10-16T12:44:34.687390+02:00"
   },
   "raja-sergenti-20261016": {
-    "status": "errore",
-    "errore": "Elaborazione fallita: {'id': '18429229498148962', 'status_code': 'ERROR'}",
-    "tentativi": 4,
-    "ultimo_tentativo": "2026-10-16T21:00:38.527292+02:00"
+    "status": "errore_bloccato",
+    "errore": "Elaborazione fallita: {'id': '18429234466148962', 'status_code': 'ERROR'}",
+    "tentativi": 5,
+    "ultimo_tentativo": "2026-10-16T21:37:20.265597+02:00",
+    "motivo": "Bloccato dopo 5 tentativi: Elaborazione fallita: {'id': '18429234466148962', 'status_code': 'ERROR'}"
   }
 }
