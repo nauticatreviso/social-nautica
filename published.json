@@ -69,5 +69,10 @@
     "tentativi": 5,
     "ultimo_tentativo": "2026-10-16T21:37:20.265597+02:00",
     "motivo": "Bloccato dopo 5 tentativi: Elaborazione fallita: {'id': '18429234466148962', 'status_code': 'ERROR'}"
+  },
+  "raja-pagliaccio-20261017": {
+    "status": "pubblicato",
+    "media_id": "18036018743850769",
+    "alle": "2026-10-17T12:04:01.057646+02:00"
   }
 }
