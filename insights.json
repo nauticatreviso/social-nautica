@@ -31,20 +31,6 @@
   },
   {
     "post_id": "owd-attrezzatura-20261017",
-    "likes": 9,
-    "comments": 0,
-    "reach": 0,
-    "shares_fb": 0,
-    "impressions_ig": 0,
-    "ig": {
-      "likes": 9,
-      "timestamp": "2026-10-17T17:02:36+0000",
-      "media_type": "IMAGE"
-    },
-    "fb": {}
-  },
-  {
-    "post_id": "owd-gruppo-20261017",
     "likes": 10,
     "comments": 0,
     "reach": 0,
@@ -52,6 +38,20 @@
     "impressions_ig": 0,
     "ig": {
       "likes": 10,
+      "timestamp": "2026-10-17T17:02:36+0000",
+      "media_type": "IMAGE"
+    },
+    "fb": {}
+  },
+  {
+    "post_id": "owd-gruppo-20261017",
+    "likes": 11,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "likes": 11,
       "timestamp": "2026-10-17T16:36:28+0000",
       "media_type": "IMAGE"
     },
@@ -128,13 +128,13 @@
   },
   {
     "post_id": "raja-pagliaccio-20261017",
-    "likes": 32,
+    "likes": 34,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 32,
+      "likes": 34,
       "timestamp": "2026-10-17T10:04:38+0000",
       "media_type": "VIDEO"
     },
