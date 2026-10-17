@@ -74,5 +74,11 @@
     "status": "pubblicato",
     "media_id": "18036018743850769",
     "alle": "2026-10-17T12:04:01.057646+02:00"
+  },
+  "raja-manta1-20261017": {
+    "status": "errore",
+    "errore": "Elaborazione fallita: {'id': '18429354301148962', 'status_code': 'ERROR'}",
+    "tentativi": 1,
+    "ultimo_tentativo": "2026-10-17T15:13:05.663760+02:00"
   }
 }
