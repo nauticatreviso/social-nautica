@@ -77,8 +77,8 @@
   },
   "raja-manta1-20261017": {
     "status": "errore",
-    "errore": "Elaborazione fallita: {'id': '18429358867148962', 'status_code': 'ERROR'}",
-    "tentativi": 2,
-    "ultimo_tentativo": "2026-10-17T15:39:24.205717+02:00"
+    "errore": "Elaborazione fallita: {'id': '18429363718148962', 'status_code': 'ERROR'}",
+    "tentativi": 3,
+    "ultimo_tentativo": "2026-10-17T16:02:35.601720+02:00"
   }
 }
