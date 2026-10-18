@@ -47,7 +47,7 @@
   },
   {
     "post_id": "owd-gruppo-20261017",
-    "likes": 22,
+    "likes": 23,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
@@ -57,7 +57,9 @@
       "timestamp": "2026-10-17T16:36:28+0000",
       "media_type": "IMAGE"
     },
-    "fb": {}
+    "fb": {
+      "likes": 1
+    }
   },
   {
     "post_id": "owd-gruppo-foto-20261015",
