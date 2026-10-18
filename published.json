@@ -94,8 +94,8 @@
   },
   "raja-coralli-piatto-20261018": {
     "status": "errore",
-    "errore": "Elaborazione fallita: {'id': '18429518788148962', 'status_code': 'ERROR'}",
-    "tentativi": 1,
-    "ultimo_tentativo": "2026-10-18T12:04:01.022395+02:00"
+    "errore": "Elaborazione fallita: {'id': '18429522295148962', 'status_code': 'ERROR'}",
+    "tentativi": 2,
+    "ultimo_tentativo": "2026-10-18T12:36:06.955640+02:00"
   }
 }
