@@ -31,27 +31,29 @@
   },
   {
     "post_id": "owd-attrezzatura-20261017",
-    "likes": 19,
-    "comments": 0,
-    "reach": 0,
-    "shares_fb": 0,
-    "impressions_ig": 0,
-    "ig": {
-      "likes": 19,
-      "timestamp": "2026-10-17T17:02:36+0000",
-      "media_type": "IMAGE"
-    },
-    "fb": {}
-  },
-  {
-    "post_id": "owd-gruppo-20261017",
-    "likes": 20,
+    "likes": 21,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
       "likes": 20,
+      "timestamp": "2026-10-17T17:02:36+0000",
+      "media_type": "IMAGE"
+    },
+    "fb": {
+      "likes": 1
+    }
+  },
+  {
+    "post_id": "owd-gruppo-20261017",
+    "likes": 22,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "likes": 22,
       "timestamp": "2026-10-17T16:36:28+0000",
       "media_type": "IMAGE"
     },
