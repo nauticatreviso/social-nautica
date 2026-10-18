@@ -91,5 +91,11 @@
     "status": "pubblicato",
     "media_id": "18019504616736622",
     "alle": "2026-10-17T19:02:28.489170+02:00"
+  },
+  "raja-coralli-piatto-20261018": {
+    "status": "errore",
+    "errore": "Elaborazione fallita: {'id': '18429518788148962', 'status_code': 'ERROR'}",
+    "tentativi": 1,
+    "ultimo_tentativo": "2026-10-18T12:04:01.022395+02:00"
   }
 }
