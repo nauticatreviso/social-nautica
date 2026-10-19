@@ -103,5 +103,11 @@
     "status": "pubblicato",
     "media_id": "18118117127006777",
     "alle": "2026-10-18T18:02:01.828729+02:00"
+  },
+  "raja-daverificare1-20261019": {
+    "status": "errore",
+    "errore": "Elaborazione fallita: {'id': '18429701566148962', 'status_code': 'ERROR'}",
+    "tentativi": 1,
+    "ultimo_tentativo": "2026-10-19T12:02:59.215765+02:00"
   }
 }
