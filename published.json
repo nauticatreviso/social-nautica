@@ -112,9 +112,10 @@
     "motivo": "Bloccato dopo 5 tentativi: Elaborazione fallita: {'id': '18429718057148962', 'status_code': 'ERROR'}"
   },
   "raja-manta2-20261019": {
-    "status": "errore",
-    "errore": "Elaborazione fallita: {'id': '18429780391148962', 'status_code': 'ERROR'}",
-    "tentativi": 4,
-    "ultimo_tentativo": "2026-10-19T20:19:45.693552+02:00"
+    "status": "errore_bloccato",
+    "errore": "Elaborazione fallita: {'id': '18429786610148962', 'status_code': 'ERROR'}",
+    "tentativi": 5,
+    "ultimo_tentativo": "2026-10-19T21:07:43.468905+02:00",
+    "motivo": "Bloccato dopo 5 tentativi: Elaborazione fallita: {'id': '18429786610148962', 'status_code': 'ERROR'}"
   }
 }
