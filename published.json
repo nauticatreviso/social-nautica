@@ -120,8 +120,8 @@
   },
   "raja-crocodilefish-20261020": {
     "status": "errore",
-    "errore": "Elaborazione fallita: {'id': '18429893011148962', 'status_code': 'ERROR'}",
-    "tentativi": 3,
-    "ultimo_tentativo": "2026-10-20T13:23:12.746669+02:00"
+    "errore": "Elaborazione fallita: {'id': '18429897868148962', 'status_code': 'ERROR'}",
+    "tentativi": 4,
+    "ultimo_tentativo": "2026-10-20T13:56:56.157922+02:00"
   }
 }
