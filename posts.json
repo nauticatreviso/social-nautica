@@ -999,7 +999,8 @@
     "media": "media/raja-panorama-isole-20261023.jpg",
     "type": "image",
     "platforms": [
-      "instagram"
+      "instagram",
+      "facebook"
     ],
     "approved": false,
     "originalFile": "RAJA_2.jpeg",
