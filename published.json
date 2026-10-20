@@ -24,24 +24,10 @@
     "media_id": "17906965836594079",
     "alle": "2026-10-10T12:05:31.915804+02:00"
   },
-  "raja-anemone-20261014": {
-    "status": "errore_bloccato",
-    "errore": "Elaborazione fallita: {'id': '18428816173148962', 'status_code': 'ERROR'}",
-    "tentativi": 5,
-    "ultimo_tentativo": "2026-10-14T14:10:55.815217+02:00",
-    "motivo": "Bloccato dopo 5 tentativi: Elaborazione fallita: {'id': '18428816173148962', 'status_code': 'ERROR'}"
-  },
   "raja-nudibranco-20261014": {
     "status": "pubblicato",
     "media_id": "17886199485653005",
     "alle": "2026-10-14T19:00:35.613896+02:00"
-  },
-  "raja-tartaruga-closeup-20261015": {
-    "status": "errore_bloccato",
-    "errore": "Elaborazione fallita: {'id': '18428984506148962', 'status_code': 'ERROR'}",
-    "tentativi": 5,
-    "ultimo_tentativo": "2026-10-15T14:10:07.285402+02:00",
-    "motivo": "Bloccato dopo 5 tentativi: Elaborazione fallita: {'id': '18428984506148962', 'status_code': 'ERROR'}"
   },
   "owd-gruppo-foto-20261015": {
     "status": "pubblicato",
@@ -63,24 +49,10 @@
     "media_id": "17912424468497937",
     "alle": "2026-10-16T12:44:34.687390+02:00"
   },
-  "raja-sergenti-20261016": {
-    "status": "errore_bloccato",
-    "errore": "Elaborazione fallita: {'id': '18429234466148962', 'status_code': 'ERROR'}",
-    "tentativi": 5,
-    "ultimo_tentativo": "2026-10-16T21:37:20.265597+02:00",
-    "motivo": "Bloccato dopo 5 tentativi: Elaborazione fallita: {'id': '18429234466148962', 'status_code': 'ERROR'}"
-  },
   "raja-pagliaccio-20261017": {
     "status": "pubblicato",
     "media_id": "18036018743850769",
     "alle": "2026-10-17T12:04:01.057646+02:00"
-  },
-  "raja-manta1-20261017": {
-    "status": "errore_bloccato",
-    "errore": "Elaborazione fallita: {'id': '18429373951148962', 'status_code': 'ERROR'}",
-    "tentativi": 5,
-    "ultimo_tentativo": "2026-10-17T17:01:17.591081+02:00",
-    "motivo": "Bloccato dopo 5 tentativi: Elaborazione fallita: {'id': '18429373951148962', 'status_code': 'ERROR'}"
   },
   "owd-gruppo-20261017": {
     "status": "pubblicato",
@@ -92,37 +64,9 @@
     "media_id": "18019504616736622",
     "alle": "2026-10-17T19:02:28.489170+02:00"
   },
-  "raja-coralli-piatto-20261018": {
-    "status": "errore_bloccato",
-    "errore": "Elaborazione fallita: {'id': '18429531331148962', 'status_code': 'ERROR'}",
-    "tentativi": 5,
-    "ultimo_tentativo": "2026-10-18T14:00:29.015185+02:00",
-    "motivo": "Bloccato dopo 5 tentativi: Elaborazione fallita: {'id': '18429531331148962', 'status_code': 'ERROR'}"
-  },
   "raja-gamberetti-20261018": {
     "status": "pubblicato",
     "media_id": "18118117127006777",
     "alle": "2026-10-18T18:02:01.828729+02:00"
-  },
-  "raja-daverificare1-20261019": {
-    "status": "errore_bloccato",
-    "errore": "Elaborazione fallita: {'id': '18429718057148962', 'status_code': 'ERROR'}",
-    "tentativi": 5,
-    "ultimo_tentativo": "2026-10-19T14:14:05.776030+02:00",
-    "motivo": "Bloccato dopo 5 tentativi: Elaborazione fallita: {'id': '18429718057148962', 'status_code': 'ERROR'}"
-  },
-  "raja-manta2-20261019": {
-    "status": "errore_bloccato",
-    "errore": "Elaborazione fallita: {'id': '18429786610148962', 'status_code': 'ERROR'}",
-    "tentativi": 5,
-    "ultimo_tentativo": "2026-10-19T21:07:43.468905+02:00",
-    "motivo": "Bloccato dopo 5 tentativi: Elaborazione fallita: {'id': '18429786610148962', 'status_code': 'ERROR'}"
-  },
-  "raja-crocodilefish-20261020": {
-    "status": "errore_bloccato",
-    "errore": "Elaborazione fallita: {'id': '18429902104148962', 'status_code': 'ERROR'}",
-    "tentativi": 5,
-    "ultimo_tentativo": "2026-10-20T14:25:29.473017+02:00",
-    "motivo": "Bloccato dopo 5 tentativi: Elaborazione fallita: {'id': '18429902104148962', 'status_code': 'ERROR'}"
   }
 }
