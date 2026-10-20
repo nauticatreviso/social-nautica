@@ -990,18 +990,18 @@ async function loadCalendar() {
       const isImage = post.type === 'image';
       const isVideo = post.type === 'video' || post.type === 'reel';
       let thumb;
-      if (isImage) {
+      const thumbDataUri = _thumbsCache && _thumbsCache[post.id];
+      if (thumbDataUri) {
+        // Thumbnail da thumbs.json (vale per video e immagini)
+        const errLabel = isImage ? "thumbError(this,'📷','foto non caricata')" : "thumbError(this,'🎬','anteprima non disponibile')";
+        thumb = `<img class="post-thumb" src="${thumbDataUri}" alt="" loading="lazy" onerror="${errLabel}">`;
+      } else if (isImage) {
         const imgUrl = `https://raw.githubusercontent.com/${CONFIG.repo}/main/${post.media}`;
         thumb = `<img class="post-thumb" src="${imgUrl}" alt="" loading="lazy" onerror="thumbError(this,'📷','foto non caricata')">`;
       } else if (isVideo) {
-        const thumbDataUri = _thumbsCache && _thumbsCache[post.media];
-        if (thumbDataUri) {
-          thumb = `<img class="post-thumb" src="${thumbDataUri}" alt="" loading="lazy" onerror="thumbError(this,'🎬','anteprima non disponibile')">`;
-        } else {
-          const [_o, _r] = CONFIG.repo.split('/');
-          const vidUrl = `https://${_o}.github.io/${_r}/${post.media}#t=0.5`;
-          thumb = `<video class="post-thumb" src="${vidUrl}" preload="metadata" muted playsinline onerror="thumbError(this,'🎬','video non caricato')"></video>`;
-        }
+        const [_o, _r] = CONFIG.repo.split('/');
+        const vidUrl = `https://${_o}.github.io/${_r}/${post.media}#t=0.5`;
+        thumb = `<video class="post-thumb" src="${vidUrl}" preload="metadata" muted playsinline onerror="thumbError(this,'🎬','video non caricato')"></video>`;
       } else {
         thumb = `<div class="post-thumb-placeholder">📷</div>`;
       }
