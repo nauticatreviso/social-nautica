@@ -120,6 +120,7 @@ video.post-thumb { pointer-events:none; }
 .badge-scheduled { background:var(--blue-100); color:var(--blue-700); }
 .badge-published { background:#D4F5E2; color:var(--green); }
 .badge-expired { background:#FDE8E8; color:var(--red); }
+.badge-error { background:#FDE8E8; color:#B91C1C; font-weight:600; cursor:help; }
 .post-caption { font-size:.9rem; color:var(--gray-800); line-height:1.4; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; word-break:break-word; }
 .post-file-name { font-size:.75rem; color:var(--gray-400); margin-top:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .post-actions { display:flex; align-items:flex-end; flex-shrink:0; gap:8px; flex-direction:column; }
@@ -857,6 +858,7 @@ async function submitPost() {
 // CALENDARIO
 // ============================================
 let _thumbsCache = null;
+let _errorIDs = new Map();
 
 async function loadThumbs() {
   if (_thumbsCache) return _thumbsCache;
@@ -902,13 +904,20 @@ async function loadCalendar() {
       if (pFB) publishedFB = JSON.parse(pFB.content);
     } catch(e) {}
 
-    // Estrai gli ID pubblicati (published.json è un oggetto {id: {status, ...}})
+    // Estrai gli ID pubblicati e quelli con errore
     const publishedIDs = new Set();
+    const errorIDs = _errorIDs = new Map(); // id -> messaggio errore
     const extractIDs = (data) => {
       if (!data) return;
       if (typeof data === 'object' && !Array.isArray(data)) {
-        // Formato oggetto: { "post-id": { status: "pubblicato", ... } }
-        Object.keys(data).forEach(id => publishedIDs.add(id));
+        // Formato oggetto: { "post-id": { status: "pubblicato"|"errore_bloccato", ... } }
+        Object.entries(data).forEach(([id, info]) => {
+          if (info && info.status === 'pubblicato') {
+            publishedIDs.add(id);
+          } else if (info && (info.status === 'errore_bloccato' || info.status === 'errore')) {
+            errorIDs.set(id, info.errore || info.motivo || 'Pubblicazione fallita');
+          }
+        });
       } else if (Array.isArray(data)) {
         data.forEach(item => {
           if (typeof item === 'string') publishedIDs.add(item);
@@ -950,12 +959,14 @@ async function loadCalendar() {
       const when = new Date(post.when);
       const isPast = when < now;
       const isPublished = publishedIDs.has(post.id);
-      const isExpired = isPast && !isPublished && (now - when > 12 * 60 * 60 * 1000);
+      const isError = errorIDs.has(post.id);
+      const isExpired = isPast && !isPublished && !isError && (now - when > 12 * 60 * 60 * 1000);
       const isApproved = post.approved === true;
 
       // Status badge
       let statusBadge = '<span class="badge badge-scheduled">⏰ Programmato</span>';
       if (isPublished) statusBadge = '<span class="badge badge-published">✅ Pubblicato</span>';
+      else if (isError) statusBadge = `<span class="badge badge-error" title="${errorIDs.get(post.id)}">❌ Errore</span>`;
       else if (isExpired) statusBadge = '<span class="badge badge-expired">⏭ Scaduto</span>';
 
       // Approval badge
@@ -1034,7 +1045,7 @@ async function loadCalendar() {
 
       const postNum = post.num ? `<span class="post-num">#${String(post.num).padStart(2,'0')}</span>` : '';
 
-      return `<div class="post-card${pastClass}${approvalClass}" data-approved="${isApproved}" data-published="${isPublished}" data-expired="${isExpired}">
+      return `<div class="post-card${pastClass}${approvalClass}" data-approved="${isApproved}" data-published="${isPublished}" data-expired="${isExpired}" data-error="${isError}">
         ${thumb}
         <div class="post-info">
           <div class="post-meta">
@@ -1054,13 +1065,14 @@ async function loadCalendar() {
     }
 
     // Separa post futuri e passati
+    // Post con errore vanno nei futuri (da riprogrammare), non nei passati
     const futurePosts = posts.filter(p => {
       const when = new Date(p.when);
-      return when >= now && !publishedIDs.has(p.id);
+      return (when >= now && !publishedIDs.has(p.id)) || errorIDs.has(p.id);
     });
     const pastPosts = posts.filter(p => {
       const when = new Date(p.when);
-      return when < now || publishedIDs.has(p.id);
+      return (when < now || publishedIDs.has(p.id)) && !errorIDs.has(p.id);
     });
 
     // Ordina: futuri dal più vicino, passati dal più recente
@@ -1108,7 +1120,8 @@ function applyFilter() {
     const isPublished = card.dataset.published === 'true';
     const isExpired = card.dataset.expired === 'true';
     const isApproved = card.dataset.approved === 'true';
-    const isDone = isPublished || isExpired; // post già passati
+    const isError = card.dataset.error === 'true';
+    const isDone = isPublished || isExpired; // post già passati (errori NON sono "done")
 
     let show = true;
     if (_currentFilter === 'pending') {
@@ -1145,8 +1158,9 @@ function updateFilterCounts(posts, publishedIDs) {
   posts.forEach(p => {
     const when = new Date(p.when);
     const isPublished = publishedIDs.has(p.id);
-    const isExpired = when < now && !isPublished && (now - when > 12 * 60 * 60 * 1000);
-    if (isPublished || isExpired) return;
+    const isError = _errorIDs.has(p.id);
+    const isExpired = when < now && !isPublished && !isError && (now - when > 12 * 60 * 60 * 1000);
+    if (isPublished || isExpired) return; // errori restano da gestire
     if (p.approved) approved++;
     else pending++;
   });
