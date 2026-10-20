@@ -69,6 +69,30 @@ def convert_to_vertical(path):
         return False
 
 
+def scale_to_vertical(path):
+    """Scala un video già verticale a 1080x1920."""
+    tmp = path.with_suffix(".tmp.mp4")
+    cmd = [
+        "ffmpeg", "-y", "-i", str(path),
+        "-vf", "scale=1080:1920",
+        "-c:a", "copy",
+        "-movflags", "+faststart",
+        str(tmp),
+    ]
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
+        if result.returncode != 0:
+            print(f"  [ERRORE] ffmpeg scale fallito:\n{result.stderr[-500:]}", file=sys.stderr)
+            tmp.unlink(missing_ok=True)
+            return False
+        tmp.replace(path)
+        return True
+    except Exception as e:
+        print(f"  [ERRORE] Scale fallita: {e}", file=sys.stderr)
+        tmp.unlink(missing_ok=True)
+        return False
+
+
 def main():
     if not POSTS_FILE.exists():
         print("posts.json non trovato, nulla da fare.")
@@ -99,7 +123,17 @@ def main():
             continue
 
         if w <= h:
-            # Già verticale o quadrato, non serve conversione
+            # Già verticale o quadrato
+            if w == TARGET_W and h == TARGET_H:
+                continue  # Dimensioni già perfette
+            # Verticale ma dimensioni diverse: scala a 1080x1920
+            print(f"  [SCALE] {vf} ({w}x{h}) → {TARGET_W}x{TARGET_H}")
+            if scale_to_vertical(vf):
+                nw, nh = get_dimensions(vf)
+                print(f"          Risultato: {nw}x{nh}, dimensione: {vf.stat().st_size / 1024 / 1024:.1f} MB")
+                converted += 1
+            else:
+                errors += 1
             continue
 
         print(f"  [CONV] {vf} ({w}x{h}) → {TARGET_W}x{TARGET_H}")
