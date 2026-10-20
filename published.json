@@ -117,5 +117,11 @@
     "tentativi": 5,
     "ultimo_tentativo": "2026-10-19T21:07:43.468905+02:00",
     "motivo": "Bloccato dopo 5 tentativi: Elaborazione fallita: {'id': '18429786610148962', 'status_code': 'ERROR'}"
+  },
+  "raja-crocodilefish-20261020": {
+    "status": "errore",
+    "errore": "Elaborazione fallita: {'id': '18429884722148962', 'status_code': 'ERROR'}",
+    "tentativi": 1,
+    "ultimo_tentativo": "2026-10-20T12:18:06.856340+02:00"
   }
 }
