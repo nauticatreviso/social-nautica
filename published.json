@@ -119,9 +119,10 @@
     "motivo": "Bloccato dopo 5 tentativi: Elaborazione fallita: {'id': '18429786610148962', 'status_code': 'ERROR'}"
   },
   "raja-crocodilefish-20261020": {
-    "status": "errore",
-    "errore": "Elaborazione fallita: {'id': '18429897868148962', 'status_code': 'ERROR'}",
-    "tentativi": 4,
-    "ultimo_tentativo": "2026-10-20T13:56:56.157922+02:00"
+    "status": "errore_bloccato",
+    "errore": "Elaborazione fallita: {'id': '18429902104148962', 'status_code': 'ERROR'}",
+    "tentativi": 5,
+    "ultimo_tentativo": "2026-10-20T14:25:29.473017+02:00",
+    "motivo": "Bloccato dopo 5 tentativi: Elaborazione fallita: {'id': '18429902104148962', 'status_code': 'ERROR'}"
   }
 }
