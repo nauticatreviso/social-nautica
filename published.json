@@ -123,8 +123,8 @@
   },
   "raja-daverificare2-20261021": {
     "status": "errore",
-    "errore": "Elaborazione fallita: {'id': '18430116625148962', 'status_code': 'ERROR'}",
-    "tentativi": 1,
-    "ultimo_tentativo": "2026-10-21T19:13:44.693932+02:00"
+    "errore": "Elaborazione fallita: {'id': '18430119721148962', 'status_code': 'ERROR'}",
+    "tentativi": 2,
+    "ultimo_tentativo": "2026-10-21T19:43:04.355723+02:00"
   }
 }

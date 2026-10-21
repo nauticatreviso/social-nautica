@@ -150,13 +150,13 @@
   },
   {
     "post_id": "raja-coralli-piatto-20261018",
-    "likes": 21,
+    "likes": 22,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 21,
+      "likes": 22,
       "timestamp": "2026-10-21T13:33:57+0000",
       "media_type": "VIDEO"
     },
@@ -192,13 +192,13 @@
   },
   {
     "post_id": "raja-manta1-20261017",
-    "likes": 59,
+    "likes": 61,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 59,
+      "likes": 61,
       "timestamp": "2026-10-21T10:31:13+0000",
       "media_type": "VIDEO"
     },
@@ -206,20 +206,6 @@
   },
   {
     "post_id": "raja-manta2-20261019",
-    "likes": 8,
-    "comments": 0,
-    "reach": 0,
-    "shares_fb": 0,
-    "impressions_ig": 0,
-    "ig": {
-      "likes": 8,
-      "timestamp": "2026-10-21T16:07:43+0000",
-      "media_type": "VIDEO"
-    },
-    "fb": null
-  },
-  {
-    "post_id": "raja-mimetismo-20261021",
     "likes": 10,
     "comments": 0,
     "reach": 0,
@@ -227,6 +213,20 @@
     "impressions_ig": 0,
     "ig": {
       "likes": 10,
+      "timestamp": "2026-10-21T16:07:43+0000",
+      "media_type": "VIDEO"
+    },
+    "fb": null
+  },
+  {
+    "post_id": "raja-mimetismo-20261021",
+    "likes": 11,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "likes": 11,
       "timestamp": "2026-10-21T10:31:54+0000",
       "media_type": "VIDEO"
     },
@@ -276,13 +276,13 @@
   },
   {
     "post_id": "raja-sergenti-20261016",
-    "likes": 38,
+    "likes": 39,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 38,
+      "likes": 39,
       "timestamp": "2026-10-20T17:25:53+0000",
       "media_type": "VIDEO"
     },
