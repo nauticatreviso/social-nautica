@@ -110,5 +110,10 @@
     "tentativi": 5,
     "ultimo_tentativo": "2026-10-21T14:56:05.134304+02:00",
     "motivo": "Bloccato dopo 5 tentativi: HTTP 400 su /17841404468831152/media: {\"error\":{\"message\":\"Only photo or video can be accepted as media type.\",\"type\":\"OAuthException\",\"code\":9004,\"error_subcode\":2207052,\"is_transient\":false,\"error_u"
+  },
+  "raja-coralli-piatto-20261018": {
+    "status": "pubblicato",
+    "media_id": "17995382474839651",
+    "alle": "2026-10-21T15:32:39.130202+02:00"
   }
 }
