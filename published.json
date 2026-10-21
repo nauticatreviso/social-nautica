@@ -122,9 +122,10 @@
     "alle": "2026-10-21T18:07:07.318487+02:00"
   },
   "raja-daverificare2-20261021": {
-    "status": "errore",
-    "errore": "Elaborazione fallita: {'id': '18430129102148962', 'status_code': 'ERROR'}",
-    "tentativi": 4,
-    "ultimo_tentativo": "2026-10-21T20:47:45.647040+02:00"
+    "status": "errore_bloccato",
+    "errore": "Elaborazione fallita: {'id': '18430134172148962', 'status_code': 'ERROR'}",
+    "tentativi": 5,
+    "ultimo_tentativo": "2026-10-21T21:24:55.475677+02:00",
+    "motivo": "Bloccato dopo 5 tentativi: Elaborazione fallita: {'id': '18430134172148962', 'status_code': 'ERROR'}"
   }
 }
