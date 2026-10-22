@@ -30,6 +30,19 @@
     "fb": {}
   },
   {
+    "post_id": "owd-allieva-20261022",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-10-22T11:32:45+0000",
+      "media_type": "IMAGE"
+    },
+    "fb": null
+  },
+  {
     "post_id": "owd-attrezzatura-20261017",
     "likes": 26,
     "comments": 0,
@@ -122,13 +135,13 @@
   },
   {
     "post_id": "raja-anemone-20261014",
-    "likes": 47,
+    "likes": 48,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 47,
+      "likes": 48,
       "timestamp": "2026-10-20T15:02:45+0000",
       "media_type": "VIDEO"
     },
@@ -192,13 +205,13 @@
   },
   {
     "post_id": "raja-manta1-20261017",
-    "likes": 77,
+    "likes": 79,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 77,
+      "likes": 79,
       "timestamp": "2026-10-21T10:31:13+0000",
       "media_type": "VIDEO"
     },
@@ -206,13 +219,13 @@
   },
   {
     "post_id": "raja-manta2-20261019",
-    "likes": 33,
+    "likes": 37,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 33,
+      "likes": 37,
       "timestamp": "2026-10-21T16:07:43+0000",
       "media_type": "VIDEO"
     },
@@ -220,13 +233,13 @@
   },
   {
     "post_id": "raja-mimetismo-20261021",
-    "likes": 13,
+    "likes": 14,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 13,
+      "likes": 14,
       "timestamp": "2026-10-21T10:31:54+0000",
       "media_type": "VIDEO"
     },
