@@ -36,8 +36,8 @@ def get_dimensions(path):
         )
         if result.returncode != 0:
             return None, None
-        parts = result.stdout.strip().split("x")
-        if len(parts) == 2:
+        parts = [p for p in result.stdout.strip().split("x") if p]
+        if len(parts) >= 2:
             return int(parts[0]), int(parts[1])
     except Exception as e:
         print(f"  [ERRORE] ffprobe fallito per {path}: {e}", file=sys.stderr)
