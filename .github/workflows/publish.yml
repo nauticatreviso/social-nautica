@@ -19,15 +19,26 @@ jobs:
       - name: Scarica il repository
         uses: actions/checkout@v4
 
+      - name: Scarica file media mancanti da Google Drive
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: "${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}"
+        run: |
+          if [ -n "$GOOGLE_SERVICE_ACCOUNT_JSON" ]; then
+            pip install google-api-python-client google-auth --quiet --break-system-packages
+            python3 download_missing_media.py
+          else
+            echo "Service Account non configurato, skip download"
+          fi
+
       - name: Converti video orizzontali in formato Reel verticale
         run: python3 convert_videos.py
 
-      - name: Salva video convertiti
+      - name: Salva file media scaricati e convertiti
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add media/ || true
-          git diff --cached --quiet || (git commit -m "Auto: conversione video verticale" && git pull --rebase && git push)
+          git diff --cached --quiet || (git commit -m "Auto: download da Drive + conversione video verticale" && git pull --rebase && git push)
 
       - name: Pubblica su Instagram i post in scadenza
         env:
