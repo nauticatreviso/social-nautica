@@ -94,13 +94,13 @@
   },
   {
     "post_id": "owd-piscina-gruppo-20261021",
-    "likes": 24,
+    "likes": 25,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 24,
+      "likes": 25,
       "timestamp": "2026-10-22T19:20:25+0000",
       "media_type": "IMAGE"
     },
@@ -361,12 +361,13 @@
   },
   {
     "post_id": "raja-snorkeler-20261023",
-    "likes": 0,
+    "likes": 7,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
+      "likes": 7,
       "timestamp": "2026-10-23T10:42:04+0000",
       "media_type": "VIDEO"
     },
