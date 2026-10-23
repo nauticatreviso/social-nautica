@@ -319,17 +319,19 @@
   },
   {
     "post_id": "raja-panorama-isole-20261023",
-    "likes": 5,
+    "likes": 10,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 5,
+      "likes": 9,
       "timestamp": "2026-10-23T17:00:37+0000",
       "media_type": "IMAGE"
     },
-    "fb": {}
+    "fb": {
+      "likes": 1
+    }
   },
   {
     "post_id": "raja-pontile-20261015",
