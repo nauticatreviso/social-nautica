@@ -164,6 +164,19 @@
     "fb": null
   },
   {
+    "post_id": "raja-aragosta-20261028",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-10-28T12:12:11+0000",
+      "media_type": "VIDEO"
+    },
+    "fb": null
+  },
+  {
     "post_id": "raja-coccodrillo-20261020",
     "likes": 24,
     "comments": 0,
@@ -193,13 +206,13 @@
   },
   {
     "post_id": "raja-crocodilefish-20261020",
-    "likes": 32,
+    "likes": 33,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 32,
+      "likes": 33,
       "timestamp": "2026-10-20T14:23:45+0000",
       "media_type": "VIDEO"
     },
