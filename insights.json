@@ -165,12 +165,13 @@
   },
   {
     "post_id": "raja-aragosta-20261028",
-    "likes": 0,
+    "likes": 9,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
+      "likes": 9,
       "timestamp": "2026-10-28T12:12:11+0000",
       "media_type": "VIDEO"
     },
