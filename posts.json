@@ -1392,7 +1392,8 @@
     "media": "media/blsd-carosello-aula-20261102-1.jpg",
     "type": "carousel",
     "platforms": [
-      "instagram"
+      "instagram",
+      "facebook"
     ],
     "approved": false,
     "num": 98,
