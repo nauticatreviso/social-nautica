@@ -31,13 +31,13 @@
   },
   {
     "post_id": "blsd-giornata1-20261101",
-    "likes": 21,
+    "likes": 22,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 21,
+      "likes": 22,
       "timestamp": "2026-11-01T21:04:44+0000",
       "media_type": "IMAGE"
     },
@@ -483,6 +483,19 @@
     "ig": {
       "likes": 43,
       "timestamp": "2026-10-23T10:42:04+0000",
+      "media_type": "VIDEO"
+    },
+    "fb": null
+  },
+  {
+    "post_id": "raja-sweetlips-gialli-20261102",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-11-02T11:41:47+0000",
       "media_type": "VIDEO"
     },
     "fb": null
