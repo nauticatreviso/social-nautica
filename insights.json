@@ -31,13 +31,13 @@
   },
   {
     "post_id": "blsd-carosello-aula-20261102",
-    "likes": 18,
+    "likes": 20,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 17,
+      "likes": 19,
       "timestamp": "2026-11-02T12:34:04+0000",
       "media_type": "IMAGE"
     },
@@ -265,13 +265,13 @@
   },
   {
     "post_id": "raja-dugongo-20261031",
-    "likes": 43,
+    "likes": 44,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 43,
+      "likes": 44,
       "timestamp": "2026-10-31T18:30:42+0000",
       "media_type": "VIDEO"
     },
@@ -505,13 +505,13 @@
   },
   {
     "post_id": "raja-sweetlips-gialli-20261102",
-    "likes": 24,
+    "likes": 28,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 24,
+      "likes": 28,
       "timestamp": "2026-11-02T11:41:47+0000",
       "media_type": "VIDEO"
     },
@@ -562,12 +562,13 @@
   },
   {
     "post_id": "raja-wobbegong-closeup-20261102",
-    "likes": 0,
+    "likes": 6,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
+      "likes": 6,
       "timestamp": "2026-11-02T17:46:11+0000",
       "media_type": "VIDEO"
     },
