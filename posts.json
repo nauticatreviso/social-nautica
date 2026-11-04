@@ -1334,7 +1334,8 @@
     "media": "media/blsd-giornata2-20261108.jpg",
     "type": "image",
     "platforms": [
-      "instagram"
+      "instagram",
+      "facebook"
     ],
     "approved": true,
     "originalFile": "IMG_6125.HEIC",
