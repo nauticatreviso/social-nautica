@@ -47,12 +47,13 @@
   },
   {
     "post_id": "blsd-educativo-60k-20261104",
-    "likes": 0,
+    "likes": 14,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
+      "likes": 14,
       "timestamp": "2026-11-04T12:30:18+0000",
       "media_type": "IMAGE"
     },
@@ -292,13 +293,13 @@
   },
   {
     "post_id": "raja-flatworm-20261104",
-    "likes": 6,
+    "likes": 9,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 6,
+      "likes": 9,
       "timestamp": "2026-11-04T11:45:16+0000",
       "media_type": "VIDEO"
     },
@@ -546,13 +547,13 @@
   },
   {
     "post_id": "raja-sweetlips-azzurri-20261103",
-    "likes": 41,
+    "likes": 42,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 41,
+      "likes": 42,
       "timestamp": "2026-11-03T11:30:57+0000",
       "media_type": "VIDEO"
     },
