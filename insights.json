@@ -47,13 +47,13 @@
   },
   {
     "post_id": "blsd-educativo-60k-20261104",
-    "likes": 29,
+    "likes": 35,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 29,
+      "likes": 35,
       "timestamp": "2026-11-04T12:30:18+0000",
       "media_type": "IMAGE"
     },
@@ -293,13 +293,13 @@
   },
   {
     "post_id": "raja-flatworm-20261104",
-    "likes": 16,
+    "likes": 19,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 16,
+      "likes": 19,
       "timestamp": "2026-11-04T11:45:16+0000",
       "media_type": "VIDEO"
     },
@@ -377,12 +377,13 @@
   },
   {
     "post_id": "raja-mantis-shrimp-pavone-20261104",
-    "likes": 0,
+    "likes": 22,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
+      "likes": 22,
       "timestamp": "2026-11-04T18:31:41+0000",
       "media_type": "VIDEO"
     },
