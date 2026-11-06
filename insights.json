@@ -197,12 +197,13 @@
   },
   {
     "post_id": "post-20261106-1220",
-    "likes": 0,
+    "likes": 10,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
+      "likes": 10,
       "timestamp": "2026-11-06T13:13:03+0000",
       "media_type": "IMAGE"
     },
@@ -448,13 +449,13 @@
   },
   {
     "post_id": "raja-orangutan-crab-20261105",
-    "likes": 19,
+    "likes": 20,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 19,
+      "likes": 20,
       "timestamp": "2026-11-05T12:45:49+0000",
       "media_type": "VIDEO"
     },
@@ -604,12 +605,13 @@
   },
   {
     "post_id": "raja-spider-crab-20261106",
-    "likes": 0,
+    "likes": 13,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
+      "likes": 13,
       "timestamp": "2026-11-06T13:09:47+0000",
       "media_type": "VIDEO"
     },
