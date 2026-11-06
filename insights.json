@@ -47,7 +47,7 @@
   },
   {
     "post_id": "blsd-educativo-60k-20261104",
-    "likes": 43,
+    "likes": 44,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
@@ -58,18 +58,18 @@
       "media_type": "IMAGE"
     },
     "fb": {
-      "likes": 1
+      "likes": 2
     }
   },
   {
     "post_id": "blsd-giornata1-20261101",
-    "likes": 25,
+    "likes": 26,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 25,
+      "likes": 26,
       "timestamp": "2026-11-01T21:04:44+0000",
       "media_type": "IMAGE"
     },
@@ -197,15 +197,13 @@
   },
   {
     "post_id": "post-20261106-1220",
-    "likes": 10,
+    "likes": 0,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 10,
-      "timestamp": "2026-11-06T13:13:03+0000",
-      "media_type": "IMAGE"
+      "timestamp": "2026-11-06T14:12:57.089332+01:00"
     },
     "fb": {}
   },
@@ -364,6 +362,19 @@
     "fb": null
   },
   {
+    "post_id": "raja-granchio-porcellana-20261106",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-11-06T19:51:03+0000",
+      "media_type": "VIDEO"
+    },
+    "fb": null
+  },
+  {
     "post_id": "raja-gruppo-viewpoint-20261022",
     "likes": 61,
     "comments": 0,
@@ -407,13 +418,13 @@
   },
   {
     "post_id": "raja-mantis-shrimp-pavone-20261104",
-    "likes": 44,
+    "likes": 45,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 44,
+      "likes": 45,
       "timestamp": "2026-11-04T18:31:41+0000",
       "media_type": "VIDEO"
     },
@@ -605,13 +616,13 @@
   },
   {
     "post_id": "raja-spider-crab-20261106",
-    "likes": 13,
+    "likes": 21,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 13,
+      "likes": 21,
       "timestamp": "2026-11-06T13:09:47+0000",
       "media_type": "VIDEO"
     },
@@ -619,13 +630,13 @@
   },
   {
     "post_id": "raja-sweetlips-azzurri-20261103",
-    "likes": 44,
+    "likes": 45,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 44,
+      "likes": 45,
       "timestamp": "2026-11-03T11:30:57+0000",
       "media_type": "VIDEO"
     },
