@@ -236,6 +236,19 @@
     "fb": null
   },
   {
+    "post_id": "raja-branco-parete-reef-20261107",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-11-07T13:34:31+0000",
+      "media_type": "VIDEO"
+    },
+    "fb": null
+  },
+  {
     "post_id": "raja-coccodrillo-20261020",
     "likes": 25,
     "comments": 0,
@@ -307,13 +320,13 @@
   },
   {
     "post_id": "raja-flatworm-20261104",
-    "likes": 23,
+    "likes": 24,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 23,
+      "likes": 24,
       "timestamp": "2026-11-04T11:45:16+0000",
       "media_type": "VIDEO"
     },
@@ -617,13 +630,13 @@
   },
   {
     "post_id": "raja-spider-crab-20261106",
-    "likes": 27,
+    "likes": 28,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 27,
+      "likes": 28,
       "timestamp": "2026-11-06T13:09:47+0000",
       "media_type": "VIDEO"
     },
