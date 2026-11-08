@@ -91,12 +91,13 @@
   },
   {
     "post_id": "blsd-giornata2-20261108",
-    "likes": 0,
+    "likes": 15,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
+      "likes": 15,
       "timestamp": "2026-11-08T19:09:08+0000",
       "media_type": "IMAGE"
     },
@@ -686,13 +687,13 @@
   },
   {
     "post_id": "raja-spider-crab-20261106",
-    "likes": 30,
+    "likes": 31,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 30,
+      "likes": 31,
       "timestamp": "2026-11-06T13:09:47+0000",
       "media_type": "VIDEO"
     },
@@ -700,13 +701,13 @@
   },
   {
     "post_id": "raja-sweetlips-azzurri-20261103",
-    "likes": 46,
+    "likes": 47,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 46,
+      "likes": 47,
       "timestamp": "2026-11-03T11:30:57+0000",
       "media_type": "VIDEO"
     },
