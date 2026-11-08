@@ -31,13 +31,13 @@
   },
   {
     "post_id": "blsd-anticipazione-g2-20261107",
-    "likes": 30,
+    "likes": 31,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 30,
+      "likes": 31,
       "timestamp": "2026-11-07T18:20:20+0000",
       "media_type": "IMAGE"
     },
@@ -61,13 +61,13 @@
   },
   {
     "post_id": "blsd-educativo-60k-20261104",
-    "likes": 45,
+    "likes": 46,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 43,
+      "likes": 44,
       "timestamp": "2026-11-04T12:30:18+0000",
       "media_type": "IMAGE"
     },
@@ -88,6 +88,19 @@
       "media_type": "IMAGE"
     },
     "fb": null
+  },
+  {
+    "post_id": "blsd-giornata2-20261108",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-11-08T19:09:08+0000",
+      "media_type": "IMAGE"
+    },
+    "fb": {}
   },
   {
     "post_id": "owd-allieva-20261022",
@@ -251,13 +264,13 @@
   },
   {
     "post_id": "raja-branco-parete-reef-20261107",
-    "likes": 29,
+    "likes": 30,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 29,
+      "likes": 30,
       "timestamp": "2026-11-07T13:34:31+0000",
       "media_type": "VIDEO"
     },
@@ -349,13 +362,13 @@
   },
   {
     "post_id": "raja-eagle-ray-20261107",
-    "likes": 57,
+    "likes": 61,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 57,
+      "likes": 61,
       "timestamp": "2026-11-07T16:50:19+0000",
       "media_type": "VIDEO"
     },
@@ -673,13 +686,13 @@
   },
   {
     "post_id": "raja-spider-crab-20261106",
-    "likes": 29,
+    "likes": 30,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 29,
+      "likes": 30,
       "timestamp": "2026-11-06T13:09:47+0000",
       "media_type": "VIDEO"
     },
