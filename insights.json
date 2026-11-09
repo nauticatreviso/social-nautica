@@ -31,13 +31,13 @@
   },
   {
     "post_id": "blsd-anticipazione-g2-20261107",
-    "likes": 33,
+    "likes": 34,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 31,
+      "likes": 32,
       "timestamp": "2026-11-07T18:20:20+0000",
       "media_type": "IMAGE"
     },
@@ -423,13 +423,13 @@
   },
   {
     "post_id": "raja-gamberetto-trasparente-20261109",
-    "likes": 12,
+    "likes": 17,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 12,
+      "likes": 17,
       "timestamp": "2026-11-09T13:51:32+0000",
       "media_type": "VIDEO"
     },
@@ -798,6 +798,19 @@
     "ig": {
       "likes": 23,
       "timestamp": "2026-11-02T17:46:11+0000",
+      "media_type": "VIDEO"
+    },
+    "fb": null
+  },
+  {
+    "post_id": "raja-wobbegong-corpo-intero-20261109",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-11-09T20:20:07+0000",
       "media_type": "VIDEO"
     },
     "fb": null
