@@ -93,13 +93,13 @@
   },
   {
     "post_id": "blsd-giornata2-20261108",
-    "likes": 18,
+    "likes": 20,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 18,
+      "likes": 20,
       "timestamp": "2026-11-08T19:09:08+0000",
       "media_type": "IMAGE"
     },
@@ -415,6 +415,19 @@
     "ig": {
       "likes": 14,
       "timestamp": "2026-11-05T20:19:12+0000",
+      "media_type": "VIDEO"
+    },
+    "fb": null
+  },
+  {
+    "post_id": "raja-gamberetto-trasparente-20261109",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-11-09T13:51:32+0000",
       "media_type": "VIDEO"
     },
     "fb": null
