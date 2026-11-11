@@ -78,6 +78,19 @@
     }
   },
   {
+    "post_id": "blsd-educativo-dae-20261111",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-11-11T13:51:17+0000",
+      "media_type": "VIDEO"
+    },
+    "fb": {}
+  },
+  {
     "post_id": "blsd-giornata1-20261101",
     "likes": 26,
     "comments": 0,
@@ -435,13 +448,13 @@
   },
   {
     "post_id": "raja-gamberetto-trasparente-20261109",
-    "likes": 20,
+    "likes": 21,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 20,
+      "likes": 21,
       "timestamp": "2026-11-09T13:51:32+0000",
       "media_type": "VIDEO"
     },
@@ -486,6 +499,20 @@
       "likes": 61,
       "timestamp": "2026-10-22T16:45:41+0000",
       "media_type": "IMAGE"
+    },
+    "fb": null
+  },
+  {
+    "post_id": "raja-lumaca-marina-20261111",
+    "likes": 1,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "likes": 1,
+      "timestamp": "2026-11-11T13:50:37+0000",
+      "media_type": "VIDEO"
     },
     "fb": null
   },
