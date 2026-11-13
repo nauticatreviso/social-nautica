@@ -715,13 +715,13 @@
   },
   {
     "post_id": "raja-reef-panoramico-20261111",
-    "likes": 20,
+    "likes": 22,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 20,
+      "likes": 22,
       "timestamp": "2026-11-11T23:53:55+0000",
       "media_type": "VIDEO"
     },
@@ -743,13 +743,13 @@
   },
   {
     "post_id": "raja-seppia-rossa-20261112",
-    "likes": 18,
+    "likes": 20,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 18,
+      "likes": 20,
       "timestamp": "2026-11-12T19:50:03+0000",
       "media_type": "VIDEO"
     },
@@ -793,6 +793,19 @@
     "ig": {
       "likes": 36,
       "timestamp": "2026-11-06T13:09:47+0000",
+      "media_type": "VIDEO"
+    },
+    "fb": null
+  },
+  {
+    "post_id": "raja-sponge-crab-20261113",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-11-13T14:32:50+0000",
       "media_type": "VIDEO"
     },
     "fb": null
