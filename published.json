@@ -323,5 +323,16 @@
     "status": "pubblicato",
     "media_id": "18138904030637568",
     "alle": "2026-11-13T15:32:13.922652+01:00"
+  },
+  "raja-seppia-nuoto-20261113": {
+    "status": "pubblicato",
+    "media_id": "17917301925520992",
+    "alle": "2026-11-13T20:48:52.504863+01:00"
+  },
+  "blsd-anticipazione-o2-20261113": {
+    "status": "errore",
+    "errore": "HTTP 400 su /17841404468831152/media_publish: {\"error\":{\"message\":\"Media ID is not available\",\"code\":9007,\"type\":\"OAuthException\",\"error_subcode\":2207027,\"is_transient\":false,\"error_user_msg\":\"Il contenuto multimediale non è pronto per la pubblicazione, attendi un momento\",\"error_user_title\":\"Impossibile pubblicare\",\"fbtrace_id\":\"Aj4r-qHtesfvI2CrEV1otlg\"}}",
+    "tentativi": 1,
+    "ultimo_tentativo": "2026-11-13T20:48:52.504863+01:00"
   }
 }
