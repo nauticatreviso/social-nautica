@@ -47,12 +47,13 @@
   },
   {
     "post_id": "blsd-anticipazione-o2-20261113",
-    "likes": 0,
+    "likes": 7,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
+      "likes": 7,
       "timestamp": "2026-11-13T22:19:01+0000",
       "media_type": "IMAGE"
     },
@@ -756,13 +757,13 @@
   },
   {
     "post_id": "raja-seppia-nuoto-20261113",
-    "likes": 15,
+    "likes": 21,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 15,
+      "likes": 21,
       "timestamp": "2026-11-13T19:49:27+0000",
       "media_type": "VIDEO"
     },
@@ -770,13 +771,13 @@
   },
   {
     "post_id": "raja-seppia-rossa-20261112",
-    "likes": 22,
+    "likes": 23,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 22,
+      "likes": 23,
       "timestamp": "2026-11-12T19:50:03+0000",
       "media_type": "VIDEO"
     },
@@ -826,13 +827,13 @@
   },
   {
     "post_id": "raja-sponge-crab-20261113",
-    "likes": 23,
+    "likes": 24,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 23,
+      "likes": 24,
       "timestamp": "2026-11-13T14:32:50+0000",
       "media_type": "VIDEO"
     },
