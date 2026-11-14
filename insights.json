@@ -47,17 +47,19 @@
   },
   {
     "post_id": "blsd-anticipazione-o2-20261113",
-    "likes": 13,
+    "likes": 16,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 13,
+      "likes": 15,
       "timestamp": "2026-11-13T22:19:01+0000",
       "media_type": "IMAGE"
     },
-    "fb": {}
+    "fb": {
+      "likes": 1
+    }
   },
   {
     "post_id": "blsd-carosello-aula-20261102",
@@ -757,13 +759,13 @@
   },
   {
     "post_id": "raja-seppia-nuoto-20261113",
-    "likes": 25,
+    "likes": 27,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 25,
+      "likes": 27,
       "timestamp": "2026-11-13T19:49:27+0000",
       "media_type": "VIDEO"
     },
