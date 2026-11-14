@@ -589,12 +589,13 @@
   },
   {
     "post_id": "raja-micro-creatura-alga-20261114",
-    "likes": 0,
+    "likes": 5,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
+      "likes": 5,
       "timestamp": "2026-11-14T13:49:30+0000",
       "media_type": "VIDEO"
     },
@@ -687,6 +688,19 @@
     }
   },
   {
+    "post_id": "raja-piccolo-polpo-20261114",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-11-14T15:56:37+0000",
+      "media_type": "VIDEO"
+    },
+    "fb": null
+  },
+  {
     "post_id": "raja-pigmeo-20261024",
     "likes": 22,
     "comments": 0,
@@ -772,13 +786,13 @@
   },
   {
     "post_id": "raja-seppia-nuoto-20261113",
-    "likes": 27,
+    "likes": 28,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 27,
+      "likes": 28,
       "timestamp": "2026-11-13T19:49:27+0000",
       "media_type": "VIDEO"
     },
@@ -842,13 +856,13 @@
   },
   {
     "post_id": "raja-sponge-crab-20261113",
-    "likes": 24,
+    "likes": 26,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 24,
+      "likes": 26,
       "timestamp": "2026-11-13T14:32:50+0000",
       "media_type": "VIDEO"
     },
