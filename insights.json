@@ -79,12 +79,13 @@
   },
   {
     "post_id": "blsd-chiusura-corso-20261115",
-    "likes": 0,
+    "likes": 12,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
+      "likes": 12,
       "timestamp": "2026-11-15T19:17:09+0000",
       "media_type": "IMAGE"
     },
@@ -108,13 +109,13 @@
   },
   {
     "post_id": "blsd-educativo-dae-20261111",
-    "likes": 28,
+    "likes": 29,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 28,
+      "likes": 29,
       "timestamp": "2026-11-11T13:51:17+0000",
       "media_type": "VIDEO"
     },
@@ -534,13 +535,13 @@
   },
   {
     "post_id": "raja-lumaca-marina-20261111",
-    "likes": 19,
+    "likes": 20,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 19,
+      "likes": 20,
       "timestamp": "2026-11-11T13:50:37+0000",
       "media_type": "VIDEO"
     },
@@ -602,13 +603,13 @@
   },
   {
     "post_id": "raja-micro-creatura-alga-20261114",
-    "likes": 10,
+    "likes": 11,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 10,
+      "likes": 11,
       "timestamp": "2026-11-14T13:49:30+0000",
       "media_type": "VIDEO"
     },
@@ -702,13 +703,13 @@
   },
   {
     "post_id": "raja-piccolo-polpo-20261114",
-    "likes": 11,
+    "likes": 12,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 11,
+      "likes": 12,
       "timestamp": "2026-11-14T15:56:37+0000",
       "media_type": "VIDEO"
     },
@@ -730,13 +731,13 @@
   },
   {
     "post_id": "raja-polpo-sabbia-20261114",
-    "likes": 16,
+    "likes": 17,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 16,
+      "likes": 17,
       "timestamp": "2026-11-14T19:49:08+0000",
       "media_type": "VIDEO"
     },
@@ -983,13 +984,13 @@
   },
   {
     "post_id": "raja-wobbegong-corpo-intero-20261109",
-    "likes": 32,
+    "likes": 33,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 32,
+      "likes": 33,
       "timestamp": "2026-11-09T20:20:07+0000",
       "media_type": "VIDEO"
     },
