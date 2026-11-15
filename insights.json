@@ -78,6 +78,19 @@
     }
   },
   {
+    "post_id": "blsd-chiusura-corso-20261115",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-11-15T19:17:09+0000",
+      "media_type": "IMAGE"
+    },
+    "fb": {}
+  },
+  {
     "post_id": "blsd-educativo-60k-20261104",
     "likes": 48,
     "comments": 0,
@@ -717,13 +730,13 @@
   },
   {
     "post_id": "raja-polpo-sabbia-20261114",
-    "likes": 15,
+    "likes": 16,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 15,
+      "likes": 16,
       "timestamp": "2026-11-14T19:49:08+0000",
       "media_type": "VIDEO"
     },
