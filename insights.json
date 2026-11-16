@@ -79,13 +79,13 @@
   },
   {
     "post_id": "blsd-chiusura-corso-20261115",
-    "likes": 17,
+    "likes": 19,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 17,
+      "likes": 19,
       "timestamp": "2026-11-15T19:17:09+0000",
       "media_type": "IMAGE"
     },
@@ -340,6 +340,19 @@
     "fb": null
   },
   {
+    "post_id": "raja-cavalluccio-teaser-20261116",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-11-16T13:51:23+0000",
+      "media_type": "VIDEO"
+    },
+    "fb": null
+  },
+  {
     "post_id": "raja-coccodrillo-20261020",
     "likes": 25,
     "comments": 0,
@@ -395,15 +408,13 @@
   },
   {
     "post_id": "raja-damigella-20261030",
-    "likes": 26,
+    "likes": 0,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 26,
-      "timestamp": "2026-10-30T11:48:30+0000",
-      "media_type": "VIDEO"
+      "timestamp": "2026-10-30T12:47:02.490166+01:00"
     },
     "fb": null
   },
@@ -423,13 +434,13 @@
   },
   {
     "post_id": "raja-eagle-ray-20261107",
-    "likes": 63,
+    "likes": 64,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 63,
+      "likes": 64,
       "timestamp": "2026-11-07T16:50:19+0000",
       "media_type": "VIDEO"
     },
@@ -493,15 +504,13 @@
   },
   {
     "post_id": "raja-gorgonia-20261022",
-    "likes": 32,
+    "likes": 0,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 32,
-      "timestamp": "2026-10-22T16:13:43+0000",
-      "media_type": "VIDEO"
+      "timestamp": "2026-10-22T18:13:03.634797+02:00"
     },
     "fb": null
   },
@@ -603,13 +612,13 @@
   },
   {
     "post_id": "raja-micro-creatura-alga-20261114",
-    "likes": 11,
+    "likes": 12,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 11,
+      "likes": 12,
       "timestamp": "2026-11-14T13:49:30+0000",
       "media_type": "VIDEO"
     },
@@ -673,13 +682,13 @@
   },
   {
     "post_id": "raja-pagliaccio-bolle-20261103",
-    "likes": 54,
+    "likes": 55,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 54,
+      "likes": 55,
       "timestamp": "2026-11-03T18:12:46+0000",
       "media_type": "VIDEO"
     },
@@ -703,15 +712,13 @@
   },
   {
     "post_id": "raja-piccolo-polpo-20261114",
-    "likes": 12,
+    "likes": 0,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 12,
-      "timestamp": "2026-11-14T15:56:37+0000",
-      "media_type": "VIDEO"
+      "timestamp": "2026-11-14T16:56:00.535249+01:00"
     },
     "fb": null
   },
@@ -745,15 +752,13 @@
   },
   {
     "post_id": "raja-pontile-20261015",
-    "likes": 57,
+    "likes": 0,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 57,
-      "timestamp": "2026-10-15T17:15:26+0000",
-      "media_type": "VIDEO"
+      "timestamp": "2026-10-15T19:14:50.086783+02:00"
     },
     "fb": null
   },
@@ -815,13 +820,13 @@
   },
   {
     "post_id": "raja-seppia-nuoto-20261113",
-    "likes": 35,
+    "likes": 36,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 35,
+      "likes": 36,
       "timestamp": "2026-11-13T19:49:27+0000",
       "media_type": "VIDEO"
     },
