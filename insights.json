@@ -229,6 +229,20 @@
     "fb": null
   },
   {
+    "post_id": "oxy-provider-chiusura-20261117",
+    "likes": 1,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "likes": 1,
+      "timestamp": "2026-11-17T19:48:57+0000",
+      "media_type": "IMAGE"
+    },
+    "fb": {}
+  },
+  {
     "post_id": "post-20261006-1758",
     "likes": 0,
     "comments": 0,
@@ -313,13 +327,13 @@
   },
   {
     "post_id": "raja-barracuda-20261117",
-    "likes": 17,
+    "likes": 20,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 17,
+      "likes": 20,
       "timestamp": "2026-11-17T11:45:34+0000",
       "media_type": "VIDEO"
     },
@@ -977,6 +991,19 @@
     "ig": {
       "likes": 37,
       "timestamp": "2026-10-20T16:15:42+0000",
+      "media_type": "VIDEO"
+    },
+    "fb": null
+  },
+  {
+    "post_id": "raja-tartaruga-embricata-20261117",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-11-17T19:50:26+0000",
       "media_type": "VIDEO"
     },
     "fb": null
