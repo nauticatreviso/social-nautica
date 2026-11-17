@@ -998,7 +998,7 @@ async function loadCalendar() {
       const timeStr = when.toLocaleTimeString('it-IT', { hour:'2-digit', minute:'2-digit' });
 
       // Thumbnail
-      const isImage = post.type === 'image';
+      const isImage = post.type === 'image' || post.type === 'carousel';
       const isVideo = post.type === 'video' || post.type === 'reel';
       let thumb;
       const thumbDataUri = _thumbsCache && _thumbsCache[post.id];
