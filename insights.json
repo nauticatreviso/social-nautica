@@ -230,13 +230,13 @@
   },
   {
     "post_id": "oxy-provider-chiusura-20261117",
-    "likes": 26,
+    "likes": 27,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 25,
+      "likes": 26,
       "timestamp": "2026-11-17T19:48:57+0000",
       "media_type": "IMAGE"
     },
@@ -328,14 +328,27 @@
     "fb": null
   },
   {
-    "post_id": "raja-barracuda-20261117",
-    "likes": 23,
+    "post_id": "raja-balestra-pagliaccio-20261118",
+    "likes": 0,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 23,
+      "timestamp": "2026-11-18T13:51:02+0000",
+      "media_type": "VIDEO"
+    },
+    "fb": null
+  },
+  {
+    "post_id": "raja-barracuda-20261117",
+    "likes": 24,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "likes": 24,
       "timestamp": "2026-11-17T11:45:34+0000",
       "media_type": "VIDEO"
     },
@@ -461,6 +474,20 @@
     "ig": {
       "likes": 26,
       "timestamp": "2026-10-30T11:48:30+0000",
+      "media_type": "VIDEO"
+    },
+    "fb": null
+  },
+  {
+    "post_id": "raja-daverificare1-20261019",
+    "likes": 1,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "likes": 1,
+      "timestamp": "2026-11-18T13:50:20+0000",
       "media_type": "VIDEO"
     },
     "fb": null
@@ -999,13 +1026,13 @@
   },
   {
     "post_id": "raja-tartaruga-embricata-20261117",
-    "likes": 24,
+    "likes": 27,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 24,
+      "likes": 27,
       "timestamp": "2026-11-17T19:50:26+0000",
       "media_type": "VIDEO"
     },
