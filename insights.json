@@ -508,6 +508,19 @@
     "fb": null
   },
   {
+    "post_id": "raja-daverificare3-20261023",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-11-19T13:50:55+0000",
+      "media_type": "VIDEO"
+    },
+    "fb": null
+  },
+  {
     "post_id": "raja-dugongo-20261031",
     "likes": 46,
     "comments": 0,
@@ -739,6 +752,19 @@
     "ig": {
       "likes": 43,
       "timestamp": "2026-10-14T17:01:11+0000",
+      "media_type": "VIDEO"
+    },
+    "fb": null
+  },
+  {
+    "post_id": "raja-nudibranco-nembrotha-20261119",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-11-19T13:51:37+0000",
       "media_type": "VIDEO"
     },
     "fb": null
