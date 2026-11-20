@@ -230,19 +230,33 @@
   },
   {
     "post_id": "oxy-provider-chiusura-20261117",
-    "likes": 34,
+    "likes": 35,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 32,
+      "likes": 33,
       "timestamp": "2026-11-17T19:48:57+0000",
       "media_type": "IMAGE"
     },
     "fb": {
       "likes": 2
     }
+  },
+  {
+    "post_id": "oxy-provider-pratica-20261120",
+    "likes": 1,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "likes": 1,
+      "timestamp": "2026-11-20T21:23:23+0000",
+      "media_type": "IMAGE"
+    },
+    "fb": {}
   },
   {
     "post_id": "post-20261006-1758",
@@ -329,13 +343,13 @@
   },
   {
     "post_id": "raja-balestra-pagliaccio-20261118",
-    "likes": 28,
+    "likes": 29,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 28,
+      "likes": 29,
       "timestamp": "2026-11-18T13:51:02+0000",
       "media_type": "VIDEO"
     },
@@ -343,13 +357,13 @@
   },
   {
     "post_id": "raja-banco-fusilieri-20261120",
-    "likes": 10,
+    "likes": 18,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 10,
+      "likes": 18,
       "timestamp": "2026-11-20T13:22:46+0000",
       "media_type": "VIDEO"
     },
@@ -537,13 +551,13 @@
   },
   {
     "post_id": "raja-daverificare4-20261024",
-    "likes": 23,
+    "likes": 24,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 23,
+      "likes": 24,
       "timestamp": "2026-11-19T17:30:41+0000",
       "media_type": "VIDEO"
     },
@@ -859,13 +873,13 @@
   },
   {
     "post_id": "raja-piccolo-polpo-20261114",
-    "likes": 16,
+    "likes": 17,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 16,
+      "likes": 17,
       "timestamp": "2026-11-14T15:56:37+0000",
       "media_type": "VIDEO"
     },
