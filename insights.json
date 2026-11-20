@@ -342,14 +342,27 @@
     "fb": null
   },
   {
-    "post_id": "raja-barracuda-20261117",
-    "likes": 29,
+    "post_id": "raja-banco-fusilieri-20261120",
+    "likes": 0,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 29,
+      "timestamp": "2026-11-20T13:22:46+0000",
+      "media_type": "VIDEO"
+    },
+    "fb": null
+  },
+  {
+    "post_id": "raja-barracuda-20261117",
+    "likes": 30,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "likes": 30,
       "timestamp": "2026-11-17T11:45:34+0000",
       "media_type": "VIDEO"
     },
@@ -523,13 +536,13 @@
   },
   {
     "post_id": "raja-daverificare4-20261024",
-    "likes": 20,
+    "likes": 21,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 20,
+      "likes": 21,
       "timestamp": "2026-11-19T17:30:41+0000",
       "media_type": "VIDEO"
     },
@@ -773,13 +786,13 @@
   },
   {
     "post_id": "raja-nudibranco-nembrotha-20261119",
-    "likes": 18,
+    "likes": 19,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 18,
+      "likes": 19,
       "timestamp": "2026-11-19T13:51:37+0000",
       "media_type": "VIDEO"
     },
@@ -957,13 +970,13 @@
   },
   {
     "post_id": "raja-seppia-nuoto-20261113",
-    "likes": 36,
+    "likes": 37,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 36,
+      "likes": 37,
       "timestamp": "2026-11-13T19:49:27+0000",
       "media_type": "VIDEO"
     },
