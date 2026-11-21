@@ -553,13 +553,13 @@
   },
   {
     "post_id": "raja-daverificare4-20261024",
-    "likes": 25,
+    "likes": 26,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 25,
+      "likes": 26,
       "timestamp": "2026-11-19T17:30:41+0000",
       "media_type": "VIDEO"
     },
@@ -917,12 +917,13 @@
   },
   {
     "post_id": "raja-polpo-sabbia-20261121",
-    "likes": 0,
+    "likes": 8,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
+      "likes": 8,
       "timestamp": "2026-11-21T13:50:17+0000",
       "media_type": "VIDEO"
     },
