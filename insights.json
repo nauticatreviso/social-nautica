@@ -345,13 +345,13 @@
   },
   {
     "post_id": "raja-balestra-pagliaccio-20261118",
-    "likes": 29,
+    "likes": 30,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 29,
+      "likes": 30,
       "timestamp": "2026-11-18T13:51:02+0000",
       "media_type": "VIDEO"
     },
@@ -359,13 +359,13 @@
   },
   {
     "post_id": "raja-banco-fusilieri-20261120",
-    "likes": 23,
+    "likes": 25,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 23,
+      "likes": 25,
       "timestamp": "2026-11-20T13:22:46+0000",
       "media_type": "VIDEO"
     },
@@ -409,6 +409,19 @@
     "ig": {
       "likes": 21,
       "timestamp": "2026-11-07T18:19:58+0000",
+      "media_type": "VIDEO"
+    },
+    "fb": null
+  },
+  {
+    "post_id": "raja-cavalluccio-pigmeo-20261122",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-11-22T13:49:59+0000",
       "media_type": "VIDEO"
     },
     "fb": null
@@ -803,13 +816,13 @@
   },
   {
     "post_id": "raja-nudibranco-nembrotha-20261119",
-    "likes": 22,
+    "likes": 23,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 22,
+      "likes": 23,
       "timestamp": "2026-11-19T13:51:37+0000",
       "media_type": "VIDEO"
     },
