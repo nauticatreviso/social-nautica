@@ -246,12 +246,13 @@
   },
   {
     "post_id": "oxy-provider-formazione-20261122",
-    "likes": 0,
+    "likes": 15,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
+      "likes": 15,
       "timestamp": "2026-11-22T19:50:22+0000",
       "media_type": "IMAGE"
     },
@@ -330,13 +331,13 @@
   },
   {
     "post_id": "post-20261122-1830",
-    "likes": 21,
+    "likes": 33,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 19,
+      "likes": 31,
       "timestamp": "2026-11-22T17:47:41+0000",
       "media_type": "IMAGE"
     },
@@ -444,13 +445,13 @@
   },
   {
     "post_id": "raja-cavalluccio-pigmeo-20261122",
-    "likes": 26,
+    "likes": 27,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 26,
+      "likes": 27,
       "timestamp": "2026-11-22T13:49:59+0000",
       "media_type": "VIDEO"
     },
@@ -554,13 +555,13 @@
   },
   {
     "post_id": "raja-daverificare1-20261019",
-    "likes": 33,
+    "likes": 34,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 33,
+      "likes": 34,
       "timestamp": "2026-11-18T13:50:20+0000",
       "media_type": "VIDEO"
     },
@@ -568,13 +569,13 @@
   },
   {
     "post_id": "raja-daverificare2-20261021",
-    "likes": 27,
+    "likes": 28,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 27,
+      "likes": 28,
       "timestamp": "2026-11-18T18:57:42+0000",
       "media_type": "VIDEO"
     },
@@ -946,13 +947,13 @@
   },
   {
     "post_id": "raja-polpo-sabbia-20261114",
-    "likes": 21,
+    "likes": 22,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 21,
+      "likes": 22,
       "timestamp": "2026-11-14T19:49:08+0000",
       "media_type": "VIDEO"
     },
@@ -1114,13 +1115,13 @@
   },
   {
     "post_id": "raja-sponge-crab-20261113",
-    "likes": 32,
+    "likes": 33,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 32,
+      "likes": 33,
       "timestamp": "2026-11-13T14:32:50+0000",
       "media_type": "VIDEO"
     },
