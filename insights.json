@@ -245,6 +245,19 @@
     }
   },
   {
+    "post_id": "oxy-provider-formazione-20261122",
+    "likes": 0,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "timestamp": "2026-11-22T19:50:22+0000",
+      "media_type": "IMAGE"
+    },
+    "fb": {}
+  },
+  {
     "post_id": "oxy-provider-pratica-20261120",
     "likes": 17,
     "comments": 0,
@@ -317,17 +330,19 @@
   },
   {
     "post_id": "post-20261122-1830",
-    "likes": 1,
+    "likes": 21,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 1,
+      "likes": 19,
       "timestamp": "2026-11-22T17:47:41+0000",
       "media_type": "IMAGE"
     },
-    "fb": {}
+    "fb": {
+      "likes": 2
+    }
   },
   {
     "post_id": "raja-anemone-20261014",
@@ -429,13 +444,13 @@
   },
   {
     "post_id": "raja-cavalluccio-pigmeo-20261122",
-    "likes": 22,
+    "likes": 26,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 22,
+      "likes": 26,
       "timestamp": "2026-11-22T13:49:59+0000",
       "media_type": "VIDEO"
     },
@@ -1099,13 +1114,13 @@
   },
   {
     "post_id": "raja-sponge-crab-20261113",
-    "likes": 31,
+    "likes": 32,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 31,
+      "likes": 32,
       "timestamp": "2026-11-13T14:32:50+0000",
       "media_type": "VIDEO"
     },
