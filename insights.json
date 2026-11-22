@@ -316,6 +316,20 @@
     "fb": {}
   },
   {
+    "post_id": "post-20261122-1830",
+    "likes": 1,
+    "comments": 0,
+    "reach": 0,
+    "shares_fb": 0,
+    "impressions_ig": 0,
+    "ig": {
+      "likes": 1,
+      "timestamp": "2026-11-22T17:47:41+0000",
+      "media_type": "IMAGE"
+    },
+    "fb": {}
+  },
+  {
     "post_id": "raja-anemone-20261014",
     "likes": 55,
     "comments": 0,
@@ -415,13 +429,13 @@
   },
   {
     "post_id": "raja-cavalluccio-pigmeo-20261122",
-    "likes": 19,
+    "likes": 22,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 19,
+      "likes": 22,
       "timestamp": "2026-11-22T13:49:59+0000",
       "media_type": "VIDEO"
     },
@@ -931,13 +945,13 @@
   },
   {
     "post_id": "raja-polpo-sabbia-20261121",
-    "likes": 14,
+    "likes": 17,
     "comments": 0,
     "reach": 0,
     "shares_fb": 0,
     "impressions_ig": 0,
     "ig": {
-      "likes": 14,
+      "likes": 17,
       "timestamp": "2026-11-21T13:50:17+0000",
       "media_type": "VIDEO"
     },
