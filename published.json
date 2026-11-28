@@ -463,5 +463,11 @@
     "status": "pubblicato",
     "media_id": "18355668127264067",
     "alle": "2026-11-27T14:50:11.377494+01:00"
+  },
+  "raja-acropora-verde-20261128": {
+    "status": "errore",
+    "errore": "Token non valido: HTTP 400 su /17841404468831152: {\"error\":{\"message\":\"Invalid OAuth access token - Cannot parse access token\",\"code\":190,\"type\":\"OAuthException\",\"fbtrace_id\":\"AQ5CTLtCGkJW9FXssro9BZW\"}}",
+    "tentativi": 1,
+    "ultimo_tentativo": "2026-11-28T14:47:15.524958+01:00"
   }
 }
